@@ -1,0 +1,117 @@
+The Navier-Stokes equations govern the motion of viscous fluids. These equations arise from applying conservation of mass, conservation of momentum, and conservation of energy to the motion of fluids and build upon the notion that fluids are a continuous medium rather than a set of discrete particles. The so-called convective form of the Navier-Stokes equations for an incompressible Newtonian fluid without the presence of body forces is:
+\begin{flalign}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    &\text{Continuity equation:}& \nabla \cdot \mathbf{u} &= 0 && \\
+    \tag{{\theequation}b}
+    &\text{Momentum equation:}& \frac{\partial \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= - \frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} &&
+\end{flalign}
+where $\mathbf{u}$ is the velocity field, $t$ is the time, $\rho$ is the density, $p$ is the pressure field, and $\nu$ is the kinematic viscosity. A more tangible notation of these formidable equations is obtained by writing out the vector components and utilizing Einstein's summation convention:
+\begin{align}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    \label{eq:continuityEinstein}
+    \frac{\partial u_i}{\partial x_i} &= 0 \\
+    \tag{{\theequation}b}
+    \label{eq:momentumEinstein}
+    \frac{\partial u_i}{\partial t} + u_j \frac{\partial u_i}{\partial x_j} &= - \frac{1}{\rho} \frac{\partial p}{\partial x_i} + \nu \frac{\partial^2 u_i}{\partial x_j^2}
+\end{align}
+Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} are dimensional. That is, each parameter such as $u_i$, $p$, and $\nu$ is expressed in terms of a physical quantity. Non-dimensionalization can reduce the number of free parameters and can help to gain a greater insight into the relative size of the various terms present in the equations. The dimensionless parameters are defined as follows:
+\begin{align}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    \label{eq:nondimu}
+    u_i^* &\equiv \frac{u_i}{U} \\
+    \tag{{\theequation}b}
+    \label{eq:nondimx}
+    x_i^* &\equiv \frac{x_i}{L} \\
+    \tag{{\theequation}c}
+    \label{eq:nondimt}
+    t^* &\equiv t \frac{U}{L} \\
+    \tag{{\theequation}d}
+    \label{eq:nondimp}
+    p^* &\equiv \frac{p}{\rho U^2} \\
+    \tag{{\theequation}e}
+    \label{eq:Re}
+    \text{Re} &\equiv \frac{\nu}{UL}
+\end{align}
+where $U$ is the velocity scale and $L$ is the length scale of the flow. Multiplication of Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} by $\frac{L}{U}$ and $\frac{L}{U^2}$, respectively, gives
+\begin{align}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    \frac{L}{U} \frac{\partial u_i}{\partial x_i} &= 0 \\
+    \tag{{\theequation}b}
+    \frac{L}{U^2} \frac{\partial u_i}{\partial t} + \frac{L}{U^2} u_j \frac{\partial u_i}{\partial x_j} &= - \frac{L}{U^2} \frac{1}{\rho} \frac{\partial p}{\partial x_i} + \frac{L}{U^2} \nu \frac{\partial^2 u_i}{\partial x_j^2}
+\end{align}
+Rearrangement yields
+\begin{align}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    \frac{\partial \frac{u_i}{U}}{\partial \frac{x_i}{L}} &= 0 \\
+    \tag{{\theequation}b}
+    \frac{\partial \frac{u_i}{U}}{\partial t \frac{U}{L}} + \frac{u_j}{U} \frac{\partial \frac{u_i}{U}}{\partial \frac{x_j}{L}} &= - \frac{1}{\rho} \frac{\partial \frac{p}{U^2}}{\partial \frac{x_i}{L}} + \frac{\nu}{UL} \frac{\partial^2 \frac{u_i}{U}}{\partial \frac{x_j}{L} \partial \frac{x_j}{L}}
+\end{align}
+Substituting Equations \eqref{eq:nondimu}--\eqref{eq:Re}, we obtain
+\begin{align}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    \frac{\partial u_i^*}{\partial x_i^*} &= 0 \\
+    \tag{{\theequation}b}
+    \frac{\partial u_i^*}{\partial t^*} + u_j^* \frac{\partial u_i^*}{\partial x_j^*} &= - \frac{\partial p^*}{\partial x_i^*} + \frac{1}{\text{Re}} \frac{\partial^2 u_i^*}{\partial x_j^* \partial x_j^*}
+\end{align}
+\begin{flalign}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    &\text{or}& \nabla \cdot \mathbf{u}^* &= 0 && \\
+    \tag{{\theequation}b}
+    & & \frac{\partial \mathbf{u}^*}{\partial t^*} + \left( \mathbf{u}^* \cdot \nabla \right) \mathbf{u}^* &= - \nabla p^* + \frac{1}{\text{Re}} \nabla^2 \mathbf{u}^* &&
+\end{flalign}
+Because it is now understood that the governing equations are dimensionless, the asterisk will be omitted in the remainder of this report.
+\begin{align}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    \nabla \cdot \mathbf{u} &= 0 \label{eq:continuity} \\
+    \tag{{\theequation}b}
+    \frac{\partial \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= - \nabla p + \frac{1}{\text{Re}} \nabla^2 \mathbf{u} \label{eq:momentum}
+\end{align}
+For reasons that will be the subject of Chapter \ref{cha:mathematics}, it is convenient to rewrite the Navier-Stokes equations in terms of the divergence, curl, and gradient operator. Consider the following vector identities: if $\mathbf{u}$ is a three-dimensional vector field, then
+\begin{flalign}
+    & & \nabla^2 \mathbf{u} &= \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \left( \nabla \times \mathbf{u} \right) && \\
+    &\text{and}& \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= \nabla \left( \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) - \mathbf{u} \times \left( \nabla \times \mathbf{u} \right) &&
+\end{flalign}
+Using these vector identities, Equation \eqref{eq:momentum} can be written as
+\begin{equation}
+    \label{eq:momentumIdentity}
+    \frac{\partial \mathbf{u}}{\partial t} + \nabla \left( \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) - \mathbf{u} \times \left( \nabla \times \mathbf{u} \right) = - \nabla p + \frac{1}{\text{Re}} \left( \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \left( \nabla \times \mathbf{u} \right) \right)
+\end{equation}
+Recall that in a velocity field, the curl of the velocity is equal to the vorticity:
+\begin{equation}
+    \label{eq:vorticity}
+    \mathbf{\xi} = \nabla \times \mathbf{u}
+\end{equation}
+Substituting Equation \eqref{eq:vorticity} into Equation \eqref{eq:momentumIdentity}, we have
+\begin{equation*}
+    \frac{\partial \mathbf{u}}{\partial t} + \nabla \left( \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) - \mathbf{u} \times \xi = - \nabla p + \frac{1}{\text{Re}} \left( \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \xi \right)
+\end{equation*}
+\begin{equation}
+    \label{eq:momentumRearranged}
+    \frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla \left( p + \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) = \frac{1}{\text{Re}} \left( \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \xi \right)
+\end{equation}
+In Equation \eqref{eq:momentumRearranged}, denote
+\begin{equation}
+    P \equiv p + \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2
+\end{equation}
+and recognize that the continuity equation, $\nabla \cdot \mathbf{u} = 0$, appears in the right-hand side. Hence, Equation \eqref{eq:momentumRearranged} is written as
+\begin{equation}
+    \frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla P + \frac{1}{\text{Re}} \nabla \times \xi = 0
+\end{equation}
+Thus, the final system of equations is given by:
+\begin{flalign}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    &\text{Continuity equation:}& &\vphantom{\frac{\partial}{\partial}} \nabla \cdot \mathbf{u} = 0 && \\
+    \tag{{\theequation}b}
+    &\text{Velocity-vorticity relation:}& &\vphantom{\frac{\partial}{\partial}} \xi = \nabla \times \mathbf{u} && \\
+    \tag{{\theequation}c}
+    &\text{Momentum equation:}& &\frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla P + \frac{1}{\text{Re}} \nabla \times \xi = 0 &&
+\end{flalign}

@@ -1,0 +1,228 @@
+\section{Discretization of the Unit Square}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        % Draw scale
+        \foreach \ia/\ib/\count in {0/2/0, 2/6/1, 6/8/2} {
+            \draw [|<->|] (-1.5,\ia) -- (-1.5,\ib) node [midway,fill=white] {$\tilde{h}_\count$};
+            \draw [|<->|] (\ia,-1.5) -- (\ib,-1.5) node [midway,fill=white] {$\tilde{h}_\count$};
+        }
+        % Draw lines
+        \foreach \i in {0,2,6,8} {
+            \draw (\i,0) -- (\i,8);
+            \draw (0,\i) -- (8,\i);
+        }
+        % Draw axis
+        \draw [dashed, ->] (8,0) -- (9,0) node [right] {x};
+        \draw [dashed, ->] (0,8) -- (0,9) node [above] {y};
+        % Four courner points
+        \fill (0,0) circle (0.03) node [below left=1ex] {$\tilde{\psi}_{0,0}$};
+        \fill (8,0) circle (0.03) node [below right=1ex] {$\tilde{\psi}_{3,0}$};
+        \fill (8,8) circle (0.03) node [above right=1ex] {$\tilde{\psi}_{3,3}$};
+        \fill (0,8) circle (0.03) node [above left=1ex] {$\tilde{\psi}_{0,3}$};
+        % Bottom boundary
+        \fill (2,0) circle (0.03) node [below=2ex] {$\tilde{\psi}_{1,0}$};
+        \fill (6,0) circle (0.03) node [below=2ex] {$\tilde{\psi}_{2,0}$};
+        % Right boundary
+        \fill (8,2) circle (0.03) node [right=2ex] {$\tilde{\psi}_{3,1}$};
+        \fill (8,6) circle (0.03) node [right=2ex] {$\tilde{\psi}_{3,2}$};
+        % Top boundary
+        \fill (6,8) circle (0.03) node [above=2ex] {$\tilde{\psi}_{2,3}$};
+        \fill (2,8) circle (0.03) node [above=2ex] {$\tilde{\psi}_{1,3}$};
+        % Left boundary
+        \fill (0,6) circle (0.03) node [left=2ex] {$\tilde{\psi}_{0,2}$};
+        \fill (0,2) circle (0.03) node [left=2ex] {$\tilde{\psi}_{0,1}$};
+        % Inner points
+        \fill (2,2) circle (0.03) node [above right=1ex] {$\tilde{\psi}_{1,1}$};
+        \fill (6,2) circle (0.03) node [above left=1ex] {$\tilde{\psi}_{2,1}$};
+        \fill (6,6) circle (0.03) node [below left=1ex] {$\tilde{\psi}_{2,2}$};
+        \fill (2,6) circle (0.03) node [below right=1ex] {$\tilde{\psi}_{1,2}$};
+        % Rounded arrow
+        \foreach \x/\i in {0/0, 2/1, 6/2, 8/3} {
+            \foreach \y/\j in {0/0, 2/1, 6/2, 8/3} {
+                \draw [->] (\x,\y) ++(140:0.25) arc (-220:40:0.25);
+            }
+        }
+        % Draw u
+        \foreach \x/\i in {0/0, 6/2} {
+            \foreach \y/\j in {1/0, 4/1, 7/2} {
+                \draw [->] (\x-0.25,\y) -- (\x+0.25,\y);
+                \node[left=1ex] at (\x,\y) {$\tilde{u}_{\i,\j}$};
+            }
+        }
+        \foreach \x/\i in {2/1, 8/3} {
+            \foreach \y/\j in {1/0, 4/1, 7/2} {
+                \draw [->] (\x-0.25,\y) -- (\x+0.25,\y);
+                \node[right=1ex] at (\x,\y) {$\tilde{u}_{\i,\j}$};
+            }
+        }
+        % Draw v
+        \foreach \x/\i in {0/0, 6/2} {
+            \foreach \y/\j in {1/0, 4/1, 7/2} {
+                \draw [->] (\y,\x-0.25) -- (\y,\x+0.25);
+                \node[below=1ex] at (\y,\x) {$\tilde{v}_{\j,\i}$};
+            }
+        }
+        \foreach \x/\i in {2/1, 8/3} {
+            \foreach \y/\j in {1/0, 4/1, 7/2} {
+                \draw [->] (\y,\x-0.25) -- (\y,\x+0.25);
+                \node[above=1ex] at (\y,\x) {$\tilde{v}_{\j,\i}$};
+            }
+        }
+        % Draw p
+        \foreach \x/\i in {1/0, 4/1, 7/2} {
+            \foreach \y/\j in {1/0, 4/1, 7/2} {
+                \node[below right=0.75ex] at (\x,\y) {$\tilde{s}_{\i,\j}$};
+                \draw [->] (\x+0.075,\y) -- (\x+0.25,\y);
+                \draw [->] (\x-0.075,\y) -- (\x-0.25,\y);
+                \draw [->] (\x,\y+0.075) -- (\x,\y+0.25);
+                \draw [->] (\x,\y-0.075) -- (\x,\y-0.25);
+            }
+        }
+    \end{tikzpicture}
+    \caption{The outer-oriented grid.}
+    \label{fig:outerGrid}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        % Draw scale
+        \foreach \ia/\ib/\count in {0/1/0, 1/4/1, 4/7/2, 7/8/3} {
+            \draw [|<->|] (-1.5,\ia) -- (-1.5,\ib) node [midway,fill=white] {$h_\count$};
+            \draw [|<->|] (\ia,-1.5) -- (\ib,-1.5) node [midway,fill=white] {$h_\count$};
+        }
+        % Draw lines
+        \foreach \i in {0,1,4,7,8} {
+            \draw (\i,0) -- (\i,8);
+            \draw (0,\i) -- (8,\i);
+        }
+        % Draw axis
+        \draw [dashed, ->] (8,0) -- (9,0) node [right] {x};
+        \draw [dashed, ->] (0,8) -- (0,9) node [above] {y};
+        % Draw p
+        \foreach \x/\i in {0/0, 1/1, 4/2, 7/3} {
+            \foreach \y/\j in {0/0, 1/1, 4/2, 7/3, 8/4} {
+                \draw [<-] (\x+0.075,\y) -- (\x+0.25,\y);
+            }
+        }
+        \foreach \x/\i in {1/1, 4/2, 7/3, 8/4} {
+            \foreach \y/\j in {0/0, 1/1, 4/2, 7/3, 8/4} {
+                \draw [<-] (\x-0.075,\y) -- (\x-0.25,\y);
+            }
+        }
+        \foreach \x/\i in {0/0, 1/1, 4/2, 7/3, 8/4} {
+            \foreach \y/\j in {0/0, 1/1, 4/2, 7/3} {
+                \draw [<-] (\x,\y+0.075) -- (\x,\y+0.25);
+            }
+        }
+        \foreach \x/\i in {0/0, 1/1, 4/2, 7/3, 8/4} {
+            \foreach \y/\j in {1/1, 4/2, 7/3, 8/4} {
+                \draw [<-] (\x,\y-0.075) -- (\x,\y-0.25);
+            }
+        }
+        % Four corner points
+        \fill (0,0) circle (0.03) node [below left=1ex] {$p_{0,0}$};
+        \fill (8,0) circle (0.03) node [below right=1ex] {$p_{4,0}$};
+        \fill (8,8) circle (0.03) node [above right=1ex] {$p_{4,4}$};
+        \fill (0,8) circle (0.03) node [above left=1ex] {$p_{0,4}$};
+        % Bottom boundary
+        \fill (1,0) circle (0.03) node [below right=1ex] {$p_{1,0}$};
+        \fill (4,0) circle (0.03) node [below=1ex] {$p_{2,0}$};
+        \fill (7,0) circle (0.03) node [below left=1ex] {$p_{3,0}$};
+        % Right boundary
+        \fill (8,1) circle (0.03) node [above right=1ex] {$p_{4,1}$};
+        \fill (8,4) circle (0.03) node [right=1ex] {$p_{4,2}$};
+        \fill (8,7) circle (0.03) node [below right=1ex] {$p_{4,3}$};
+        % Top boundary
+        \fill (7,8) circle (0.03) node [above left=1ex] {$p_{3,4}$};
+        \fill (4,8) circle (0.03) node [above=1ex] {$p_{2,4}$};
+        \fill (1,8) circle (0.03) node [above right=1ex] {$p_{1,4}$};
+        % Left boundary
+        \fill (0,7) circle (0.03) node [below left=1ex] {$p_{0,3}$};
+        \fill (0,4) circle (0.03) node [left=1ex] {$p_{0,2}$};
+        \fill (0,1) circle (0.03) node [above left=1ex] {$p_{0,1}$};
+        % Four interior corners
+        \fill (1,1) circle (0.03) node [above right=1ex] {$p_{1,1}$};
+        \fill (7,1) circle (0.03) node [above left=1ex] {$p_{3,1}$};
+        \fill (7,7) circle (0.03) node [below left=1ex] {$p_{3,3}$};
+        \fill (1,7) circle (0.03) node [below right=1ex] {$p_{1,3}$};
+        % Five remaining interior points
+        \fill (4,1) circle (0.03) node [above right=1ex] {$p_{2,1}$};
+        \fill (7,4) circle (0.03) node [above left=1ex] {$p_{3,2}$};
+        \fill (4,7) circle (0.03) node [below right=1ex] {$p_{2,3}$};
+        \fill (1,4) circle (0.03) node [above right=1ex] {$p_{1,2}$};
+        \fill (4,4) circle (0.03) node [above right=1ex] {$p_{2,2}$};
+        % Draw v
+        \foreach \x/\i in {0/0, 4/2, 7/3} {
+            \foreach \y/\j in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
+                \draw [->] (\x,\y) -- (\x,\y+0.05);
+                \node[left=1ex] at (\x,\y) {$v_{\i,\j}$};
+            }
+        }
+        \foreach \x/\i in {1/1, 8/4} {
+            \foreach \y/\j in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
+                \draw [->] (\x,\y) -- (\x,\y+0.05);
+                \node[right=1ex] at (\x,\y) {$v_{\i,\j}$};
+            }
+        }
+        % Draw u
+        \foreach \x/\i in {0/0, 4/2, 7/3} {
+            \foreach \y/\j in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
+                \draw [->] (\y,\x) -- (\y+0.05,\x);
+                \node[below=1ex] at (\y,\x) {$u_{\j,\i}$};
+            }
+        }
+        \foreach \x/\i in {1/1, 8/4} {
+            \foreach \y/\j in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
+                \draw [->] (\y,\x) -- (\y+0.05,\x);
+                \node[above=1ex] at (\y,\x) {$u_{\j,\i}$};
+            }
+        }
+        % Draw xi
+        \foreach \x/\i in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
+            \foreach \y/\j in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
+                \draw [->] (\x,\y) ++(140:0.375) arc (-220:40:0.375);
+                \node at (\x,\y) {$\xi_{\i,\j}$};
+            }
+        }
+    \end{tikzpicture}
+    \caption{The inner-oriented grid.}
+    \label{fig:innerGrid}
+\end{figure}
+
+It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and surfaces. The outer oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of surfaces in the horizontal and vertical direction. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies the refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the surfaces of the outer-oriented grid.
+
+\section{Physical Representation}
+
+We briefly digress here to discuss the physical meaning of the $k$-cells in the inner and outer oriented grids. The orientation of the outer-oriented surfaces, $\tilde{s}_{i,j}$, is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The line segments, $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$, represent mass flow in the form:
+\begin{flalign}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    & & \tilde{u}_{i,j} = \int_{y_{i,j}}^{y_{i,j+1}} \mathbf{u} \cdot  \mathbf{\hat{n}} \, dy && \\
+    \tag{{\theequation}b}
+    &\text{and}& \tilde{v}_{i,j} = \int_{x_{i,j}}^{x_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{n}} \, dx &&
+\end{flalign}
+where $\mathbf{\hat{n}}$ denotes the normal vector along the line segment. (\textit{Note:} it is important to remember that all physical quantities are still dimensionless.) A rightward and upward flow is considered positive, as indicated by the arrows embedded in the lines. If lines represent mass flow, then points must represent samples of the the continuous stream function, $\psi$. Here is why: the numerical value of $\psi$ is defined such that the difference $\Delta \psi$ between two streamlines is equal to the mass flux between the two streamlines. This fact allows us to determine the stream function up to a constant.
+
+The inner-oriented line segments, $u_{i,j}$ and $v_{i,j}$, represent circulation: 
+\begin{flalign}
+    \stepcounter{equation}
+    \tag{{\theequation}a}
+    & & u_{i,j} = \int_{x_{i,j}}^{x_{i,j+1}} \mathbf{u} \cdot  \mathbf{\hat{t}} \, dx && \\
+    \tag{{\theequation}b}
+    &\text{and}& v_{i,j} = \int_{y_{i,j}}^{y_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{t}} \, dy &&
+\end{flalign}
+where $\mathbf{\hat{t}}$ denotes the tangent vector along the line segment.
+As discussed in the preceding section, application of the curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented surfaces, denoted $\xi_{(i,j)}$, do therefore represent vorticity. The inner-oriented points, denoted $p_{i,j}$, represent pressure because the pressure gradient is related to velocity. Notice that the orientation of the inner-oriented points, $p_{i,j}$, is sink-like, as indicated by the inward pointing arrows.
+
+We have constructed the inner and outer oriented grid and we have established what the $k$-cells physically represent. The double DeRham complex can be updated incorporating the newly introduced quantities:
+\begin{equation}
+    \begin{gathered}
+        \xymatrix@=13ex{
+            \mathbf{p}^{(0)} \ar[r]^{\mathbb{E}^{(1,0)}}_{\text{grad}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{2},0)}} & \mathbf{u}^{(1)} \ar[r]^{\mathbb{E}^{(2,1)}}_{\text{curl}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{1},1)}} & \mathbf{\xi}^{(2)} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{0},2)}} \\
+            \mathbf{\tilde{s}}^{(2)} \ar@<1ex>[u]^{\mathbb{H}^{(0,\tilde{2})}} & \mathbf{\tilde{u}}^{(1)} \ar[l]_{\tilde{\mathbb{E}}^{(2, 1)}}^{\text{curl}} \ar@<1ex>[u]^{\mathbb{H}^{(1,\tilde{1})}} & \mathbf{\tilde{\psi}}^{(0)} \ar[l]_{\tilde{\mathbb{E}}^{(1,0)}}^{\text{grad}} \ar@<1ex>[u]^{\mathbb{H}^{(2,\tilde{0})}}
+        }
+    \end{gathered}
+\end{equation}

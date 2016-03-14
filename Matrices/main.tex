@@ -1,0 +1,856 @@
+\documentclass[a4paper,10pt]{scrreprt}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[all,cmtip]{xy}
+\usepackage{mathrsfs}
+\usepackage[top=1in,bottom=1in,left=1.6in,right=1.6in,landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\setkomafont{disposition}{\bfseries}
+\renewcommand{\labelstyle}{\textstyle}
+\setcounter{MaxMatrixCols}{40}
+\newlength{\myl}
+\settowidth{\myl}{$-1$}
+\newcommand\w[1]{\makebox[\myl]{$#1$}}
+\let\d\cdot
+
+\begin{document}
+
+\chapter{Appendix}
+
+\section{$\tilde{\mathbb{E}}^{(2,1)}$}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-0.5pt}
+    \left[
+    \begin{array}{c}
+        \tilde{s}_{0,0} \\
+        \tilde{s}_{1,0} \\
+        \tilde{s}_{2,0} \\
+        \tilde{s}_{0,1} \\
+        \tilde{s}_{1,1} \\
+        \tilde{s}_{2,1} \\
+        \tilde{s}_{0,2} \\
+        \tilde{s}_{1,2} \\
+        \tilde{s}_{2,2}
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccccccccccccccccccccccc}
+        -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        -1 & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & -1 & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & -1 & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & -1 & \d & \d & \w{1} & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & -1 & \d & \d & \w{1} & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & -1 & \d & \d & \w{1} & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d &
+        \d & \d & \d & \d & \d & \d & -1 & \d & \d & \w{1} & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d &
+        \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \w{1} & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} &
+        \d & \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \w{1} \\
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        \tilde{u}_{0,0} \\
+        \tilde{u}_{1,0} \\
+        \tilde{u}_{2,0} \\
+        \tilde{u}_{3,0} \\
+        \tilde{u}_{0,1} \\
+        \tilde{u}_{1,1} \\
+        \tilde{u}_{2,1} \\
+        \tilde{u}_{3,1} \\
+        \tilde{u}_{0,2} \\
+        \tilde{u}_{1,2} \\
+        \tilde{u}_{2,2} \\
+        \tilde{u}_{3,2} \\
+        \tilde{v}_{0,0} \\
+        \tilde{v}_{1,0} \\
+        \tilde{v}_{2,0} \\
+        \tilde{v}_{0,1} \\
+        \tilde{v}_{1,1} \\
+        \tilde{v}_{2,1} \\
+        \tilde{v}_{0,2} \\
+        \tilde{v}_{1,2} \\
+        \tilde{v}_{2,2} \\
+        \tilde{v}_{0,3} \\
+        \tilde{v}_{1,3} \\
+        \tilde{v}_{2,3}
+    \end{array}
+    \right]
+    \label{eq:E21}
+\end{equation}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-0.5pt}
+    \left[
+    \begin{array}{c}
+        \tilde{s}_{0,0} \\
+        \tilde{s}_{1,0} \\
+        \tilde{s}_{2,0} \\
+        \tilde{s}_{0,1} \\
+        \tilde{s}_{1,1} \\
+        \tilde{s}_{2,1} \\
+        \tilde{s}_{0,2} \\
+        \tilde{s}_{1,2} \\
+        \tilde{s}_{2,2}
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccccccccccc}
+        \w{1} & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d \\
+        -1 & \w{1} & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d \\
+        \d & -1 & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d \\
+        \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \w{1} & \d & \d \\
+        \d & \d & -1 & \w{1} & \d & \d & \d & -1 & \d & \d & \w{1} & \d \\
+        \d & \d & \d & -1 & \d & \d & \d & \d & -1 & \d & \d & \w{1} \\
+        \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & -1 & \d & \d \\
+        \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & -1 & \d \\
+        \d & \d & \d & \d & \d & -1 & \d & \d & \d & \d & \d & -1 \\
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        \tilde{u}_{1,0} \\
+        \tilde{u}_{2,0} \\
+        \tilde{u}_{1,1} \\
+        \tilde{u}_{2,1} \\
+        \tilde{u}_{1,2} \\
+        \tilde{u}_{2,2} \\
+        \tilde{v}_{0,1} \\
+        \tilde{v}_{1,1} \\
+        \tilde{v}_{2,1} \\
+        \tilde{v}_{0,2} \\
+        \tilde{v}_{1,2} \\
+        \tilde{v}_{2,2}
+    \end{array}
+    \right]
+    +
+    \left[
+    \begin{array}{cccccccccccc}
+        -1 & \d & \d & \d & \d & \d & -1 & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d & \d \\
+        \d & \w{1} & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d \\
+        \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & -1 & \d & \d & \d & \d & \w{1} & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d \\
+        \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \w{1} \\
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        \tilde{u}_{0,0} \\
+        \tilde{u}_{3,0} \\
+        \tilde{u}_{0,1} \\
+        \tilde{u}_{3,1} \\
+        \tilde{u}_{0,2} \\
+        \tilde{u}_{3,2} \\
+        \tilde{v}_{0,0} \\
+        \tilde{v}_{1,0} \\
+        \tilde{v}_{2,0} \\
+        \tilde{v}_{0,3} \\
+        \tilde{v}_{1,3} \\
+        \tilde{v}_{2,3}
+    \end{array}
+    \right]
+\end{equation}
+
+\begin{equation}
+    \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)} + \tilde{\mathbb{E}}^{(2,1)}_{\text{known}} \mathbf{\tilde{u}}^{(1)}_{\text{known}}
+\end{equation}
+
+\section{$\mathbb{E}^{(1,0)}$}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-0.5pt}
+        \left[
+    \begin{array}{c}
+        u_{1,1} \\
+        u_{2,1} \\
+        u_{1,2} \\
+        u_{2,2} \\
+        u_{1,3} \\
+        u_{2,3} \\
+        v_{1,1} \\
+        v_{2,1} \\
+        v_{3,1} \\
+        v_{1,2} \\
+        v_{2,2} \\
+        v_{3,2}
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{ccccccccc}
+        -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d \\
+        \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d \\
+        \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d \\
+        \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} \\
+        -1 & \d & \d & \w{1} & \d & \d & \d & \d & \d \\
+        \d & -1 & \d & \d & \w{1} & \d & \d & \d & \d \\
+        \d & \d & -1 & \d & \d & \w{1} & \d & \d & \d \\
+        \d & \d & \d & -1 & \d & \d & \w{1} & \d & \d \\
+        \d & \d & \d & \d & -1 & \d & \d & \w{1} & \d \\
+        \d & \d & \d & \d & \d & -1 & \d & \d & \w{1}
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        p_{1,1} \\
+        p_{2,1} \\
+        p_{3,1} \\
+        p_{1,2} \\
+        p_{2,2} \\
+        p_{3,2} \\
+        p_{1,3} \\
+        p_{2,3} \\
+        p_{3,3}
+    \end{array}
+    \right]
+\end{equation}
+
+\begin{equation}
+    \mathbf{u} = \mathbb{E}^{(1,0)} \mathbf{p}
+\end{equation}
+
+\begin{equation}
+    \mathbb{E}^{(1,0)} = -\left(\tilde{\mathbb{E}}^{(2,1)}\right)^T
+\end{equation}
+
+\section{$\mathbb{E}^{(2,1)}$}
+
+\begin{equation}
+    \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)}
+\end{equation}
+
+\begin{equation}
+    \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}
+\end{equation}
+
+\begin{equation}
+    \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbf{u}^{(1)}_{\text{prescribed}}
+\end{equation}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-0.5pt}
+    \left[
+    \begin{array}{c}
+        \xi_{0,0} \\
+        \xi_{1,0} \\
+        \xi_{2,0} \\
+        \xi_{3,0} \\
+        \xi_{0,1} \\
+        \xi_{1,1} \\
+        \xi_{2,1} \\
+        \xi_{3,1} \\
+        \xi_{0,2} \\
+        \xi_{1,2} \\
+        \xi_{2,2} \\
+        \xi_{3,2} \\
+        \xi_{0,3} \\
+        \xi_{1,3} \\
+        \xi_{2,3} \\
+        \xi_{3,3}
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccccccccccccccccccccccccccccccccccccccc}
+        \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1}
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        u_{0,0} \\
+        u_{1,0} \\
+        u_{2,0} \\
+        u_{3,0} \\
+        u_{0,1} \\
+        u_{1,1} \\
+        u_{2,1} \\
+        u_{3,1} \\
+        u_{0,2} \\
+        u_{1,2} \\
+        u_{2,2} \\
+        u_{3,2} \\
+        u_{0,3} \\
+        u_{1,3} \\
+        u_{2,3} \\
+        u_{3,3} \\
+        u_{0,4} \\
+        u_{1,4} \\
+        u_{2,4} \\
+        u_{3,4} \\
+        v_{0,0} \\
+        v_{1,0} \\
+        v_{2,0} \\
+        v_{3,0} \\
+        v_{4,0} \\
+        v_{0,1} \\
+        v_{1,1} \\
+        v_{2,1} \\
+        v_{3,1} \\
+        v_{4,1} \\
+        v_{0,2} \\
+        v_{1,2} \\
+        v_{2,2} \\
+        v_{3,2} \\
+        v_{4,2} \\
+        v_{0,3} \\
+        v_{1,3} \\
+        v_{2,3} \\
+        v_{3,3} \\
+        v_{4,3}
+    \end{array}
+    \right]
+\end{equation}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-0.5pt}
+    \left[
+    \begin{array}{c}
+        \xi_{0,0} \\
+        \xi_{1,0} \\
+        \xi_{2,0} \\
+        \xi_{3,0} \\
+        \xi_{0,1} \\
+        \xi_{1,1} \\
+        \xi_{2,1} \\
+        \xi_{3,1} \\
+        \xi_{0,2} \\
+        \xi_{1,2} \\
+        \xi_{2,2} \\
+        \xi_{3,2} \\
+        \xi_{0,3} \\
+        \xi_{1,3} \\
+        \xi_{2,3} \\
+        \xi_{3,3}
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccccccccccc}
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d \\
+        \w{1} & \d & -1 & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d \\
+        \d & \w{1} & \d & -1 & \d & \d & \d & -1 & \w{1} & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d \\
+        \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d & -1 & \w{1} & \d \\
+        \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d & -1 & \w{1} \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        u_{1,1} \\
+        u_{2,1} \\
+        u_{1,2} \\
+        u_{2,2} \\
+        u_{1,3} \\
+        u_{2,3} \\
+        v_{1,1} \\
+        v_{2,1} \\
+        v_{3,1} \\
+        v_{1,2} \\
+        v_{2,2} \\
+        v_{3,2} \\
+    \end{array}
+    \right]
+    +
+    \left[
+    \begin{array}{cccccccccccccccccccccccccccc}
+        \w{1} & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & -1 & \d & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \d &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & -1 &
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \w{1} \\
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        u_{0,0} \\
+        u_{1,0} \\
+        u_{2,0} \\
+        u_{3,0} \\
+        u_{0,1} \\
+        u_{3,1} \\
+        u_{0,2} \\
+        u_{3,2} \\
+        u_{0,3} \\
+        u_{3,3} \\
+        u_{0,4} \\
+        u_{1,4} \\
+        u_{2,4} \\
+        u_{3,4} \\
+        v_{0,0} \\
+        v_{1,0} \\
+        v_{2,0} \\
+        v_{3,0} \\
+        v_{4,0} \\
+        v_{0,1} \\
+        v_{4,1} \\
+        v_{0,2} \\
+        v_{4,2} \\
+        v_{0,3} \\
+        v_{1,3} \\
+        v_{2,3} \\
+        v_{3,3} \\
+        v_{4,3}
+    \end{array}
+    \right]
+\end{equation}
+
+\section{$\tilde{\mathbb{E}}^{(1,0)}$}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-0.5pt}
+    \left[
+    \begin{array}{c}
+        \tilde{u}_{1,0} \\
+        \tilde{u}_{2,0} \\
+        \tilde{u}_{1,1} \\
+        \tilde{u}_{2,1} \\
+        \tilde{u}_{1,2} \\
+        \tilde{u}_{2,2} \\
+        \tilde{v}_{0,1} \\
+        \tilde{v}_{1,1} \\
+        \tilde{v}_{2,1} \\
+        \tilde{v}_{0,2} \\
+        \tilde{v}_{1,2} \\
+        \tilde{v}_{2,2}
+    \end{array}
+    \right]
+    =
+    \left[
+    \begin{array}{cccccccccccccccc}
+        \w{\d} & -1 & \d & \w{\d} & \d & \w{1} & \d & \d & \d & \d & \d & \w{\d} & \w{\d} & \d & \d & \w{\d} \\
+        \d & \d & -1 & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & -1 & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d & \w{1} & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & -1 & \d & \d & \d & \w{1} & \d \\
+        \d & \d & \d & \d & \w{1} & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \w{1} & -1 & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \w{1} & -1 & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & -1 & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & -1 & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & -1 & \d & \d & \d & \d
+    \end{array}
+    \right]
+    \left[
+    \begin{array}{c}
+        \xi_{0,0} \\
+        \xi_{1,0} \\
+        \xi_{2,0} \\
+        \xi_{3,0} \\
+        \xi_{0,1} \\
+        \xi_{1,1} \\
+        \xi_{2,1} \\
+        \xi_{3,1} \\
+        \xi_{0,2} \\
+        \xi_{1,2} \\
+        \xi_{2,2} \\
+        \xi_{3,2} \\
+        \xi_{0,3} \\
+        \xi_{1,3} \\
+        \xi_{2,3} \\
+        \xi_{3,3}
+    \end{array}
+    \right]
+\end{equation}
+
+\begin{equation}
+    \mathbf{\tilde{u}} = \mathbb{\tilde{E}}^{(1,0)} \mathbf{\tilde{\psi}}
+\end{equation}
+
+\begin{equation}
+    \mathbb{\tilde{E}}^{(1,0)} = \left(\mathbb{E}^{(2,1)}\right)^T
+\end{equation}
+
+\section{$\mathbb{H}^{(\tilde{1},1)}$ and $\mathbb{H}^{(1,\tilde{1})}$}
+
+\begin{equation}
+    \begin{bmatrix}
+        u_{0,1} \\
+        u_{1,1} \\
+        u_{2,1} \\
+        u_{3,1} \\
+        u_{0,2} \\
+        u_{1,2} \\
+        u_{2,2} \\
+        u_{3,2} \\
+        u_{0,3} \\
+        u_{1,3} \\
+        u_{2,3} \\
+        u_{3,3} \\
+        v_{1,0} \\
+        v_{2,0} \\
+        v_{3,0} \\
+        v_{1,1} \\
+        v_{2,1} \\
+        v_{3,1} \\
+        v_{1,2} \\
+        v_{2,2} \\
+        v_{3,2} \\
+        v_{1,3} \\
+        v_{2,3} \\
+        v_{3,3}
+    \end{bmatrix}
+    =
+    \mathbb{I}
+    \begin{bmatrix}
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d
+    \end{bmatrix}
+    \begin{bmatrix}
+        \tilde{u}_{0,0} \\
+        \tilde{u}_{1,0} \\
+        \tilde{u}_{2,0} \\
+        \tilde{u}_{3,0} \\
+        \tilde{u}_{0,1} \\
+        \tilde{u}_{1,1} \\
+        \tilde{u}_{2,1} \\
+        \tilde{u}_{3,1} \\
+        \tilde{u}_{0,2} \\
+        \tilde{u}_{1,2} \\
+        \tilde{u}_{2,2} \\
+        \tilde{u}_{3,2} \\
+        \tilde{v}_{0,0} \\
+        \tilde{v}_{1,0} \\
+        \tilde{v}_{2,0} \\
+        \tilde{v}_{0,1} \\
+        \tilde{v}_{1,1} \\
+        \tilde{v}_{2,1} \\
+        \tilde{v}_{0,2} \\
+        \tilde{v}_{1,2} \\
+        \tilde{v}_{2,2} \\
+        \tilde{v}_{0,3} \\
+        \tilde{v}_{1,3} \\
+        \tilde{v}_{2,3}
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \begin{bmatrix}
+        u_{0,1} \\
+        u_{1,1} \\
+        u_{2,1} \\
+        u_{3,1} \\
+        u_{0,2} \\
+        u_{1,2} \\
+        u_{2,2} \\
+        u_{3,2} \\
+        u_{0,3} \\
+        u_{1,3} \\
+        u_{2,3} \\
+        u_{3,3} \\
+        v_{1,0} \\
+        v_{2,0} \\
+        v_{3,0} \\
+        v_{1,1} \\
+        v_{2,1} \\
+        v_{3,1} \\
+        v_{1,2} \\
+        v_{2,2} \\
+        v_{3,2} \\
+        v_{1,3} \\
+        v_{2,3} \\
+        v_{3,3}
+    \end{bmatrix}
+    =
+    \mathbb{I}
+    \begin{bmatrix}
+        h_0 / \tilde{h}_0 \\
+        h_1 / \tilde{h}_0 \\
+        h_2 / \tilde{h}_0 \\
+        h_3 / \tilde{h}_0 \\
+        h_0 / \tilde{h}_1 \\
+        h_1 / \tilde{h}_1 \\
+        h_2 / \tilde{h}_1 \\
+        h_3 / \tilde{h}_1 \\
+        h_0 / \tilde{h}_2 \\
+        h_1 / \tilde{h}_2 \\
+        h_2 / \tilde{h}_2 \\
+        h_3 / \tilde{h}_2 \\
+        h_0 / \tilde{h}_0 \\
+        h_0 / \tilde{h}_1 \\
+        h_0 / \tilde{h}_2 \\
+        h_1 / \tilde{h}_0 \\
+        h_1 / \tilde{h}_1 \\
+        h_1 / \tilde{h}_2 \\
+        h_2 / \tilde{h}_0 \\
+        h_2 / \tilde{h}_1 \\
+        h_2 / \tilde{h}_2 \\
+        h_3 / \tilde{h}_0 \\
+        h_3 / \tilde{h}_1 \\
+        h_3 / \tilde{h}_2
+    \end{bmatrix}
+    \begin{bmatrix}
+        \tilde{u}_{0,0} \\
+        \tilde{u}_{1,0} \\
+        \tilde{u}_{2,0} \\
+        \tilde{u}_{3,0} \\
+        \tilde{u}_{0,1} \\
+        \tilde{u}_{1,1} \\
+        \tilde{u}_{2,1} \\
+        \tilde{u}_{3,1} \\
+        \tilde{u}_{0,2} \\
+        \tilde{u}_{1,2} \\
+        \tilde{u}_{2,2} \\
+        \tilde{u}_{3,2} \\
+        \tilde{v}_{0,0} \\
+        \tilde{v}_{1,0} \\
+        \tilde{v}_{2,0} \\
+        \tilde{v}_{0,1} \\
+        \tilde{v}_{1,1} \\
+        \tilde{v}_{2,1} \\
+        \tilde{v}_{0,2} \\
+        \tilde{v}_{1,2} \\
+        \tilde{v}_{2,2} \\
+        \tilde{v}_{0,3} \\
+        \tilde{v}_{1,3} \\
+        \tilde{v}_{2,3}
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \mathbf{u}^{(1)} = \mathbb{H}^{(1,\tilde{1})} \mathbf{\tilde{u}}^{(1)}
+\end{equation}
+
+\section{$\mathbb{H}^{(\tilde{0},2)}$ and $\mathbb{H}^{(2,\tilde{0})}$}
+
+\begin{equation}
+    \setlength{\arraycolsep}{-6pt}
+    \begin{bmatrix}
+        \tilde{\psi}_{0,0} \\
+        \tilde{\psi}_{1,0} \\
+        \tilde{\psi}_{2,0} \\
+        \tilde{\psi}_{3,0} \\
+        \tilde{\psi}_{0,1} \\
+        \tilde{\psi}_{1,1} \\
+        \tilde{\psi}_{2,1} \\
+        \tilde{\psi}_{3,1} \\
+        \tilde{\psi}_{0,2} \\
+        \tilde{\psi}_{1,2} \\
+        \tilde{\psi}_{2,2} \\
+        \tilde{\psi}_{3,2} \\
+        \tilde{\psi}_{1,3} \\
+        \tilde{\psi}_{1,3} \\
+        \tilde{\psi}_{2,3} \\
+        \tilde{\psi}_{3,3}
+    \end{bmatrix}
+    =
+    \mathbb{I}
+    \begin{bmatrix}
+        \left(h_0 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \left(h_1 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1} & \d \\
+        \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \left(h_2 h_0 \right)^{-1}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \xi_{0,0} \\
+        \xi_{1,0} \\
+        \xi_{2,0} \\
+        \xi_{3,0} \\
+        \xi_{0,1} \\
+        \xi_{1,1} \\
+        \xi_{2,1} \\
+        \xi_{3,1} \\
+        \xi_{0,2} \\
+        \xi_{1,2} \\
+        \xi_{2,2} \\
+        \xi_{3,2} \\
+        \xi_{0,3} \\
+        \xi_{1,3} \\
+        \xi_{2,3} \\
+        \xi_{3,3}
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \begin{bmatrix}
+        \tilde{\psi}_{0,0} \\
+        \tilde{\psi}_{1,0} \\
+        \tilde{\psi}_{2,0} \\
+        \tilde{\psi}_{3,0} \\
+        \tilde{\psi}_{0,1} \\
+        \tilde{\psi}_{1,1} \\
+        \tilde{\psi}_{2,1} \\
+        \tilde{\psi}_{3,1} \\
+        \tilde{\psi}_{0,2} \\
+        \tilde{\psi}_{1,2} \\
+        \tilde{\psi}_{2,2} \\
+        \tilde{\psi}_{3,2} \\
+        \tilde{\psi}_{1,3} \\
+        \tilde{\psi}_{1,3} \\
+        \tilde{\psi}_{2,3} \\
+        \tilde{\psi}_{3,3}
+    \end{bmatrix}
+    =
+    \mathbb{I}
+    \begin{bmatrix}
+        \left(h_0 h_0 \right)^{-1} \\
+        \left(h_1 h_0 \right)^{-1} \\
+        \left(h_2 h_0 \right)^{-1} \\
+        \left(h_3 h_0 \right)^{-1} \\
+        \left(h_0 h_1 \right)^{-1} \\
+        \left(h_1 h_1 \right)^{-1} \\
+        \left(h_2 h_1 \right)^{-1} \\
+        \left(h_3 h_1 \right)^{-1} \\
+        \left(h_0 h_2 \right)^{-1} \\
+        \left(h_1 h_2 \right)^{-1} \\
+        \left(h_2 h_2 \right)^{-1} \\
+        \left(h_3 h_2 \right)^{-1} \\
+        \left(h_0 h_3 \right)^{-1} \\
+        \left(h_1 h_3 \right)^{-1} \\
+        \left(h_2 h_3 \right)^{-1} \\
+        \left(h_3 h_3 \right)^{-1}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \xi_{0,0} \\
+        \xi_{1,0} \\
+        \xi_{2,0} \\
+        \xi_{3,0} \\
+        \xi_{0,1} \\
+        \xi_{1,1} \\
+        \xi_{2,1} \\
+        \xi_{3,1} \\
+        \xi_{0,2} \\
+        \xi_{1,2} \\
+        \xi_{2,2} \\
+        \xi_{3,2} \\
+        \xi_{0,3} \\
+        \xi_{1,3} \\
+        \xi_{2,3} \\
+        \xi_{3,3}
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \mathbf{\tilde{\psi}}^{(0)} = \mathbb{H}^{(\tilde{0},2)} \mathbf{\xi}^{(2)}
+\end{equation}
+
+\end{document}
