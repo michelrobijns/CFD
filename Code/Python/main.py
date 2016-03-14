@@ -8,7 +8,7 @@ import scipy.linalg
 
 def main():
     if (len(sys.argv) != 3):
-        print('Wrong number of arguments\nUsage:', sys.argv[0], 'N')
+        print('Wrong number of arguments\nUsage:', sys.argv[0], 'dt N')
         exit()
 
     np.set_printoptions(precision=4, linewidth=178)
