@@ -192,11 +192,11 @@
     \label{fig:innerGrid}
 \end{figure}
 
-It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and surfaces. The outer oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of surfaces in the horizontal and vertical direction. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies the refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the surfaces of the outer-oriented grid.
+It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical axis. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid.
 
 \section{Physical Representation}
 
-We briefly digress here to discuss the physical meaning of the $k$-cells in the inner and outer oriented grids. The orientation of the outer-oriented surfaces, $\tilde{s}_{i,j}$, is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The line segments, $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$, represent mass flow in the form:
+We briefly digress here to summarize the physical interpretation of the $k$-cells that compose the inner and outer oriented grids. The orientation of the outer-oriented planes, $\tilde{s}_{i,j}$, is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The line segments, $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$, represent flux in the form:
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -204,7 +204,7 @@ We briefly digress here to discuss the physical meaning of the $k$-cells in the 
     \tag{{\theequation}b}
     &\text{and}& \tilde{v}_{i,j} = \int_{x_{i,j}}^{x_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{n}} \, dx &&
 \end{flalign}
-where $\mathbf{\hat{n}}$ denotes the normal vector along the line segment. (\textit{Note:} it is important to remember that all physical quantities are still dimensionless.) A rightward and upward flow is considered positive, as indicated by the arrows embedded in the lines. If lines represent mass flow, then points must represent samples of the the continuous stream function, $\psi$. Here is why: the numerical value of $\psi$ is defined such that the difference $\Delta \psi$ between two streamlines is equal to the mass flux between the two streamlines. This fact allows us to determine the stream function up to a constant.
+where $\mathbf{\hat{n}}$ denotes the normal vector along the line segment. (\textit{Note:} it is important to remember that all physical quantities are still dimensionless.) A rightward and upward flux is considered positive, as indicated by the arrows through the lines. If 1-cochains represent flux, then 0-cochains must represent samples of the the continuous stream function and 2-cochains must represent the rate of mass production within the plane on which they are defined.
 
 The inner-oriented line segments, $u_{i,j}$ and $v_{i,j}$, represent circulation: 
 \begin{flalign}
@@ -215,14 +215,14 @@ The inner-oriented line segments, $u_{i,j}$ and $v_{i,j}$, represent circulation
     &\text{and}& v_{i,j} = \int_{y_{i,j}}^{y_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{t}} \, dy &&
 \end{flalign}
 where $\mathbf{\hat{t}}$ denotes the tangent vector along the line segment.
-As discussed in the preceding section, application of the curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented surfaces, denoted $\xi_{(i,j)}$, do therefore represent vorticity. The inner-oriented points, denoted $p_{i,j}$, represent pressure because the pressure gradient is related to velocity. Notice that the orientation of the inner-oriented points, $p_{i,j}$, is sink-like, as indicated by the inward pointing arrows.
+As discussed in the preceding section, application of the integrated curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented 2-cochains, denoted $\xi_{(i,j)}$, do therefore represent vorticity. The inner-oriented 0-cochains, denoted $p_{i,j}$, represent total pressure. Notice that the orientation of the inner-oriented points, $p_{i,j}$, is sink-like, as indicated by the inward pointing arrows.
 
 We have constructed the inner and outer oriented grid and we have established what the $k$-cells physically represent. The double DeRham complex can be updated incorporating the newly introduced quantities:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=13ex{
-            \mathbf{p}^{(0)} \ar[r]^{\mathbb{E}^{(1,0)}}_{\text{grad}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{2},0)}} & \mathbf{u}^{(1)} \ar[r]^{\mathbb{E}^{(2,1)}}_{\text{curl}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{1},1)}} & \mathbf{\xi}^{(2)} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{0},2)}} \\
-            \mathbf{\tilde{s}}^{(2)} \ar@<1ex>[u]^{\mathbb{H}^{(0,\tilde{2})}} & \mathbf{\tilde{u}}^{(1)} \ar[l]_{\tilde{\mathbb{E}}^{(2, 1)}}^{\text{curl}} \ar@<1ex>[u]^{\mathbb{H}^{(1,\tilde{1})}} & \mathbf{\tilde{\psi}}^{(0)} \ar[l]_{\tilde{\mathbb{E}}^{(1,0)}}^{\text{grad}} \ar@<1ex>[u]^{\mathbb{H}^{(2,\tilde{0})}}
+            \mathbf{P}^{(0)} \ar[r]^{\mathbb{E}^{(1,0)}}_{\text{grad}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{2},0)}} & \mathbf{u}^{(1)} \ar[r]^{\mathbb{E}^{(2,1)}}_{\text{curl}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{1},1)}} & \mathbf{\xi}^{(2)} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{0},2)}} \\
+            \mathbf{\tilde{S}}^{(2)} \ar@<1ex>[u]^{\mathbb{H}^{(0,\tilde{2})}} & \mathbf{\tilde{u}}^{(1)} \ar[l]_{\tilde{\mathbb{E}}^{(2, 1)}}^{\text{curl}} \ar@<1ex>[u]^{\mathbb{H}^{(1,\tilde{1})}} & \mathbf{\tilde{\psi}}^{(0)} \ar[l]_{\tilde{\mathbb{E}}^{(1,0)}}^{\text{grad}} \ar@<1ex>[u]^{\mathbb{H}^{(2,\tilde{0})}}
         }
     \end{gathered}
 \end{equation}
