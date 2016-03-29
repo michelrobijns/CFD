@@ -1,6 +1,6 @@
 \section{The Incidence Matrices and Hodge Matrices}
 
-The incidence matrices, $\mathbb{E}$, and the Hodge matrices, $\mathbb{H}$, can be derived using the geometries introduced in the preceding section. The incidence and Hodge matrices derived in this section are only valid for the grids shown in Figures \ref{fig:outerGrid} and \ref{fig:innerGrid}. That is, the validity is limited to the rather coarse spacing of $n = 3$. However, the format of those matrices belonging to denser grids can be correctly deduced by careful analysis of the matrix structure at $n = 3$, which is of course what we are after.
+The incidence matrices, $\mathbb{E}$, and the Hodge matrices, $\mathbb{H}$, will be derived using the mesh introduced in the preceding section. In fact, the incidence and Hodge matrices derived in this section are only valid for the mesh shown in Figures \ref{fig:outerGrid} and \ref{fig:innerGrid}. That is, the validity is limited to the rather coarse spacing of $n = 3$. However, the format of those matrices belonging to denser grids can be correctly deduced by careful analysis of the matrix structure at $n = 3$, which is of course what we are after.
 
 \subsection{$\tilde{\mathbb{E}}^{(2,1)}$}
 
@@ -254,7 +254,7 @@ Evaluating the product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\tex
 
 The Hodge matrices $\mathbb{H}^{(\tilde{1},1)}$ and $\mathbb{H}^{(1,\tilde{1})}$ respectively represent a linear map between between the mass flow through a line segment and the circulation along a line segment and vice versa. The cirulation along a line segment is equal to the velocity along that line segment times the lenght of the line segment. Or as a function of mass flow:
 \begin{equation}
-    \text{ciculation along $L_a$} = \underbrace{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}_{\text{velocity}} \cdot \underbrace{\text{length of $L_a$}}_{\text{length}}
+    \text{ciculation along $L_a$} = \underbrace{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}_{\text{velocity}} \cdot \underbrace{\vphantom{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}\text{length of $L_a$}}_{\text{length}}
 \end{equation}
 Let us look at a specific example. The circulation along the line segment $u_{1,1}$ in Figure \ref{fig:innerGrid} is given by
 \begin{equation}

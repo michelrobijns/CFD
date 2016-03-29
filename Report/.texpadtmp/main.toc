@@ -1,0 +1,29 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Objective}{3}
+\contentsline {chapter}{\numberline {2}Physics}{4}
+\contentsline {chapter}{\numberline {3}Mathematics}{6}
+\contentsline {section}{\numberline {3.1}Cells}{6}
+\contentsline {section}{\numberline {3.2}Chains and Cochains}{6}
+\contentsline {section}{\numberline {3.3}Orientation}{7}
+\contentsline {section}{\numberline {3.4}The Exterior Derivative}{8}
+\contentsline {subsection}{\numberline {3.4.1}Inner-Oriented Quantities}{8}
+\contentsline {subsection}{\numberline {3.4.2}Outer-Oriented Quantities}{9}
+\contentsline {subsection}{\numberline {3.4.3}DeRham Complex}{11}
+\contentsline {section}{\numberline {3.5}The Hodge-$\star $ Operator}{11}
+\contentsline {section}{\numberline {3.6}Discretization of the Unit Square}{12}
+\contentsline {section}{\numberline {3.7}Physical Representation}{12}
+\contentsline {section}{\numberline {3.8}Structure of the Navier-Stokes Equations}{14}
+\contentsline {subsection}{\numberline {3.8.1}Continuity Equation}{14}
+\contentsline {subsection}{\numberline {3.8.2}Velocity-Vorticity relation}{15}
+\contentsline {subsection}{\numberline {3.8.3}Momentum Equation}{15}
+\contentsline {subsection}{\numberline {3.8.4}Summary}{16}
+\contentsline {section}{\numberline {3.9}The Incidence Matrices and Hodge Matrices}{16}
+\contentsline {subsection}{\numberline {3.9.1}$\mathaccentV {tilde}07E{\mathbb {E}}^{(2,1)}$}{16}
+\contentsline {subsection}{\numberline {3.9.2}$\mathbb {E}^{(1,0)}$}{17}
+\contentsline {subsection}{\numberline {3.9.3}$\mathbb {E}^{(2,1)}$}{18}
+\contentsline {subsection}{\numberline {3.9.4}$\mathaccentV {tilde}07E{\mathbb {E}}^{(1,0)}$}{19}
+\contentsline {subsection}{\numberline {3.9.5}$\mathbb {H}^{(\mathaccentV {tilde}07E{1},1)}$ and $\mathbb {H}^{(1,\mathaccentV {tilde}07E{1})}$}{20}
+\contentsline {subsection}{\numberline {3.9.6}$\mathbb {H}^{(\mathaccentV {tilde}07E{0},2)}$ and $\mathbb {H}^{(2,\mathaccentV {tilde}07E{0})}$}{20}
+\contentsline {subsection}{\numberline {3.9.7}The Convective Term}{20}
+\contentsline {chapter}{\numberline {4}Code}{22}
+\contentsline {chapter}{\numberline {5}Conclusion}{23}
