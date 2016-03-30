@@ -1,14 +1,10 @@
 \section{The Incidence Matrices and Hodge Matrices}
 
-The incidence matrices, $\mathbb{E}$, and the Hodge matrices, $\mathbb{H}$, will be derived using the mesh introduced in the preceding section. In fact, the incidence and Hodge matrices derived in this section are only valid for the mesh shown in Figures \ref{fig:outerGrid} and \ref{fig:innerGrid}. That is, the validity is limited to the rather coarse spacing of $n = 3$. However, the format of those matrices belonging to denser grids can be correctly deduced by careful analysis of the matrix structure at $n = 3$, which is of course what we are after.
+The incidence matrices $\mathbb{E}$ and the Hodge matrices $\mathbb{H}$ are derived using the mesh introduced in the preceding section. The incidence and Hodge matrices derived in this section are exclusively valid for the mesh shown in Figure \ref{fig:outerGrid} and Figure \ref{fig:innerGrid}. That is, the validity is limited to the rather coarse spacing of $n = 3$. However, the format of those matrices belonging to denser grids can be correctly deduced by careful analysis of the matrix structure at $n = 3$, which is of course what we are after.
 
 \subsection{$\tilde{\mathbb{E}}^{(2,1)}$}
 
-Application of the incidence matrix $\tilde{\mathbb{E}}^{(2,1)}$ to line segments that represent mass flow, $\mathbf{\tilde{u}}^{(1)}$, yields the rate of mass production in the surface enclosed by those line segments, $\mathbf{\tilde{s}}^{(2)}$. This implies that
-\begin{equation}
-    \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)} = 0
-\end{equation}
-reads as conversation of mass; mass cannot be created nor destoryed and mass that flows into a surface, must flow out, and vice versa. Let us construct a linear equation for each of the surfaces $\tilde{s}_{(i,j)}$:
+The application of the incidence matrix $\tilde{\mathbb{E}}^{(2,1)}$ to the 1-cochain that represent flux, $\mathbf{\tilde{u}}^{(1)}$, yields the rate of mass production in the plane enclosed by those line segments, $\mathbf{\tilde{S}}^{(2)}$. Let us construct a linear equation for each of the planes $\tilde{s}_{i,j}$ in the mesh:
 \begin{equation}
     \begin{split}
         \tilde{s}_{0,0} &= -\tilde{u}_{0,0} + \tilde{u}_{1,0} - \tilde{v}_{0,0} + \tilde{v}_{0,1} \\
@@ -23,13 +19,12 @@ Equation \eqref{eq:tsijEquations} expressed in matrix notation becomes
     \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)}
     \label{eq:tE21}
 \end{equation}
-The mass flow rates $\tilde{u}_{(i,j)}$ and $\tilde{v}_{(i,j)}$ adjacent to the boundary of the unit square are known because the boundary conditions of the problem are known. The matrices in the right-hand side of Equation \eqref{eq:tE21} can be split into a matrix of unknowns and into a matrix of knows. Splitting the matrix yields
+The mass flow rates $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ adjacent to the boundary of the unit square are known because the boundary conditions of the problem are known. The matrices in the right-hand side of Equation \eqref{eq:tE21} can be split into a matrix of unknowns and into a matrix of knows. Splitting the matrix in two parts yields
 \begin{equation}
     \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)} + \tilde{\mathbb{E}}^{(2,1)}_{\text{known}} \mathbf{\tilde{u}}^{(1)}_{\text{known}}
 \end{equation}
 where
-\begin{flalign}
-    & &
+\begin{equation}
     \setlength{\arraycolsep}{-0.5pt}
     \tilde{\mathbb{E}}^{(2,1)} =
     \left[
@@ -44,7 +39,10 @@ where
         \d & \d & \d & \d & -1 & \w{1} & \d & \d & \d & \d & -1 & \d \\
         \d & \d & \d & \d & \d & -1 & \d & \d & \d & \d & \d & -1 \\
     \end{array}
-    \right] && \\
+    \right]
+\end{equation}
+
+\begin{flalign}
     & \text{and} &
     \setlength{\arraycolsep}{-0.5pt}
     \tilde{\mathbb{E}}^{(2,1)}_{\text{known}} =
@@ -62,10 +60,21 @@ where
     \end{array}
     \right] &&
 \end{flalign}
+(\textit{Note:} The zero elements are replaced by dots to make the non-zero elements stand out. This turns out to be useful because it makes it far easier to see the structure of the matrices in the blink of an eye.)
+
+Notice that every column of $\tilde{\mathbb{E}}^{(2,1)}$ contains two non-zero elements. The number of non-zero elements (NNZ) in $\tilde{\mathbb{E}}^{(2,1)}$ therefore equals
+\begin{equation}
+    \mbox{NNZ}(\tilde{\mathbb{E}}^{(2,1)}) = 2 \cdot 4 n = 8 n
+\end{equation}
+Also notice that every column of $\tilde{\mathbb{E}}^{(2,1)}_{\text{known}}$ contains one non-zero element. Thus,
+\begin{equation}
+    \mbox{NNZ}(\tilde{\mathbb{E}}^{(2,1)}_{\text{known}}) = 4 n
+\end{equation}
+It should be no surprise here that the extreme sparsity of these indicence matrices is a property worth exploiting.
 
 \subsection{$\mathbb{E}^{(1,0)}$}
 
-The incidence matrix $\mathbb{E}^{(1,0)}$ maps an inner-oriented 0-cochain to an inner-oriented 1-cochain. Let us create a linear equation for each of the 1-cells, $u_{(i,j)}$, in the inner-oriented grid, considering that the 0-cells, $P_{(i,j)}$, are sink-like. The equations are
+The incidence matrix $\mathbb{E}^{(1,0)}$ maps an inner-oriented 0-cochain to an inner-oriented 1-cochain. Let us create a linear equation for each of the line segments, $u_{(i,j)}$, in the inner-oriented grid, considering that the points, $P_{(i,j)}$, are sink-like. The equations are
 \begin{equation}
     \begin{split}
         u_{1,1} &= -p_{1,1} + p_{2,1} \\
@@ -81,7 +90,7 @@ The incidence matrix $\mathbb{E}^{(1,0)}$ maps an inner-oriented 0-cochain to an
 \end{equation}
 Equation \eqref{eq:E10list} can be written in matrix notation as
 \begin{equation}
-    \mathbf{u} = \mathbb{E}^{(1,0)} \mathbf{p}
+    \mathbf{u}^{(1)} = \mathbb{E}^{(1,0)} \mathbf{p}^{(0)}
 \end{equation}
 where
 \begin{equation}
@@ -105,10 +114,11 @@ where
     \right]
 \end{equation}
 
-It is important to notice that
+It is important to recognize that
 \begin{equation}
     \mathbb{E}^{(1,0)} = -\left(\tilde{\mathbb{E}}^{(2,1)}\right)^T
 \end{equation}
+because this little shortcut will save us some computational effort.
 
 \subsection{$\mathbb{E}^{(2,1)}$}
 
@@ -120,19 +130,21 @@ The incidence matrix $\mathbb{E}^{(2,1)}$ maps an inner-oriented 1-cochain to an
         &\vdots \\
         \mathbf{\xi}_{3,3} &= u_{3,3} - u_{3,4} - v_{3,3} + v_{4,3}
     \end{split}
+    \label{eq:xiijEquations}
 \end{equation}
 which is in accordance to the formula
 \begin{equation}
     \xi_{i,j} = u_{i,j} - u_{i,j+1} - v_{i,j} + v_{i+1,j}
 \end{equation}
-
+Equation \eqref{eq:xiijEquations} written in matrix notation yields
 \begin{equation}
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)}
 \end{equation}
 
-The velocities adjacent to the boundary are again known because the boundary conditions of the problem are known. In a similar fashion as in Section 3.9.1, splitting the incidence matrix $\mathbb{E}^{(2,1)}$ into a matrix of unknowns and into a matrix of knows, we have
+The velocities adjacent to the boundary are again known because the boundary conditions of the problem are known. Splitting the incidence matrix $\mathbb{E}^{(2,1)}$ into a matrix of unknowns and into a matrix of knows, we have
 \begin{equation}
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}
+    \label{eq:xi}
 \end{equation}
 where
 \begin{equation}
@@ -201,13 +213,19 @@ and
     \right]
 \end{multline}
 
-Evaluating the product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}$, we have
+The product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}$ can be evaluated because both factors are known. Equation \eqref{eq:xi} reduces to
 \begin{equation}
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbf{u}^{(1)}_{\text{prescribed}}
 \end{equation}
+Each column of $\mathbb{E}^{(2,1)}$ contains two non-zero elements. The total number of non-zero elements in $\mathbb{E}^{(2,1)}$ amounts to
+\begin{equation}
+    \mbox{NNZ}(\mathbb{E}^{(2,1)}) = 2 \cdot 4 \cdot n = 8n
+\end{equation}
+
 
 \subsection{$\tilde{\mathbb{E}}^{(1,0)}$}
 
+The incidence matrix $\tilde{\mathbb{E}}^{(1,0)}$ maps an outer-oriented 0-cochain to an outer-oriented 1-cochain. That is, it maps values of the stream function located at the discrete points of the mesh to flux through the line segments. Deriving $\tilde{\mathbb{E}}^{(1,0)}$ is again straightforward; each of the line segments is bounded by two points. The flux through a line is equal to the sum of the values of the stream function at the bounding points. Add values at points whose orientation is equal to that of the line and subtract values at points whose orientation opposed the orientation of the line. Repeating this process for each of the line segments yields
 \begin{equation}
     \begin{split}
         \tilde{u}_{1,0} &= -\tilde{\psi}_{1,0} + \tilde{\psi}_{1,1} \\
@@ -219,8 +237,13 @@ Evaluating the product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\tex
         &\vdots \\
         \tilde{v}_{2,2} &= \tilde{\psi}_{2,2} - \tilde{\psi}_{3,2}
     \end{split}
+    \label{eq:tuij}
 \end{equation}
-
+Expressing Equation \eqref{eq:tuij} in matrix notation yields
+\begin{equation}
+    \mathbf{\tilde{u}} = \mathbb{\tilde{E}}^{(1,0)} \mathbf{\tilde{\psi}}
+\end{equation}
+where
 \begin{equation}
     \setlength{\arraycolsep}{-0.5pt}
     \mathbb{\tilde{E}}^{(1,0)} =
@@ -241,18 +264,15 @@ Evaluating the product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\tex
     \end{array}
     \right]
 \end{equation}
-
-\begin{equation}
-    \mathbf{\tilde{u}} = \mathbb{\tilde{E}}^{(1,0)} \mathbf{\tilde{\psi}}
-\end{equation}
-
+Also take note that
 \begin{equation}
     \mathbb{\tilde{E}}^{(1,0)} = \left(\mathbb{E}^{(2,1)}\right)^T
 \end{equation}
+which will again save us some computational effort.
 
 \subsection{$\mathbb{H}^{(\tilde{1},1)}$ and $\mathbb{H}^{(1,\tilde{1})}$}
 
-The Hodge matrices $\mathbb{H}^{(\tilde{1},1)}$ and $\mathbb{H}^{(1,\tilde{1})}$ respectively represent a linear map between between the mass flow through a line segment and the circulation along a line segment and vice versa. The cirulation along a line segment is equal to the velocity along that line segment times the lenght of the line segment. Or as a function of mass flow:
+The Hodge matrix $\mathbb{H}^{(\tilde{1},1)}$ represents a linear map between between the flux through a line segment and the circulation along a line segment. Its inverse, $\mathbb{H}^{(1,\tilde{1})}$, represents a linear map between the circulation along a line segment and the flux through a line segment. The cirulation along a line segment is equal to the velocity along that line segment times the lenght of the line segment. Or, expressed as a function of flux:
 \begin{equation}
     \text{ciculation along $L_a$} = \underbrace{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}_{\text{velocity}} \cdot \underbrace{\vphantom{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}\text{length of $L_a$}}_{\text{length}}
 \end{equation}
@@ -261,7 +281,7 @@ Let us look at a specific example. The circulation along the line segment $u_{1,
     u_{2,1} = \frac{\tilde{u}_{2,0}}{\tilde{h}_0} h_2 = \frac{h_2}{\tilde{h}_0} \tilde{u}_{2,0}
     \label{eq:H1t1Example}
 \end{equation}
-In general, the circulation along the line segments $u_{i,j}$ and $v_{i,j}$ can be found in accordance with the formulas
+In general, the circulation along the line segments $u_{i,j}$ and $v_{i,j}$ can be found in accordance to the formulas
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -269,23 +289,28 @@ In general, the circulation along the line segments $u_{i,j}$ and $v_{i,j}$ can 
     \tag{{\theequation}b}
     &\text{and}& v_{i,j} = \frac{h_j}{\tilde{h}_{i-1}} \tilde{v}_{i-1,j} \label{eq:H1t1FormulaV} &&
 \end{flalign}
-Equations \eqref{eq:H1t1FormulaU} and \eqref{eq:H1t1FormulaV} expressed in matrix notation yields
+Equations \eqref{eq:H1t1FormulaU} and \eqref{eq:H1t1FormulaV} expressed in matrix notation yield
 \begin{equation}
     \mathbf{u}^{(1)} = \mathbb{H}^{(1,\tilde{1})} \mathbf{\tilde{u}}^{(1)}
 \end{equation}
-The matrix $\mathbb{H}^{(1,\tilde{1})}$ is a diagonal matrix.
+The matrix $\mathbb{H}^{(1,\tilde{1})}$ is a diagonal matrix since it represents a linear operation.
 
 \subsection{$\mathbb{H}^{(\tilde{0},2)}$ and $\mathbb{H}^{(2,\tilde{0})}$}
 
-The Hodge matrix $\mathbb{H}^{(\tilde{0},2)}$ maps the vorticity associated with an inner-oriented 2-cochain to the stream function associated with an outer-oriented 0-cochain. This amounts to simply deviding the inner-oriented 2-cochain by its area, in other words
+The Hodge matrix $\mathbb{H}^{(\tilde{0},2)}$ maps the vorticity associated with an inner-oriented 2-cochain to the stream function associated with an outer-oriented 0-cochain. This amounts to simply deviding the inner-oriented 2-cochain by its area:
 \begin{equation}
     \tilde{\psi}_{i,j} = \left( h_i h_j \right)^{-1} \xi_{i,j}
+    \label{eq:psiij}
 \end{equation}
-Which becomes in matrix notation
+Equation \eqref{eq:psiij} written in matrix notation yields
+\begin{equation}
+    \mathbf{\tilde{\psi}}^{(0)} = \mathbb{H}^{(\tilde{0},2)} \mathbf{\xi}^{(2)}
+\end{equation}
+where $\mathbb{H}^{(\tilde{0},2)}$ is again a diagonal matrix. Its inverse, $\mathbb{H}^{(2,\tilde{0})}$, represents a linear map between an outer-oriented 0-cochain and an inner-oriented 2-cochain.
 
 \subsection{The Convective Term}
 
-The derivation of the convective term, $\mathbf{u}^{(1)} \times \mathbf{\xi}^{(2)}$, is not as straightforward. The convective term is an exterior product of a 1-cochain and a 2-cochain. If $\mathbf{\xi}^{(2)}$ and $\mathbf{u}^{(1)}$ are given by
+The derivation of the convective term, $\mathbf{u}^{(1)} \times \mathbf{\xi}^{(2)}$, is not quite straightforward. The convective term is an exterior product of a 1-cochain and a 2-cochain. If $\mathbf{\xi}^{(2)}$ and $\mathbf{u}^{(1)}$ are given by
 \begin{flalign}
     & & \mathclap{\mathbf{\xi}^{(2)} = \xi \; dx \; dy} && \\
     & \text{and} & \mathclap{\mathbf{u}^{(1)} = u \frac{\partial}{\partial x} + v \frac{\partial}{\partial y}} &&
@@ -295,7 +320,7 @@ respectively, then the exterior product yields
     \mathbf{u}^{(1)} \times \mathbf{\xi}^{(2)} = u \xi \; dy - v \xi \; dx
 \end{equation}
 
-As an example, let us compute the convection through the line segment $u_{1,1}$. Line segment $u_{1,1}$ is shown in Figure \ref{fig:convectionExample} along with the adjacent lines and planes that are involved in the derivation of the convective term.
+As an example, let us compute the convection through the line segment $u_{1,1}$. Line segment $u_{1,1}$ is shown in Figure \ref{fig:convectionExample} along with the adjacent lines and planes that are involved in the computation.
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
@@ -358,12 +383,12 @@ As an example, let us compute the convection through the line segment $u_{1,1}$.
     \label{fig:convectionExample}
 \end{figure}
 
-Because $u_{1,1}$ is a strictly horizontal line segment, we need not to consider the horizontal component of the convection through this line segment. Computing the mean vertical velocity in the plane below $u_{1,1}$ and multiplying it by $\tilde{\psi}_{1,0}$, we have
+Because $u_{1,1}$ is a strictly horizontal line segment, we do not need to consider the horizontal component of the convection through this line segment. Computing the mean vertical velocity in the plane below the line $u_{1,1}$ and multiplying it by $\tilde{\psi}_{1,0}$, we have
 \begin{equation}
     -\frac{1}{2} \left( \frac{v_{1,0}}{h_0} + \frac{v_{2,0}}{h_0} \right) \tilde{\psi}_{1,0}
     \label{eq:planeBelow}
 \end{equation}
-For the plane above $u_{1,1}$, we have
+For the plane above the line $u_{1,1}$, we have
 \begin{equation}
     -\frac{1}{2} \left( \frac{v_{1,1}}{h_1} + \frac{v_{2,1}}{h_1} \right) \tilde{\psi}_{1,1}
     \label{eq:planeAbove}
@@ -373,33 +398,35 @@ The average of Equations \eqref{eq:planeBelow} and \eqref{eq:planeAbove} multipl
     & & \mathclap{\frac{1}{2} \left[ -\frac{1}{2} \left( \frac{v_{1,0}}{h_0} + \frac{v_{2,0}}{h_0} \right) \tilde{\psi}_{1,0} - \frac{1}{2} \left( \frac{v_{1,1}}{h_1} + \frac{v_{2,1}}{h_1} \right) \tilde{\psi}_{1,1} \right] h_1} && \\
     & \text{or} & \mathclap{-\frac{h_1}{4 h_0} \left( v_{1,0} + v_{2,0} \right) \tilde{\psi}_{1,0} - \frac{h_1}{4 h_1} \left( v_{1,1} + v_{2,1} \right) \tilde{\psi}_{1,1}} &&
 \end{flalign}
-The multipliplication by the length of $u_{1,1}$ is neseccary because the momentum equation is as a 1-form equation. That is, all terms of the momentum equation must ultimately be expressed as inner-oriented 1-cochains. Repetition of the above procedure for all line segments $u_{i,j}$ and $v_{i,j}$ yields
+The final multipliplication by $h_1$, the length of the line segment $u_{1,1}$, is neseccary because the momentum equation is a 1-form equation. That is, all terms of the momentum equation must ultimately be expressed as inner-oriented 1-cochains. Repetition of the above procedure for all line segments $u_{i,j}$ and $v_{i,j}$ yields
 \begin{equation}
     \mbox{convection}
     =
     \begin{bmatrix}
-    - \frac{\tilde{h}_1}{4 \tilde{h}_0} \left( v_{1,0} + v_{2,0} \right) \psi_{1,0} - \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( v_{1,1} + v_{2,1} \right) \psi_{1,1} \\[10pt]
+    - \frac{\tilde{h}_1}{4 \tilde{h}_0} \left( v_{1,0} + v_{2,0} \right) \psi_{1,0} - \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( v_{1,1} + v_{2,1} \right) \psi_{1,1} \\
 
-    - \frac{\tilde{h}_2}{4 \tilde{h}_0} \left( v_{2,0} + v_{3,0} \right) \psi_{2,0} - \frac{\tilde{h}_2}{4 \tilde{h}_1} \left( v_{2,1} + v_{3,1} \right) \psi_{2,1} \\[10pt]
+    - \frac{\tilde{h}_2}{4 \tilde{h}_0} \left( v_{2,0} + v_{3,0} \right) \psi_{2,0} - \frac{\tilde{h}_2}{4 \tilde{h}_1} \left( v_{2,1} + v_{3,1} \right) \psi_{2,1} \\
 
-    - \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( v_{1,1} + v_{2,1} \right) \psi_{1,1} - \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( v_{1,2} + v_{2,2} \right) \psi_{1,2} \\[10pt]
+    - \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( v_{1,1} + v_{2,1} \right) \psi_{1,1} - \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( v_{1,2} + v_{2,2} \right) \psi_{1,2} \\
 
-    - \frac{\tilde{h}_2}{4 \tilde{h}_1} \left( v_{2,1} + v_{3,1} \right) \psi_{2,1} - \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( v_{2,2} + v_{3,2} \right) \psi_{2,2} \\[10pt]
+    - \frac{\tilde{h}_2}{4 \tilde{h}_1} \left( v_{2,1} + v_{3,1} \right) \psi_{2,1} - \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( v_{2,2} + v_{3,2} \right) \psi_{2,2} \\
 
-    - \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( v_{1,2} + v_{2,2} \right) \psi_{1,2} - \frac{\tilde{h}_1}{4 \tilde{h}_3} \left( v_{1,3} + v_{2,3} \right) \psi_{1,3} \\[10pt]
+    - \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( v_{1,2} + v_{2,2} \right) \psi_{1,2} - \frac{\tilde{h}_1}{4 \tilde{h}_3} \left( v_{1,3} + v_{2,3} \right) \psi_{1,3} \\
 
-    - \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( v_{2,2} + v_{3,2} \right) \psi_{2,2} - \frac{\tilde{h}_2}{4 \tilde{h}_3} \left( v_{2,3} + v_{3,3} \right) \psi_{2,3} \\[10pt]
+    - \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( v_{2,2} + v_{3,2} \right) \psi_{2,2} - \frac{\tilde{h}_2}{4 \tilde{h}_3} \left( v_{2,3} + v_{3,3} \right) \psi_{2,3} \\
 
-    \frac{\tilde{h}_0}{4 \tilde{h}_0} \left( u_{0,1} + u_{0,2} \right) \psi_{0,1} + \frac{\tilde{h}_0}{4 \tilde{h}_1} \left( u_{1,1} + u_{1,2} \right) \psi_{1,1} \\[10pt]
+    \frac{\tilde{h}_0}{4 \tilde{h}_0} \left( u_{0,1} + u_{0,2} \right) \psi_{0,1} + \frac{\tilde{h}_0}{4 \tilde{h}_1} \left( u_{1,1} + u_{1,2} \right) \psi_{1,1} \\
 
-    \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( u_{1,1} + u_{1,2} \right) \psi_{1,1} + \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( u_{2,1} + u_{2,2} \right) \psi_{2,1} \\[10pt]
+    \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( u_{1,1} + u_{1,2} \right) \psi_{1,1} + \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( u_{2,1} + u_{2,2} \right) \psi_{2,1} \\
 
-    \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( u_{2,1} + u_{2,2} \right) \psi_{2,1} + \frac{\tilde{h}_2}{4 \tilde{h}_3} \left( u_{3,1} + u_{3,2} \right) \psi_{3,1} \\[10pt]
+    \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( u_{2,1} + u_{2,2} \right) \psi_{2,1} + \frac{\tilde{h}_2}{4 \tilde{h}_3} \left( u_{3,1} + u_{3,2} \right) \psi_{3,1} \\
 
-    \frac{\tilde{h}_0}{4 \tilde{h}_0} \left( u_{0,2} + u_{0,3} \right) \psi_{0,2} + \frac{\tilde{h}_0}{4 \tilde{h}_1} \left( u_{1,2} + u_{1,3} \right) \psi_{1,2} \\[10pt]
+    \frac{\tilde{h}_0}{4 \tilde{h}_0} \left( u_{0,2} + u_{0,3} \right) \psi_{0,2} + \frac{\tilde{h}_0}{4 \tilde{h}_1} \left( u_{1,2} + u_{1,3} \right) \psi_{1,2} \\
 
-    \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( u_{1,2} + u_{1,3} \right) \psi_{1,2} + \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( u_{2,2} + u_{2,3} \right) \psi_{2,2} \\[10pt]
+    \frac{\tilde{h}_1}{4 \tilde{h}_1} \left( u_{1,2} + u_{1,3} \right) \psi_{1,2} + \frac{\tilde{h}_1}{4 \tilde{h}_2} \left( u_{2,2} + u_{2,3} \right) \psi_{2,2} \\
 
     \frac{\tilde{h}_2}{4 \tilde{h}_2} \left( u_{2,2} + u_{2,3} \right) \psi_{2,2} + \frac{\tilde{h}_2}{4 \tilde{h}_3} \left( u_{3,2} + u_{3,3} \right) \psi_{3,2} \\
     \end{bmatrix}
 \end{equation}
+
+This representation of convection is all but exact. Each time you average quantities, you introduce a certain degree of error and this representation of the convective term involves not one, but \emph{two} averages.

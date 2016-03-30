@@ -47,25 +47,20 @@ Let us first introduce a discrete version of two-dimensional space. Two-dimensio
 
 A point is a 0-cell, a line is a 1-cell, and a plane is a 2-cell. Just like a 1-cell is a line with a length but with no position, a 2-cell can be thought of as a plane with an area, but no position. Notice that $k$-cells are bounded by $(k-1)$-cells and that a cell's shape is arbitrary, as indicated by the wavy lines. (\textit{Note:} The boundary of a point is empty by definition.)
 
-We will be using points, lines, and planes as building blocks for our mesh. A mesh is a set of cells, called a cell-complex if the boundary of each cell is also part of the set. For example, the (rather primitive) mesh in Figure \ref{fig:2cell} is a cell-complex because the plane is bounded by lines and the lines are in turn bounded by points, all of which are part of the mesh.
+We will be using points, lines, and planes as building blocks of our mesh. A mesh is a set of cells, called a cell-complex if the boundary of each cell is also part of the set. For example, the (rather primitive) mesh in Figure \ref{fig:2cell} is a cell-complex because the plane is bounded by lines and the lines are in turn bounded by points, all of which are part of the mesh.
 
 \section{Chains and Cochains}
 
-A set of $k$-cells is called a chain, written as
-\begin{equation}
-    \mathbf{c}^{(k)} = \{c_1 \sigma^{(k)}_1, \ldots, c_N \sigma^{(k)}_N \}
-\end{equation}
-where $N$ denotes the number of $k$-cells in the cell complex and $c_i$ denotes a weight $\in \mathbb{R}$. Chains merely differ by their weights, because all chains are composed of the same (all) $k$-cells. The summation and multiplication of two $k$-chains is well-defined; in the case of summation, the weights add, and in the case of multiplication by a real number, the weights are multiplied by that real number. Thus, the set of $k$-chains, denoted $C^{(k)}$, is a linear vector space and the $k$-cells represent a basis for this vector space. Because $k$-cells represent a basis for $C^{(k)}$, we can define linear functionals that assign a value to $k$-cells. These linear functionals are called $k$-cochains and the set of all $k$-cochains is itself a linear vector space.
+There are two additional concepts that require some elaboration: the notion of chains and the notion of cochains. A chain is essentially a set of $k$-cells. That is, nothing more and nothing less than a set of simple geometric structures \emph{of the same dimension}. For example, a set of lines or a set of planes. Cochains build upon chains; a cochain is essentially a set of cells tagged with a numerical value. Cochains are in practice realized as a vector of single or double precision numbers and it may help to think of cochains as such.
 
-Let us briefly forget about those nitty mathematical details and reiterate the most important point: a chain is nothing more and nothing less than a set of cells and a cochain is essentially a set of cells tagged with a numerical value. Cochains are in practice realized as a vector of single or double precision numbers and it may help to think of cochains as such.
+Admittedly, these ``definations'' of chains and cochains are all but rigorous. However, there exists rigorous mathematical theory that supports these definitions that is omitted here for the sake of consiseness. For a rigorous treatment, see reference.
+
 
 \section{Orientation}
 
-In addition to dimension, $k$-cells have a property called orientation. A $k$-cell either has a positive or a negative orientation that can be freely defined on a per-cell basis, as long as the orientation remains unchanged thereafter. 
+In addition to dimension, $k$-cells have a property called orientation. A $k$-cell either has a positive or a negative orientation that can be freely defined on each individual cell, as long as the orientation remains unchanged thereafter. However, in practice it may be a better idea to define an orientation that is consistent throughout all $k$-cells.
 
-Figure \ref{fig:innerExample} shows three $k$-cells in two-dimensional space with an intrinsic orientation that we call inner-oriented $k$-cells. Inner-oriented points for instance, can either represent sources or sinks and are arbitrarily chosen to be source-like (that it, an outflow is positive) by default, as indicated by the outward pointing arrows in Figure \ref{fig:inner0Cell}. Inner-oriented lines have a positive orientation when pointing to the right, as indicated by the arrows in Figure \ref{fig:inner1Cell}. It is somewhat awkward to think of the orientation of a plane, but an inner-oriented plane is defined positive when it is oriented counterclockwise, as indicated in Figure \ref{fig:inner2Cell}.
-
-Inner-oriented cells-complices have circumcentric counterparts called dual cell-complices, composed of dual planes, dual lines, and dual points. Thus, all inner-oriented $k$-cells have an outer-oriented counterpart with an extrinsic orientation, rather than an intrinsic orientation. For example, the orientation of an inner-oriented line is defined \emph{on} that line whereas the orientation of an outer-oriented line is defined \emph{through} that line. Figure \ref{fig:outerExample} shows three outer-oriented $k$-cells in two-dimensional space.
+Figure \ref{fig:innerExample} shows three $k$-cells in two-dimensional space with an intrinsic orientation that we call inner-oriented $k$-cells. Inner-oriented points for instance, can either represent sources or sinks and are arbitrarily chosen to be source-like (that it, an outflow is positive) by default, as indicated by the outward pointing arrows in Figure \ref{fig:inner0Cell}. Inner-oriented lines are chosen to have a positive orientation when pointing to the right, as indicated by the arrows in Figure \ref{fig:inner1Cell}. It is somewhat awkward to think of the orientation of a plane, but an inner-oriented plane is defined positive when it is oriented counterclockwise, as indicated by the curled arrow in Figure \ref{fig:inner2Cell}.
 \begin{figure}[ht]
     \newsavebox\boxInner
     \savebox{\boxInner}{\begin{tikzpicture}
@@ -155,7 +150,9 @@ Inner-oriented cells-complices have circumcentric counterparts called dual cell-
     \label{fig:outerExample}
 \end{figure}
 
-The distinction between inner and outer-oriented $k$-cells is sensible from a physical point of view; certain physical quantities are naturally expressed in terms of inner-oriented cochains whereas other physical quantities are naturally expressed in terms of outer-oriented cochains. For example, the circulation along a line naturally resembles an inner-oriented 1-cell whereas the flux through a line naturally resembles an outer-oriented 1-cell.
+Inner-oriented $k$-cells have outer-oriented counterparts with an circumcentric orientation, rather than an intrinsic orientation. For example, the orientation of an inner-oriented line is defined \emph{on} that line whereas the orientation of an outer-oriented line is defined \emph{through} that line. Figure \ref{fig:outerExample} shows three outer-oriented $k$-cells in two-dimensional space.
+
+The distinction between inner and outer-oriented $k$-cells makes sense from a physical point of view; certain physical quantities are naturally expressed in terms of inner-oriented cochains whereas other physical quantities are naturally expressed in terms of outer-oriented cochains.
 
 \section{The Exterior Derivative}
 
@@ -163,7 +160,9 @@ The exterior derivative $\delta$ is used to compute derivatives, like gradients,
 
 \subsection{Inner-Oriented Quantities}
 
-At the end of the day we will want to know the velocity field within the domain of our problem. We use circulation, i.e., the line integral of the velocity field, to encode velocity on the mesh elements. Let inner-oriented 1-cochains therefore represent circulation, defined as
+To capture the geometric structure of the governing equations, we define its physical quantities through integral values over the elements of the mesh. Depending on whether a given physical quantity is a point, line, or area density, its corresponding discrete representation ``lives'' at the associated zero, one, or two dimensional mesh elements.
+
+At the end of the day we would like to know the velocity field within the domain of our problem. We use circulation, i.e., the line integral of the velocity field, to encode velocity on the mesh elements. Let inner-oriented 1-cochains therefore represent circulation, defined as
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -171,7 +170,7 @@ At the end of the day we will want to know the velocity field within the domain 
     \tag{{\theequation}b}
     &\text{and}& v_{i,j} \equiv \int_L \mathbf{u} \cdot \mathbf{\hat{t}} \, dy &&
 \end{flalign}
-where $\mathbf{\hat{t}}$ denotes the tangent vector along a line and where the notations $u$ and $v$ are reserved for horizontal and vertical lines, respectfully. It is crucial to note that this makes circulation an integrated, not pointwise, quantity.
+where $\mathbf{\hat{t}}$ denotes the tangent vector along a line and where the notations $u$ and $v$ are reserved for horizontal and vertical lines, respectfully. It is crucial to note that this makes circulation an \emph{integrated}, not pointwise, quantity. Thus, the physical quantity of circulation ``lives'' at the one-dimensional mesh elements (that is, lines).
 
 Figure \ref{fig:cochainExamples} shows three examples of inner-oriented $k$-cochains (hence the numerical values) in two-dimensional space.
 
@@ -238,22 +237,20 @@ Figure \ref{fig:1cochainExample} shows a 0-cochain consisting of two points, $p_
     u = \delta(L_0) = 4 - 6 = -2
 \end{equation}
 
-Assuming that points represent samples of a continuous scalar field, $P$, it is clearly seen that the application of $\delta$ on a 0-cochain is analogous to the integrated gradient operator:
+Assuming that points represent samples of a continuous scalar field, $P$, it is clearly seen that the application of $\delta$ on a 0-cochain is analogous to the \emph{integrated} gradient operator:
 \begin{equation}
     \begin{split}
         4 - 6 &= P(p_2) - P(p_1) \\
         &= \int_{L} \nabla \phi \cdot \mathbf{ds}
     \end{split}
 \end{equation}
-The physical representation of $P$ is total pressure ($P \equiv p + \frac{1}{2}||\mathbf{u}||^2$).
+The physical interpretation of $P$ is dimensionless total pressure ($P \equiv p + \frac{1}{2}||\mathbf{u}||^2$).
 
-Figure \ref{fig:2cochainExample} shows a 1-cochain composed of four lines and a 2-cochain composed of a single plane, $S$. We apply the discrete exterior derivative by either adding or subtracting the line values; if the orientation of a line segment opposes the orientation of the face, then its value must be subtracted. Thus, application of $\delta$ on $S$ results in
-\begin{equation}
+Figure \ref{fig:2cochainExample} shows a 1-cochain composed of four lines and a 2-cochain composed of a single plane, $S$. We apply the discrete exterior derivative by either adding or subtracting the line values; if the orientation of a line segment opposes the orientation of the face, then its value must be subtracted. Thus, application of $\delta$ on $S$ results in\begin{equation}
     \xi = \delta(S) = 3 + 7 - (-5) - 9 = 6
 \end{equation}
 
-Application of $\delta$ on a 1-cochain is analogous to the integrated curl operator because
-\begin{equation}
+Application of $\delta$ on a 1-cochain is analogous to the integrated curl operator because\begin{equation}
     \begin{split}
         3 + 7 - (-5) - 9 &= u_1(L_1) + v_2(L_2) - u_2(L_3) - v_1(L_4) \\
         &= \int_{L_1} \mathbf{u} \cdot \mathbf{dl} + \int_{L_2} \mathbf{u} \cdot \mathbf{dl} - \int_{L_3} \mathbf{u} \cdot \mathbf{dl} - \int_{L_4} \mathbf{u} \cdot \mathbf{dl} \\
@@ -267,11 +264,11 @@ where $\partial S \equiv L_1 \cup L_2 \cup L_3 \cup L_4$. This is not the only i
     \Gamma \equiv \oint_C \mathbf{u} \cdot \mathbf{dl}
     \label{eq:circulation}
 \end{equation}
-Comparing Equations \eqref{eq:vorticityExample} and \eqref{eq:circulation}, we conclude that the $\delta(S)$ must represent the circulation around the edges of $S$. Circulation is related to vorticity; the circulation around a closed contour is equal to the integrated vorticity enclosed by that contour. From Stokes' theorem:
+Comparing Equations \eqref{eq:vorticityExample} and \eqref{eq:circulation}, we conclude that $\delta(S)$ must represent the circulation around the edges of $S$. Circulation is related to vorticity; the circulation around a closed contour is equal to the integrated vorticity enclosed by that contour. From Stokes' theorem:
 \begin{equation}
     \Gamma \equiv \oint_C \mathbf{u} \cdot \mathbf{dl} = \iint_A \left( \nabla \times \mathbf{u} \right) dA = \iint_A \xi \; dA
 \end{equation}
-Therefore, if the area of $S$ is infinitesimal, then $\xi$ represents vorticity.
+Therefore, the physical interpretation of $\xi$ is vorticity.
 
 Because $3$-cochains are undefined in two-dimensional space, the application of $\delta$ on a 2-cochain results in the empty set by definition. In a similar vein, 0-cochains can only be the result of the application of $\delta$ on a real number.
 
@@ -286,7 +283,7 @@ We use flux, i.e., the integral of the normal velocity along a line, as a repres
     &\text{and}& \tilde{v}_{i,j} \equiv \int_L \mathbf{u} \cdot \mathbf{\hat{n}} \, dx &&
 \end{flalign}
 where $\mathbf{\hat{n}}$ denotes the normal vector along the line segment and where $u_{i,j}$ and $v_{i,j}$ are again reserved for horizontal and vertical edges, respectively.
-Figure \ref{fig:outerCochainExamples} shows three examples of outer-oriented $k$-cochains in two-dimensional space.
+All outer-oriented geometric structures and quantities are marked with a tilde for easy recognition. Figure \ref{fig:outerCochainExamples} shows three examples of outer-oriented $k$-cochains in two-dimensional space.
 
 \begin{figure}[ht]
     \newsavebox\boxOuterExample
@@ -350,8 +347,7 @@ Figure \ref{fig:outerCochainExamples} shows three examples of outer-oriented $k$
     \label{fig:outerCochainExamples}
 \end{figure}
 
-Figure \ref{fig:outer1CochainExample} shows a 0-cochain composed of two points, $\tilde{p}_1$ and $\tilde{p}_2$, and a 1-cochain composed of a line, $\tilde{L}_0$. The recipe for applying $\delta$ is again  straightforward: add values at points that share a common orientation with the line and subtract values whose orientation opposes the orientation of the line. The orientation of $\tilde{p}_2$, for example, opposes the orientation of $\tilde{L}_0$ because the arrows point in opposite directions. Thus,
-\begin{equation}
+Figure \ref{fig:outer1CochainExample} shows a 0-cochain composed of two points, $\tilde{p}_1$ and $\tilde{p}_2$, and a 1-cochain composed of a line, $\tilde{L}_0$. The recipe for applying $\delta$ is again  straightforward: add values at points that share a common orientation with the line and subtract values whose orientation opposes the orientation of the line. The orientation of $\tilde{p}_2$, for example, opposes the orientation of $\tilde{L}_0$ because the arrows point in opposite directions. Thus,\begin{equation}
     \tilde{u} = \delta(L_0) = 4 - 6 = -2
 \end{equation}
 This procedure is analogous to the integrated gradient operator because
@@ -362,14 +358,14 @@ This procedure is analogous to the integrated gradient operator because
     \end{split}
 \end{equation}
 
-Let us consider the physical interpretation of the values at the points, denoted $\tilde{\psi}$. If lines represent flux, then points must represent the stream function, $\tilde{\psi}$. Here is why: the numerical value of the stream function is defined such that the difference $\Delta \tilde{\psi}$ between two streamlines is equal to the mass flux between the two streamlines. This fact allows us to determine the stream function up to a constant.
+Let us consider the physical interpretation of 0-cochains, denoted $\tilde{\psi}$. If lines represent flux, then points must represent the stream function, $\tilde{\psi}$. Here is why: the numerical value of the stream function is defined such that the difference $\Delta \tilde{\psi}$ between two streamlines is equal to the mass flux between the two streamlines. This fact allows us to determine the stream function up to a constant.
 
 Figure \ref{fig:outer2CochainExample} shows an outer-oriented 1-cochain composed of four lines and an outer-oriented 2-cochain composed of a plane, $\tilde{S}$. The plane is source-like as indicated by the outward pointing arrows. We apply the discrete exterior derivative by adding inflows and subtracting outflows. Thus, application of $\delta$ yields
 \begin{equation}
     \tilde{\xi} = \delta(\tilde{S}) = -3 + 7 - 5 - 9 = -10
 \end{equation}
 
-The application of $\delta$ on a 1-cochain is analogous to the curl operator because
+The application of $\delta$ on a 1-cochain is analogous to the integrated curl operator because
 \begin{equation}
     \begin{split}
         -3 + 7 + (-5) - 9 &= -\tilde{u}_1(\tilde{L}_1) + \tilde{v}_2(\tilde{L}_2) + \tilde{u}_2(\tilde{L}_3) - \tilde{v}_1(\tilde{L}_4) \\
@@ -381,32 +377,32 @@ The application of $\delta$ on a 1-cochain is analogous to the curl operator bec
 \end{equation}
 where $\partial \tilde{S} \equiv \tilde{L}_1 \cup \tilde{L}_2 \cup \tilde{L}_3 \cup \tilde{L}_4$. 
 
-What is the physical representation of $\tilde{\xi}$? The fluid is incompressible, so the velocity field must be divergence free (i.e., $\nabla \cdot \mathbf{u} = 0$). According to the generalized Stokes' theorem the integral of the divergence over a plane equals the sum of the fluxes on all four edges. In other words, everything that gets in must also get out. The 2-cell $\tilde{\xi}$ therefore represents the rate of mass production in the plane. Thus, for the law of mass conservation to hold true, $\tilde{\xi}$ must be equal to zero in each and every plane.
+What is the physical interpretation of $\tilde{\xi}$? The fluid is incompressible, so the velocity field must be divergence free (i.e., $\nabla \cdot \mathbf{u} = 0$). According to the generalized Stokes' theorem the integral of the divergence over a plane equals the sum of the fluxes on all its four edges. In other words, everything that gets in must also get out. The 2-cochain $\tilde{\xi}$ therefore represents the rate of mass production in the plane at which it ``lives''. Thus, for the law of mass conservation to hold true, $\tilde{\xi}$ must be equal to zero at each and every plane.
 
 \subsection{DeRham Complex}
+
+A major advantage of the discrete exterior derivative is that it satisfies the same rules and identities as its smooth counterpart. The discrete exterior derivative is mathematically exact because it acts on and produces integrated quantities. That is, application of $\delta$ does not introduce any error whatsoever. As we shall see, this property contributes to the strength of the geometric approach and it results in preservation of the physics implied in the smooth governing equations.
 
 The results of this section can be summarized in a diagram called the DeRham complex:
 \begin{equation}
     \begin{gathered}
-        \xymatrix@C=13ex{
-            \mathbb{R} \ar[r]^{\delta} & C^{(0)} \ar[r]^{\delta}_{\text{grad}} & C^{(1)} \ar[r]^{\delta}_{\text{curl}} & C^{(2)} \ar[r]^{\delta} & \emptyset \\
-            \mathbb{R} \ar[r]^{\delta} & \tilde{C}^{(0)} \ar[r]^{\delta}_{\text{grad}} & \tilde{C}^{(1)} \ar[r]^{\delta}_{\text{curl}} & \tilde{C}^{(2)} \ar[r]^{\delta} & \emptyset
+        \xymatrix@C=20ex{
+            C^{(0)} \ar[r]^{\delta}_{\text{grad}} & C^{(1)} \ar[r]^{\delta}_{\text{curl}} & C^{(2)} \\
+            \tilde{C}^{(0)} \ar[r]^{\delta}_{\text{grad}} & \tilde{C}^{(1)} \ar[r]^{\delta}_{\text{curl}} & \tilde{C}^{(2)}
         }
     \end{gathered}
 \end{equation}
 
-A major advantage of the discrete exterior derivative is that it satisfies the same rules and identities as its smooth counterpart. The discrete exterior derivative is mathematically exact because it acts on and produces integrated quantities. That is, application of $\delta$ does not introduce any error whatsoever. As we shall see, this property contributes to the strength of the geometric approach and it results in preservation of the physics implied in the smooth governing equations.
-
 \section{The Hodge-$\star$ Operator}
 
-We have established that two-dimensional space supports points, lines, and planes. Let us briefly digress to three-dimensional space for the sake of familiarity; three-dimensional space supports points, lines, planes, and volumes. In three-dimensional space, we can have one linearly independent volume, three linearly independent planes, three linearly independent lines (just like vectors in $\mathbb{R}^3$), and again one linearly independent point. This 1--3--3--1 sequence suggests a pairing; there exists a vector space isomorphism between $k$-vectors and $(n-k)$-vectors. The Hodge-$\star$ operator is a linear map between inner-oriented $k$-cochains and outer-oriented $(n-k)$-cochains or vice versa, where $n$ denotes the dimension of the vector space.
+We have established that two-dimensional space supports points, lines, and planes. Let us briefly digress to three-dimensional space for the sake of familiarity; three-dimensional space supports points, lines, planes, and volumes. In three-dimensional space, we can have one linearly independent volume, three linearly independent planes, three linearly independent lines (just like vectors in $\mathbb{R}^3$), and again one linearly independent point. This 1--3--3--1 sequence suggests a pairing; there exists a vector space isomorphism between $k$-vectors and $(n-k)$-vectors. The Hodge-$\star$ operator is a linear map between inner-oriented $k$-cochains and outer-oriented $(n-k)$-cochains or vice versa, where $n$ denotes the dimension of the vector space. It simply scales the quantities stores on the mesh cells by the size of the corresponding cells.
 
 We have introduced the $\delta$ operator to map $(k)$-cochains to $(k+1)$-cochains. However, the Navier-Stokes equations equate both inner and outer oriented cochains, which requires the Hodge-$\star$ operator. The Hodge-$\star$ operator links the DeRham complices for inner and outer oriented cochains. This linked structure is called the double DeRham complex:
 \begin{equation}
     \begin{gathered}
-        \xymatrix@=13ex{
-            \mathbb{R} \ar[r]^{\delta} & C^{(0)} \ar[r]^{\delta}_{\text{grad}} \ar@{<->}[d]^{\star} & C^{(1)} \ar[r]^{\delta}_{\text{curl}} \ar@{<->}[d]^{\star} & C^{(2)} \ar@{<->}[d]^{\star} \ar[r]^{\delta} & \emptyset \\
-            \emptyset & \tilde{C}^{(2)} \ar[l]_{\delta} & \tilde{C}^{(1)} \ar[l]_{\delta}^{\text{curl}} & \tilde{C}^{(0)} \ar[l]_{\delta}^{\text{grad}} & \mathbb{R} \ar[l]_{\delta}
+        \xymatrix@=20ex{
+            C^{(0)} \ar[r]^{\delta}_{\text{grad}} \ar@{<->}[d]^{\star} & C^{(1)} \ar[r]^{\delta}_{\text{curl}} \ar@{<->}[d]^{\star} & C^{(2)} \ar@{<->}[d]^{\star} \\
+            \tilde{C}^{(2)} & \tilde{C}^{(1)} \ar[l]_{\delta}^{\text{curl}} & \tilde{C}^{(0)} \ar[l]_{\delta}^{\text{grad}}
         }
     \end{gathered}
     \label{eq:doubleDeRham}
@@ -415,7 +411,7 @@ We have introduced the $\delta$ operator to map $(k)$-cochains to $(k+1)$-cochai
 In a discrete setting, cochains are stored in vectors, the $\delta$ operator is represented by incidence matrices, denoted $\mathbb{E}$, and the Hodge-$\star$ operator is represented by Hodge matrices, denoted $\mathbb{H}$. In such a framework, application of the $\delta$ or Hodge-$\star$ operator becomes a matrix vector-multiplication. Hence, the double DeRham complex in Equation \eqref{eq:doubleDeRham} becomes
 \begin{equation}
     \begin{gathered}
-        \xymatrix@=13ex{
+        \xymatrix@=20ex{
             C^{(0)} \ar[r]^{\mathbb{E}^{(1,0)}}_{\text{grad}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{2},0)}} & C^{(1)} \ar[r]^{\mathbb{E}^{(2,1)}}_{\text{curl}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{1},1)}} & C^{(2)} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{0},2)}} \\
             \tilde{C}^{(2)} \ar@<1ex>[u]^{\mathbb{H}^{(0,\tilde{2})}} & \tilde{C}^{(1)} \ar[l]_{\tilde{\mathbb{E}}^{(2, 1)}}^{\text{curl}} \ar@<1ex>[u]^{\mathbb{H}^{(1,\tilde{1})}} & \tilde{C}^{(0)} \ar[l]_{\tilde{\mathbb{E}}^{(1,0)}}^{\text{grad}} \ar@<1ex>[u]^{\mathbb{H}^{(2,\tilde{0})}}
         }
