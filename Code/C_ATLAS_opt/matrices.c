@@ -400,3 +400,118 @@ void updateDiff(float *diff, float *u, float *uOld, float dt)
     
     *diff = difference;
 }
+
+void storeStreamFunction(int N, float *Ht11, float *u, float *tx)
+{
+    int rows = N + 1;
+    int columns = N + 1;
+    
+    float *flux = callocVector(u[0]);
+    
+    for (int i = 0; i < u[0]; i++) {
+        flux[1 + i] = Ht11[1 + i] * u[1 + i];
+    }
+        
+    float *streamFunction = callocMatrix(rows, columns);
+    float *X = callocMatrix(rows, columns);
+    float *Y = callocMatrix(rows, columns);
+        
+    for (int i = 1; i < N; i++) {
+        for (int j = 1; j < N; j++) {
+            int k = (j - 1) + (i - 1) * (N - 1);
+            
+            streamFunction[2 + (N - i) * columns + j] = flux[1 + k] + streamFunction[2 + (N - i + 1) * columns + j];
+        }
+    }
+    
+    for (int i = 0; i < N + 1; i++) {
+        for (int j = 0; j < N + 1; j++) {
+            X[2 + (N - i) * columns + j] = tx[1 + j];
+            Y[2 + (N - i) * columns + j] = tx[1 + i];
+        }
+    }
+    
+    storeMatrix(streamFunction, "streamFunction.dat");
+    storeMatrix(X, "streamFunctionX.dat");
+    storeMatrix(Y, "streamFunctionY.dat");
+    
+    free(flux);
+    free(streamFunction);
+    free(X);
+    free(Y);
+}
+
+void storeVorticity(int N, float *xi, float *tx)
+{
+    int rows = N + 1;
+    int columns = N + 1;
+        
+    float *vorticity = callocMatrix(rows, columns);
+    float *X = callocMatrix(rows, columns);
+    float *Y = callocMatrix(rows, columns);
+    
+    for (int i = 0; i < N + 1; i++) {
+        for (int j = 0; j < N + 1; j++) {
+            int k = j + i * (N + 1);
+            
+            vorticity[2 + (N - i) * columns + j] = xi[1 + k];
+            
+            X[2 + (N - i) * columns + j] = tx[1 + j];
+            Y[2 + (N - i) * columns + j] = tx[1 + i];
+        }
+    }
+    
+    storeMatrix(vorticity, "vorticity.dat");
+    storeMatrix(X, "vorticityX.dat");
+    storeMatrix(Y, "vorticityY.dat");
+    
+    free(vorticity);
+    free(X);
+    free(Y);
+}
+
+void storePressure(int N, float *x, float *h, float *u, float *uK, float *P)
+{
+    int rows = N;
+    int columns = N;
+        
+    float *pressure = callocMatrix(rows, columns);
+    float *X = callocMatrix(rows, columns);
+    float *Y = callocMatrix(rows, columns);
+    
+    float *uTotal = combineUAndUK(N, u, uK);
+    
+    for (int i = 1; i < N + 1; i++) {
+        for (int j = 1; j < N + 1; j++) {
+            int k = (j - 1) + (i - 1) * N;
+            int l = j + i * (N + 1);
+            int m = j + i * (N + 2) + (N + 1) * (N + 2);
+
+            float uAverage = 0.5 * (uTotal[1+l] / h[1+j] + uTotal[1+l-1] / h[1+j-1]);
+            float vAverage = 0.5 * (uTotal[1+m] / h[1+i] + uTotal[1+m-(N+2)] / h[1+i-1]);
+            
+            float velocity = pow(uAverage, 2) + pow(vAverage, 2);
+            
+            pressure[2 + (N - i) * columns + j - 1] = P[1 + k] - 0.5 * pow(sqrt(velocity), 2);
+            
+            X[2 + (N - i) * columns + j - 1] = x[1 + j];
+            Y[2 + (N - i) * columns + j - 1] = x[1 + i];
+        }
+    }
+    
+    float constant = pressure[2 + (int) floor(N / 2) * columns + (int) floor(N / 2)];
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            pressure[2 + i * columns + j] -= constant;
+        }
+    }
+    
+    storeMatrix(pressure, "pressure.dat");
+    storeMatrix(X, "pressureX.dat");
+    storeMatrix(Y, "pressureY.dat");
+    
+    free(pressure);
+    free(X);
+    free(Y);
+}

@@ -129,6 +129,54 @@ void printVector(float *x)
     }
 }
 
+void storeMatrix(float *A, char *fileName)
+{
+    int rows = A[0];
+    int columns = A[1];
+    
+    FILE *filePointer = fopen(fileName, "w");
+    
+    if (filePointer != NULL) {
+        char str[80];
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                sprintf(str, "%.6e", A[2 + i * columns + j]);
+                fputs(str, filePointer);
+                
+                if (j != columns - 1) {
+                    fputs("\t", filePointer);
+                }
+            }
+            fputs("\n", filePointer);
+        }
+        
+        fclose(filePointer);
+    } else {
+        fprintf(stderr, "Could not open %s.\n", fileName);
+    }
+}
+
+void storeVector(float *x, char *fileName)
+{
+    int rows = x[0];
+    
+    FILE *filePointer = fopen(fileName, "w");
+    
+    if (filePointer != NULL) {
+        char str[80];
+        
+        for (int i = 0; i < rows; i++) {
+            sprintf(str, "%.6e\n", x[1+i]);
+            fputs(str, filePointer);
+        }
+        
+        fclose(filePointer);
+    } else {
+        fprintf(stderr, "Could not open %s.\n", fileName);
+    }
+}
+
 float* matMatMult(float *A, float *B)
 {
     float *C = callocMatrix(A[0], B[1]);

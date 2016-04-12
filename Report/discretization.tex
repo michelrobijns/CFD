@@ -1,4 +1,5 @@
 \section{Discretization of the Unit Square}
+\label{sec:discretization}
 
 \begin{figure}[ht]
     \centering
@@ -73,7 +74,7 @@
         % Draw p
         \foreach \x/\i in {1/0, 4/1, 7/2} {
             \foreach \y/\j in {1/0, 4/1, 7/2} {
-                \node[below right=0.75ex] at (\x,\y) {$\tilde{s}_{\i,\j}$};
+                \node[below right=0.75ex] at (\x,\y) {$\tilde{S}_{\i,\j}$};
                 \draw [->] (\x+0.075,\y) -- (\x+0.25,\y);
                 \draw [->] (\x-0.075,\y) -- (\x-0.25,\y);
                 \draw [->] (\x,\y+0.075) -- (\x,\y+0.25);
@@ -192,11 +193,11 @@
     \label{fig:innerGrid}
 \end{figure}
 
-It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical axis. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid.
+It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer-oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical axis. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid, see Figure \ref{fig:innerGrid}. The inner-oriented grid \emph{must} be constructed in this manner for reasons that can be found in rigorous texts on DEC.
 
 \section{Physical Representation}
 
-We briefly digress here to summarize the physical interpretation of the $k$-cells that compose the inner and outer oriented grids. The orientation of the outer-oriented planes, $\tilde{s}_{i,j}$, is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The line segments, $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$, represent flux in the form:
+We briefly digress here to summarize the physical interpretation of the $k$-cells that compose the inner and outer oriented grids. The orientation of the outer-oriented planes $\tilde{s}_{i,j}$ is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The outer-oriented line segments $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ represent flux in the form:
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -204,9 +205,9 @@ We briefly digress here to summarize the physical interpretation of the $k$-cell
     \tag{{\theequation}b}
     &\text{and}& \tilde{v}_{i,j} = \int_{x_{i,j}}^{x_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{n}} \, dx &&
 \end{flalign}
-where $\mathbf{\hat{n}}$ denotes the normal vector along the line segment. (\textit{Note:} it is important to remember that all physical quantities are still dimensionless.) A rightward and upward flux is considered positive, as indicated by the arrows through the lines. If 1-cochains represent flux, then 0-cochains must represent samples of the the continuous stream function and 2-cochains must represent the rate of mass production within the plane on which they are defined.
+where $\mathbf{\hat{n}}$ denotes the normal vector along the line segment. (\textit{Note:} it is important to remember that all physical quantities are still dimensionless.) A rightward and upward flux is considered positive, as indicated by the arrows through the line segments in Figure \ref{fig:outerGrid}. If outer-oriented 1-cochains represent flux, then outer-oriented 0-cochains must represent samples of the the continuous stream function and outer-oriented 2-cochains must represent the rate of mass production within the plane on which they are defined.
 
-The inner-oriented line segments, $u_{i,j}$ and $v_{i,j}$, represent circulation: 
+The inner-oriented line segments $u_{i,j}$ and $v_{i,j}$ represent circulation: 
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -215,9 +216,9 @@ The inner-oriented line segments, $u_{i,j}$ and $v_{i,j}$, represent circulation
     &\text{and}& v_{i,j} = \int_{y_{i,j}}^{y_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{t}} \, dy &&
 \end{flalign}
 where $\mathbf{\hat{t}}$ denotes the tangent vector along the line segment.
-As discussed in the preceding section, application of the integrated curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented 2-cochains, denoted $\xi_{(i,j)}$, do therefore represent vorticity. The inner-oriented 0-cochains, denoted $p_{i,j}$, represent total pressure. Notice that the orientation of the inner-oriented points, $p_{i,j}$, is sink-like, as indicated by the inward pointing arrows.
+As discussed in the preceding section, application of the integrated curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented 2-cochains $\xi_{(i,j)}$ do therefore represent vorticity and the inner-oriented 0-cochains $p_{i,j}$ represent total pressure. Notice that the orientation of the inner-oriented 0-cochains $p_{i,j}$ is sink-like, as indicated by the inward pointing arrows.
 
-We have constructed the inner and outer oriented grid and we have established what the $k$-cells physically represent. The double DeRham complex can be updated incorporating the newly introduced quantities:
+We have constructed the inner and outer oriented grid and we have established what the $k$-cells physically represent. The double DeRham complex can be updated incorporating the physical quantities:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{

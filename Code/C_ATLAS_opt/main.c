@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     float dt, tol;
     
     tol = 1e-5;
-    Re = 3200;
+    Re = 1000;
     dt = atof(argv[1]);
     N = atoi(argv[2]);
         
@@ -54,7 +54,6 @@ int main(int argc, char **argv)
     free(E21K);
     free(E21);
     free(H1t1Vec);
-    free(Ht11Vec);
     free(Ht02Vec);
         
     // LU decomposition of A
@@ -90,8 +89,18 @@ int main(int argc, char **argv)
     
     fprintf(stdout, "Converged after %d iterations.\n", iteration);
     
+    // Store the results in data files
+    //storeVector(u, "u32.dat");
+    //storeVector(xi, "xi32.dat");
+    //storeVector(P, "P32.dat");
+            
+    storeStreamFunction(N, Ht11Vec, u, tx);
+    storeVorticity(N, xi, tx);
+    storePressure(N, x, h, u, uK, P);
+    
     // Free dynamically allocated memory
     free(tE21);
+    free(Ht11Vec);
     free(A);
     free(C0);
     free(C1);

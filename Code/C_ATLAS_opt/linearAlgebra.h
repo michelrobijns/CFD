@@ -8,6 +8,8 @@ float* callocVector(int rows);
 
 void printMatrix(float *A);
 void printVector(float *x);
+void storeMatrix(float *A, char *fileName);
+void storeVector(float *x, char *fileName);
 
 float* matMatMult(float *A, float *B);
 float* matVecMult(float *A, float *x);

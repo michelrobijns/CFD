@@ -21,4 +21,8 @@ void updateP(float *P, int N, float *A, float *rhs);
 void updateU(float *u, float *tE21, float *P, float *C4, float dt);
 void updateDiff(float *diff, float *u, float *uOld, float dt);
 
+void storeStreamFunction(int N, float *Ht11, float *u, float *tx);
+void storeVorticity(int N, float *xi, float *tx);
+void storePressure(int N, float *x, float *h, float *u, float *uK, float *P);
+
 #endif

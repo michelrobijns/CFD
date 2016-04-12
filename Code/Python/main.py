@@ -3,6 +3,7 @@
 import sys
 import numpy as np
 from math import *
+import matplotlib
 import matplotlib.pyplot as plt
 import scipy.linalg
 
@@ -14,7 +15,7 @@ def main():
     np.set_printoptions(precision=4, linewidth=178)
 
     tol = 1e-5
-    Re = 3200
+    Re = 1000 #3200
     dt = float(sys.argv[1])
     N = int(sys.argv[2])
 
@@ -37,16 +38,16 @@ def main():
     u = np.zeros(2 * N * (N - 1))
     uK = generateUK(N, th)
     uPres = H1t1.dot(tE10).dot(Ht02).dot(E21K).dot(uK)
-
+    
     # Constants
     C0 = Ht02.dot(E21)
     C1 = tE21.dot(Ht11)
     C2 = H1t1.dot(tE10).dot(C0)
     C3 = uPres / Re
-
+    
     diff = 1
     iteration = 0
-
+    
     # Loop
     while (diff > tol):
         iteration += 1
@@ -67,20 +68,17 @@ def main():
 
         if (iteration % 1000 == 0):
             diff = max(np.abs(u - uOld)) / dt
-            print('Iteration', iteration ,'\tdiff =', diff)
+            #print('Iteration', iteration, '\tdiff =', diff)
+            print('Iteration', iteration, '\tdiff =', "{0:0=6.5f}".format(diff))
 
     print('Converged after', iteration, 'iterations.')
-
-    plotContour(N, x, Ht11.dot(u))
-
-
-
-
-
-
-
-
-
+    
+    matplotlib.rcParams['contour.negative_linestyle'] = 'solid'
+    
+    plotStreamFunctionContour(N, x, Ht11.dot(u))
+    plotPressureContour(N, tx, th, u, uK, P)
+    plotPressureContour2(N, tx, th, u, uK, P)
+    plotVorticityContour(N, x, xi)
 
 def generateMesh(N):
     x = np.zeros(N+1)
@@ -290,7 +288,7 @@ def combineUAndUK(N, u, uK):
 
     return uTotal
 
-def plotContour(N, x, u):
+def plotStreamFunctionContour(N, x, u):
     rows = N + 1
     columns = N + 1
 
@@ -303,8 +301,94 @@ def plotContour(N, x, u):
             stream[N-i,j] = u[k] + stream[N-i+1,j]
 
     X, Y = np.meshgrid(x, 1 - x)
+    
+    levels = [-1.5e-3, -1e-3, -5e-4, -2.5e-4, -1e-4, -5e-5, -1e-5, -1e-6, 0,
+              1e-10, 1e-5, 1e-4, 1e-2, 3e-2, 5e-2, 7e-2, 9e-2, 0.1, 0.11,
+              0.115, 0.1175]
+    
+    plt.contour(X, Y, stream, levels=levels, colors='k')
+    plt.show()
 
-    plt.contour(X, Y, stream)
+def plotVorticityContour(N, x, xi):
+    rows = N + 1
+    columns = N + 1
+    
+    vorticity = np.zeros((rows, columns))
+    
+    for i in range(0, N + 1):
+        for j in range(0, N + 1):
+            k = j + i * (N + 1)
+            
+            vorticity[N-i,j] = xi[k]
+    
+    X, Y = np.meshgrid(x, 1 - x)
+    
+    levels = [-3.0, -2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0]
+    
+    plt.contour(X, Y, vorticity, levels=levels, colors='k')
+    plt.show()
+
+# x and h are the correct here but the variable names are mixed up everywhere else
+def plotPressureContour(N, x, h, u, uK, P):
+    rows = N
+    columns = N
+        
+    uTotal = combineUAndUK(N, u, uK)
+    
+    pressure = np.zeros((rows, columns))
+    
+    for i in range(1, N + 1):
+        for j in range(1, N + 1):
+            k = (j - 1) + (i - 1) * N
+            l = j + i * (N + 1)
+            m = j + i * (N + 2) + (N + 1) * (N + 2)
+            
+            uAverage = 0.5 * (uTotal[l] / h[j] + uTotal[l-1] / h[j-1])
+            vAverage = 0.5 * (uTotal[m] / h[i] + uTotal[m-(N+2)] / h[i-1])
+            
+            velocity = uAverage ** 2 + vAverage ** 2
+            
+            pressure[N-i,j-1] = P[k] - 0.5 * sqrt(velocity) ** 2
+    
+    X, Y = np.meshgrid(x[1:(N+1)], 1 - x[1:(N+1)])
+    
+    levels = [-0.002, 0, 0.02, 0.05, 0.07, 0.09, 0.11, 0.12, 0.17, 0.3]
+        
+    pressure = pressure - pressure[floor(N/2),floor(N/2)]
+    
+    plt.contour(X, Y, pressure, levels=levels, colors='k')
+    plt.show()
+
+# x and h are the correct here but the variable names are mixed up everywhere else
+def plotPressureContour2(N, x, h, u, uK, P):
+    rows = N
+    columns = N
+        
+    uTotal = combineUAndUK(N, u, uK)
+    
+    pressure = np.zeros((rows, columns))
+        
+    P = np.reshape(P, (N, N))
+    P = np.flipud(P)
+    ux = np.reshape(uTotal[0:(N+1)*(N+2)], (N + 2, N + 1))
+    ux = np.flipud(ux)
+    uy = np.reshape(uTotal[(N+1)*(N+2):], (N + 1, N + 2))
+    uy = np.flipud(uy)
+                
+    for i in range(N, 0, -1):
+        for j in range(1, N + 1):            
+            uxAvg = 0.5 * (ux[i,j] / h[j] + ux[i,j-1] / h[j-1])
+            uyAvg = 0.5 * (uy[i,j] / h[i] + uy[i-1,j] / h[i-1])
+            
+            pressure[i-1,j-1] = P[i-1,j-1] - 0.5 * sqrt(uxAvg ** 2 + uyAvg ** 2) ** 2
+        
+    X, Y = np.meshgrid(x[1:(N+1)], 1 - x[1:(N+1)])
+    
+    levels = [-0.002, 0, 0.02, 0.05, 0.07, 0.09, 0.11, 0.12, 0.17, 0.3]
+    
+    pressure = pressure - pressure[floor(N/2),floor(N/2)]
+        
+    plt.contour(X, Y, pressure, levels=levels, colors='k')
     plt.show()
 
 if __name__ == '__main__':

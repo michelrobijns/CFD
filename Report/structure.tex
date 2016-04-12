@@ -10,7 +10,7 @@ Recall the system of equations derived in Chapter \ref{cha:physics}:
     \tag{{\theequation}c}
     &\text{Momentum equation:}& &\frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla P + \frac{1}{\text{Re}} \nabla \times \xi = 0 &&
 \end{flalign}
-Let us first add superscripts to denote the dimensions of the $k$-cells:
+Let us first add superscripts to denote the dimensions of the $k$-cochains:
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -20,7 +20,7 @@ Let us first add superscripts to denote the dimensions of the $k$-cells:
     \tag{{\theequation}c}
     &\frac{\partial \mathbf{u}^{(1)}}{\partial t} - \mathbf{u}^{(1)} \times \xi^{(2)} + \nabla P^{(0)} + \frac{1}{\text{Re}} \nabla \times \xi^{(2)} = 0 \label{eq:momentumCochains}
 \end{align}
-To make these equations consistent within the framework of descrete exterior calculus, all terms within an equation must be reduced to $k$-cells of the same dimension \emph{and} orientation. For example, it is not allowed to equate 2-cochains and 1-cochains, let alone of different orientations.
+To make these equations consistent, all terms within an equation must be reduced to $k$-cells of the same dimension \emph{and} orientation. For example, it is not allowed to equate 2-cochains and 1-cochains, let alone of different orientations.
 
 \subsection{Continuity Equation}
 
@@ -42,7 +42,7 @@ which is in turn equivalent to writing $\mathbf{\tilde{S}}^{(2)} = 0$. Recall th
 
 \subsection{Velocity-Vorticity relation}
 
-The velocity-vorticity relation states that vorticity, $\mathbf{\xi}$, is equal to the curl of velocity, $\mathbf{u}$. This represents a mapping from an inner-oriented 1-cochain to an inner-oriented 2-cochain. This operation is represented by a single jump in the double DeRham complex, denoted $\xymatrix{*+[o][F-]{1}}$ in
+The velocity-vorticity relation states that vorticity, $\mathbf{\xi}$, is equal to the curl of velocity, $\mathbf{u}$. This represents a mapping from an inner-oriented 1-cochain to an inner-oriented 2-cochain. This operation is represented by a single jump in the double DeRham complex, denoted $\xymatrix{*+[o][F-]{1}}$ in the double DeRham complex:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{
@@ -80,7 +80,7 @@ The pressure gradient, $\nabla P^{(0)}$, represents a mapping from an inner-orie
     \label{eq:DeRhamPressure}
 \end{equation}
 
-The third term, the curl of vorticity or the curl of the curl of velocity, is less straighforward. Both velocity and vorticity are vector fields. Within the realms of ordinary calculus, there would be no difference between the two. However, within the realms of discrete exterior calculus, there is an important distinction; velocity is an integral value associated with lines whereas vorticity is an integral value associated with surfaces. So the only way to apply the curl operator to velocity a second time is to take a slight detour accross the double DeRham complex. First, apply the curl operator to velocity as usual, denoted $\xymatrix{*+[o][F-]{1}}$. Second, map vorticity to its outer oriented counterpart, the stream function, denoted $\psi$ $\xymatrix{*+[o][F-]{2}}$. Third, apply the gradient operator (which is the transpose of the curl operator, $\mathbb{E}^{(2,1)}$, as we shall soon see) to obtain mass flow, denoted$\xymatrix{*+[o][F-]{3}}$. Last but not least, map the mass flow to velocity since we ultimately want all quantities in the momentum equation to be expressed in terms of velocity, denoted $\xymatrix{*+[o][F-]{4}}$. This chain of mappings is graphically depicted in the double DeRham complex:
+The third term, the curl of vorticity or the curl of the curl of velocity, is less straighforward. Both velocity and vorticity are vector fields. Within the realms of ordinary calculus, there would be no difference between the two. However, within the realms of discrete exterior calculus, there is an important distinction: velocity is an integral value associated with lines whereas vorticity is an integral value associated with surfaces. So the only way to apply the curl operator to velocity a second time is to take a slight detour accross the double DeRham complex. First, apply the curl operator to velocity as usual, denoted $\xymatrix{*+[o][F-]{1}}$. Second, map vorticity to its outer oriented counterpart, the stream function, denoted $\xymatrix{*+[o][F-]{2}}$. Third, apply the gradient operator (which is the transpose of the curl operator, $\mathbb{E}^{(2,1)}$, as we shall soon see) to obtain mass flow, denoted $\xymatrix{*+[o][F-]{3}}$. Last but not least, map the mass flow to velocity, denoted $\xymatrix{*+[o][F-]{4}}$, because we eventually want all quantities in the momentum equation to be expressed in terms of velocity. This chain of mappings is graphically depicted in the double DeRham complex:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{

@@ -1,6 +1,6 @@
 \section{The Incidence Matrices and Hodge Matrices}
 
-The incidence matrices $\mathbb{E}$ and the Hodge matrices $\mathbb{H}$ are derived using the mesh introduced in the preceding section. The incidence and Hodge matrices derived in this section are exclusively valid for the mesh shown in Figure \ref{fig:outerGrid} and Figure \ref{fig:innerGrid}. That is, the validity is limited to the rather coarse spacing of $n = 3$. However, the format of those matrices belonging to denser grids can be correctly deduced by careful analysis of the matrix structure at $n = 3$, which is of course what we are after.
+The incidence matrices $\mathbb{E}$ and the Hodge matrices $\mathbb{H}$ are derived using the mesh introduced in the Section \ref{sec:discretization}. The incidence and Hodge matrices derived in this section are exclusively valid for the mesh shown in Figure \ref{fig:outerGrid} and Figure \ref{fig:innerGrid}. That is, the validity is limited to the rather coarse spacing of $n = 3$. However, the format of those matrices belonging to denser grids can be correctly deduced by careful analysis of the matrix structure at $n = 3$, which is of course what we are after.
 
 \subsection{$\tilde{\mathbb{E}}^{(2,1)}$}
 
@@ -19,7 +19,7 @@ Equation \eqref{eq:tsijEquations} expressed in matrix notation becomes
     \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)}
     \label{eq:tE21}
 \end{equation}
-The mass flow rates $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ adjacent to the boundary of the unit square are known because the boundary conditions of the problem are known. The matrices in the right-hand side of Equation \eqref{eq:tE21} can be split into a matrix of unknowns and into a matrix of knows. Splitting the matrix in two parts yields
+The mass flow rates $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ adjacent to the boundary of the unit square are known because the boundary conditions of the problem are known. The matrices in the right-hand side of Equation \eqref{eq:tE21} can be split into a matrix of unknowns and into a matrix of knows. Splitting the matrix into two parts yields
 \begin{equation}
     \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)} + \tilde{\mathbb{E}}^{(2,1)}_{\text{known}} \mathbf{\tilde{u}}^{(1)}_{\text{known}}
 \end{equation}
@@ -74,7 +74,7 @@ It should be no surprise here that the extreme sparsity of these indicence matri
 
 \subsection{$\mathbb{E}^{(1,0)}$}
 
-The incidence matrix $\mathbb{E}^{(1,0)}$ maps an inner-oriented 0-cochain to an inner-oriented 1-cochain. Let us create a linear equation for each of the line segments, $u_{(i,j)}$, in the inner-oriented grid, considering that the points, $P_{(i,j)}$, are sink-like. The equations are
+The incidence matrix $\mathbb{E}^{(1,0)}$ maps an inner-oriented 0-cochain to an inner-oriented 1-cochain. Let us create a linear equation for each of the line segments $u_{(i,j)}$ in the inner-oriented grid, considering that the points $P_{(i,j)}$ are sink-like. The equations are given by
 \begin{equation}
     \begin{split}
         u_{1,1} &= -p_{1,1} + p_{2,1} \\
@@ -122,7 +122,7 @@ because this little shortcut will save us some computational effort.
 
 \subsection{$\mathbb{E}^{(2,1)}$}
 
-The incidence matrix $\mathbb{E}^{(2,1)}$ maps an inner-oriented 1-cochain to an inner-oriented 2-cochain. That is, it maps circulation along line segments to vorticity in the planes enclosed by those line segments. The derivation of $\mathbb{E}^{(2,1)}$ is straightforward: add the circulation along those line segments sharing a common orientation with the plane and subtract the circulation along those line segments whose orientation opposes the orientation of the plane. Executing this procedure for all planes $\xi_{i,j}$, we have
+The incidence matrix $\mathbb{E}^{(2,1)}$ maps an inner-oriented 1-cochain to an inner-oriented 2-cochain. That is, it maps circulation along line segments to vorticity in the planes enclosed by those line segments. The derivation of $\mathbb{E}^{(2,1)}$ is straightforward: add the circulation along those line segments that share a common orientation with the plane and subtract the circulation along those line segments whose orientation opposes the orientation of the plane. Executing this procedure for all planes $\xi_{i,j}$, we have
 \begin{equation}
     \begin{split}
         \mathbf{\xi}_{0,0} &= u_{0,0} - u_{0,1} - v_{0,0} + v_{1,0} \\
@@ -141,7 +141,7 @@ Equation \eqref{eq:xiijEquations} written in matrix notation yields
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)}
 \end{equation}
 
-The velocities adjacent to the boundary are again known because the boundary conditions of the problem are known. Splitting the incidence matrix $\mathbb{E}^{(2,1)}$ into a matrix of unknowns and into a matrix of knows, we have
+The velocities adjacent to the boundary are again known because the boundary conditions of the problem are known. Splitting the incidence matrix $\mathbb{E}^{(2,1)}$ into a matrix of unknowns and into a matrix of knows yields
 \begin{equation}
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}
     \label{eq:xi}
@@ -217,7 +217,7 @@ The product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}$ 
 \begin{equation}
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbf{u}^{(1)}_{\text{prescribed}}
 \end{equation}
-Each column of $\mathbb{E}^{(2,1)}$ contains two non-zero elements. The total number of non-zero elements in $\mathbb{E}^{(2,1)}$ amounts to
+Note that each column of the matrix $\mathbb{E}^{(2,1)}$ contains two non-zero elements. Therefore, the total number of non-zero elements in $\mathbb{E}^{(2,1)}$ amounts to
 \begin{equation}
     \mbox{NNZ}(\mathbb{E}^{(2,1)}) = 2 \cdot 4 \cdot n = 8n
 \end{equation}
@@ -225,7 +225,7 @@ Each column of $\mathbb{E}^{(2,1)}$ contains two non-zero elements. The total nu
 
 \subsection{$\tilde{\mathbb{E}}^{(1,0)}$}
 
-The incidence matrix $\tilde{\mathbb{E}}^{(1,0)}$ maps an outer-oriented 0-cochain to an outer-oriented 1-cochain. That is, it maps values of the stream function located at the discrete points of the mesh to flux through the line segments. Deriving $\tilde{\mathbb{E}}^{(1,0)}$ is again straightforward; each of the line segments is bounded by two points. The flux through a line is equal to the sum of the values of the stream function at the bounding points. Add values at points whose orientation is equal to that of the line and subtract values at points whose orientation opposed the orientation of the line. Repeating this process for each of the line segments yields
+The incidence matrix $\tilde{\mathbb{E}}^{(1,0)}$ maps an outer-oriented 0-cochain to an outer-oriented 1-cochain. That is, it maps values of the stream function located at the discrete points of the mesh to flux through the line segments. Deriving $\tilde{\mathbb{E}}^{(1,0)}$ is again straightforward; each of the line segments is bounded by two points. The flux through a line is equal to the sum of the values of the stream function at the bounding points. Add values at points whose orientation is equal to that of the line and subtract values at points whose orientation opposes the orientation of the line. Repeating this process for each of the line segments, we have
 \begin{equation}
     \begin{split}
         \tilde{u}_{1,0} &= -\tilde{\psi}_{1,0} + \tilde{\psi}_{1,1} \\
