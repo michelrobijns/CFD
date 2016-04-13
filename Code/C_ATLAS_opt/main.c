@@ -26,44 +26,44 @@ int main(int argc, char **argv)
     N = atoi(argv[2]);
         
     // Generate mesh
-    printf("Generating mesh... (1/17)\n");
+    printf("Generating mesh...\t( 1/17)\n");
     float *tx = generateTx(N);
     float *th = generateTh(N);
     float *x = generateX(N);
     float *h = generateH(N);
     
     // Generate matrices
-    printf("Generating tE21... (2/17)\n");
+    printf("Generating tE21...\t( 2/17)\n");
     float *tE21 = generateTE21(N);
-    printf("Generating E21K... (3/17)\n");
+    printf("Generating E21K...\t( 3/17)\n");
     float *E21K = generateE21K(N);
-    printf("Generating E21... (4/17)\n");
+    printf("Generating E21...\t( 4/17)\n");
     float *E21 = generateE21(N);
-    printf("Generating H1t1Vec... (5/17)\n");
+    printf("Generating H1t1...\t( 5/17)\n");
     float *H1t1Vec = generateH1t1Vec(N, th);
-    printf("Generating Ht11Vec... (6/17)\n");
+    printf("Generating Ht11...\t( 6/17)\n");
     float *Ht11Vec = vecInvert(H1t1Vec);
-    printf("Generating Ht02Vec... (7/17)\n");
+    printf("Generating Ht02...\t( 7/17)\n");
     float *Ht02Vec = generateHt02Vec(N, h);
-    printf("Generating A... (8/17)\n");
+    printf("Generating A...\t\t( 8/17)\n");
     float *A = generateAFast(N, Ht11Vec);
-    printf("Generating C0... (9/17)\n");
+    printf("Generating C0...\t( 9/17)\n");
     float *C0 = generateC0Fast(N, Ht02Vec);
-    printf("Generating C1... (10/17)\n");
+    printf("Generating C1...\t(10/17)\n");
     float *C1 = generateC1Fast(N, Ht11Vec);
-    printf("Generating C2... (11/17)\n");
+    printf("Generating C2...\t(11/17)\n");
     float *C2 = generateC2Fast(N, H1t1Vec, C0);
             
     // Generate vectors
-    printf("Generating u... (12/17)\n");
+    printf("Generating u...\t\t(12/17)\n");
     float *u = callocVector(2 * N * (N - 1));
-    printf("Generating uOld... (13/17)\n");
+    printf("Generating uOld...\t(13/17)\n");
     float *uOld = mallocVector(2 * N * (N - 1));
-    printf("Generating uK... (14/17)\n");
+    printf("Generating uK...\t(14/17)\n");
     float *uK = generateUK(N, h);
-    printf("Generating uPres... (15/17)\n");
+    printf("Generating uPres...\t(15/17)\n");
     float *uPres = generateUPresFast(H1t1Vec, E21, Ht02Vec, E21K, uK);
-    printf("Generating C3... (16/17)\n");
+    printf("Generating C3...\t(16/17)\n");
     float *C3 = vecScalarMult(uPres, (float) 1 / Re);
         
     // Free redundant matrices
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
     free(Ht02Vec);
         
     // LU decomposition of A
-    printf("Generating LU factorization... (17/17)\n");
+    printf("Generating LU...\t(17/17)\n");
     factorizeA(N, A);
         
     // Allocate memory for loop vectors
@@ -102,14 +102,15 @@ int main(int argc, char **argv)
             updateDiff(&diff, u, uOld, dt);
             fprintf(stdout, "Iteration %d\tdiff = %6.5f\n", iteration, diff);
         }
+        
+        if (iteration % 100 == 0) {
+            storeStreamFunction(N, Ht11Vec, u, tx);
+            storeVorticity(N, xi, tx);
+            storePressure(N, x, h, u, uK, P);
+        }
     }
     
     fprintf(stdout, "Converged after %d iterations.\n", iteration);
-    
-    // Store the results in data files
-    //storeVector(u, "u32.dat");
-    //storeVector(xi, "xi32.dat");
-    //storeVector(P, "P32.dat");
             
     storeStreamFunction(N, Ht11Vec, u, tx);
     storeVorticity(N, xi, tx);
