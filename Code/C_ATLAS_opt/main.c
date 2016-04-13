@@ -26,28 +26,44 @@ int main(int argc, char **argv)
     N = atoi(argv[2]);
         
     // Generate mesh
+    printf("Generating mesh... (1/17)\n");
     float *tx = generateTx(N);
     float *th = generateTh(N);
     float *x = generateX(N);
     float *h = generateH(N);
     
     // Generate matrices
+    printf("Generating tE21... (2/17)\n");
     float *tE21 = generateTE21(N);
+    printf("Generating E21K... (3/17)\n");
     float *E21K = generateE21K(N);
+    printf("Generating E21... (4/17)\n");
     float *E21 = generateE21(N);
+    printf("Generating H1t1Vec... (5/17)\n");
     float *H1t1Vec = generateH1t1Vec(N, th);
+    printf("Generating Ht11Vec... (6/17)\n");
     float *Ht11Vec = vecInvert(H1t1Vec);
+    printf("Generating Ht02Vec... (7/17)\n");
     float *Ht02Vec = generateHt02Vec(N, h);
+    printf("Generating A... (8/17)\n");
     float *A = generateAFast(N, Ht11Vec);
+    printf("Generating C0... (9/17)\n");
     float *C0 = generateC0Fast(N, Ht02Vec);
+    printf("Generating C1... (10/17)\n");
     float *C1 = generateC1Fast(N, Ht11Vec);
+    printf("Generating C2... (11/17)\n");
     float *C2 = generateC2Fast(N, H1t1Vec, C0);
             
     // Generate vectors
+    printf("Generating u... (12/17)\n");
     float *u = callocVector(2 * N * (N - 1));
+    printf("Generating uOld... (13/17)\n");
     float *uOld = mallocVector(2 * N * (N - 1));
+    printf("Generating uK... (14/17)\n");
     float *uK = generateUK(N, h);
+    printf("Generating uPres... (15/17)\n");
     float *uPres = generateUPresFast(H1t1Vec, E21, Ht02Vec, E21K, uK);
+    printf("Generating C3... (16/17)\n");
     float *C3 = vecScalarMult(uPres, (float) 1 / Re);
         
     // Free redundant matrices
@@ -57,6 +73,7 @@ int main(int argc, char **argv)
     free(Ht02Vec);
         
     // LU decomposition of A
+    printf("Generating LU factorization... (17/17)\n");
     factorizeA(N, A);
         
     // Allocate memory for loop vectors
@@ -80,8 +97,8 @@ int main(int argc, char **argv)
         updateP(P, N, A, rhs);
         cblas_scopy(u[0], &u[1], 1, &uOld[1], 1);
         updateU(u, tE21, P, C4, dt);
-        
-        if (iteration % 1000 == 0) {
+                
+        if (iteration % 1 == 0) {
             updateDiff(&diff, u, uOld, dt);
             fprintf(stdout, "Iteration %d\tdiff = %6.5f\n", iteration, diff);
         }

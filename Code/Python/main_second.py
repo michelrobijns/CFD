@@ -33,7 +33,7 @@ def main():
     Ht02 = generateHt02(N, th)
     A = tE21.dot(Ht11).dot(E10)
     LU = scipy.linalg.lu_factor(A)
-    
+
     # Vectors
     u = np.zeros(2 * N * (N - 1))
     uK = generateUK(N, th)
@@ -64,7 +64,10 @@ def main():
 
         uOld = np.copy(u)
 
-        u -= dt * (E10.dot(P) + C4)
+        if (iteration == 1):
+            u -= dt * (E10.dot(P) + C4)
+        else:
+            u = (4 * u - uOld - 2 * dt * (E10.dot(P) + C4)) / 3
 
         if (iteration % 100 == 0):
             diff = max(np.abs(u - uOld)) / dt
@@ -77,7 +80,7 @@ def main():
     
     plotStreamFunctionContour(N, x, Ht11.dot(u))
     plotPressureContour(N, tx, th, u, uK, P)
-    #plotPressureContour2(N, tx, th, u, uK, P)
+    plotPressureContour2(N, tx, th, u, uK, P)
     plotVorticityContour(N, x, xi)
 
 def generateMesh(N):

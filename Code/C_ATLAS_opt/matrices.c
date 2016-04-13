@@ -384,6 +384,17 @@ void updateU(float *u, float *tE21, float *P, float *C4, float dt)
     cblas_saxpy(C4[0], -1.0 * dt, &C4[1], 1, &u[1], 1);
 }
 
+// void updateUWithModifiedEuler(float *u, float *tE21, float *P, float *C4, float dt)
+// {
+//     // u = u - dt * (-tE21' * P + C4)
+//         
+//     // C4 <- -tE21' * P + C4
+//     cblas_sgemv(CblasRowMajor, CblasTrans, tE21[0], tE21[1], -1.0, &tE21[2], tE21[1], &P[1], 1, 1.0, &C4[1], 1);
+//     
+//     // u = - dt * C4 + u
+//     cblas_saxpy(C4[0], -1.0 * dt, &C4[1], 1, &u[1], 1);
+// }
+
 void updateDiff(float *diff, float *u, float *uOld, float dt)
 {
     float difference = 0;
