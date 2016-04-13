@@ -2,8 +2,9 @@ target = main.exe
 objects = main.o mesh.o matrices.o linearAlgebra.o fast.o
 
 cc = gcc
-cFlags = -Wall -Wextra -Werror -lm -fopenmp -Ofast -march=native
-ATLASFlags = -lptlapack -lptf77blas -lptcblas -latlas
+cFlags = -Wall -Wextra -Werror -lm -Ofast -march=native
+#ATLASFlags = -lptlapack -lptf77blas -lptcblas -latlas
+ATLASFlags = -lcblas -latlas
 
 all: $(target)
 

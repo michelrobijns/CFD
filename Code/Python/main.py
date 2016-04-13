@@ -75,10 +75,10 @@ def main():
     
     matplotlib.rcParams['contour.negative_linestyle'] = 'solid'
     
-    plotStreamFunctionContour(N, x, Ht11.dot(u))
-    plotPressureContour(N, tx, th, u, uK, P)
+    #plotStreamFunctionContour(N, x, Ht11.dot(u))
+    #plotPressureContour(N, tx, th, u, uK, P)
     #plotPressureContour2(N, tx, th, u, uK, P)
-    plotVorticityContour(N, x, xi)
+    #plotVorticityContour(N, x, xi)
 
 def generateMesh(N):
     x = np.zeros(N+1)

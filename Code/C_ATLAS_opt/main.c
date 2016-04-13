@@ -85,7 +85,7 @@ int main(int argc, char **argv)
     
     float diff = 1;
     int iteration = 0;
-        
+            
     // Simulation loop
     while (diff > tol) {
         iteration++;
