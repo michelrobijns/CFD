@@ -8,22 +8,22 @@
 #include "linearAlgebra.h"
 #include "fast.h"
 
-#define ARGS 3
+#define ARGS 5
 
 int main(int argc, char **argv)
 {
     if (argc != ARGS) {
-        fprintf(stderr, "Wrong number of arguments\nUsage: %s N dt\n", argv[0]);
+        fprintf(stderr, "Wrong number of arguments\nUsage: %s tol Re dt N\n", argv[0]);
         exit(EXIT_FAILURE);
     }
     
     int Re, N;
     float dt, tol;
     
-    tol = 1e-5;
-    Re = 1000;
-    dt = atof(argv[1]);
-    N = atoi(argv[2]);
+    tol = atof(argv[1]);
+    Re = atoi(argv[2]);
+    dt = atof(argv[3]);
+    N = atoi(argv[4]);
         
     // Generate mesh
     printf("Generating mesh...\t( 1/17)\n");
@@ -98,15 +98,9 @@ int main(int argc, char **argv)
         cblas_scopy(u[0], &u[1], 1, &uOld[1], 1);
         updateU(u, tE21, P, C4, dt);
                 
-        if (iteration % 1 == 0) {
+        if (iteration % 1000 == 0) {
             updateDiff(&diff, u, uOld, dt);
             fprintf(stdout, "Iteration %d\tdiff = %6.5f\n", iteration, diff);
-        }
-        
-        if (iteration % 100 == 0) {
-            storeStreamFunction(N, Ht11Vec, u, tx);
-            storeVorticity(N, xi, tx);
-            storePressure(N, x, h, u, uK, P);
         }
     }
     
