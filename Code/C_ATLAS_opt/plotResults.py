@@ -26,9 +26,13 @@ def plotStreamFunctionContour():
               1e-10, 1e-5, 1e-4, 1e-2, 3e-2, 5e-2, 7e-2, 9e-2, 0.1, 0.11,
               0.115, 0.1175]
     
+    plt.figure(num='Stream function', figsize=(12, 12))
     plt.contour(X, Y, streamFunction, levels=levels, colors='k')
+    frame = plt.gca()
+    frame.axes.xaxis.set_ticklabels([])
+    frame.axes.yaxis.set_ticklabels([])
+    plt.savefig('streamFunction.pdf', format='pdf', bbox_inches='tight')
     plt.show()
-    plt.savefig('stream.pdf', format='pdf', bbox_inches='tight')
 
 def plotVorticityContour():
     vorticity = np.loadtxt('vorticity.dat')
@@ -41,7 +45,12 @@ def plotVorticityContour():
     
     levels = [-3.0, -2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0]
     
+    plt.figure(num='Vorticity', figsize=(12, 12))
     plt.contour(X, Y, vorticity, levels=levels, colors='k')
+    frame = plt.gca()
+    frame.axes.xaxis.set_ticklabels([])
+    frame.axes.yaxis.set_ticklabels([])
+    plt.savefig('vorticity.pdf', format='pdf', bbox_inches='tight')
     plt.show()
 
 def plotPressureContour():
@@ -55,7 +64,12 @@ def plotPressureContour():
     
     levels = [-0.002, 0, 0.02, 0.05, 0.07, 0.09, 0.11, 0.12, 0.17, 0.3]
     
+    plt.figure(num='Pressure', figsize=(12, 12))
     plt.contour(X, Y, pressure, levels=levels, colors='k')
+    frame = plt.gca()
+    frame.axes.xaxis.set_ticklabels([])
+    frame.axes.yaxis.set_ticklabels([])
+    plt.savefig('pressure.pdf', format='pdf', bbox_inches='tight')
     plt.show()
 
 if __name__ == '__main__':
