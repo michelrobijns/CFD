@@ -16,6 +16,23 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
+\usepackage{listings}
+
+%\usepackage[scaled]{DejaVuSansMono}
+\usepackage{lmodern}
+
+\lstset{basicstyle=\ttfamily,
+    captionpos=b,
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    showstringspaces=false,
+    breakatwhitespace=true,
+    escapeinside={(*@}{@*)},
+    columns=fullflexible,
+    numbers=left,
+    numberstyle=\small
+}
 
 \setcounter{tocdepth}{1}
 \setkomafont{disposition}{\bfseries}
@@ -57,8 +74,97 @@ In Chapter \ref{cha:physics} we derived a system of dimensionless partial differ
 
 \input{matrices.tex}
 
+\input{time.tex}
+
 \chapter{Code}
 
-\chapter{Conclusion}
+\section{A Naive Implementation}
+
+An implementation of the procedure described in the preceeding chapter boils down to looping the following five steps:
+\begin{enumerate}
+    \item Generate the convective term
+    \item Construct the system $A \mathbf{P} = f$ where
+\begin{equation}
+    \label{eq:time9}
+    A = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)}
+\end{equation}
+    and
+\begin{multline}
+    \label{eq:time10}
+    f = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \biggl( \frac{\mathbf{u}^{n}}{\Delta t} - \text{convective}^{n} - \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{\tilde{u}}^{}_{\text{norm}}}{\Delta t}
+\end{multline}
+    \item Solve the system for $\mathbf{P}$
+    \item Advance the solution in time using
+\begin{multline}
+    \label{eq:time11}
+    \mathbf{u}^{n+1} = \mathbf{u}^{n} - \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr)
+\end{multline}
+    \item Check for convergence
+\end{enumerate}
+
+Listing \ref{lst:naive} shows a naive implementation of the above five steps.
+
+\begin{lstlisting}[caption=Naive implementation, label=lst:naive]
+while diff > tol
+    
+    xi = Ht02 * E21 * u
+    
+    convective = generate_convective(xi)
+    
+    A = tE21 * Ht11 * E10
+    
+    f = tE21 * Ht11 * (u/dt - H1t1 * tE10 * Ht02 * E21 * u/Re - u_pres/Re - convective)
+    
+    P = solve(A, f)
+    
+    u_old = u
+    
+    u = u - dt * (E10 * P + H1t1 * tE10 * Ht02 * E21 * u/Re + u_pres/Re + convective)
+    
+    diff = max(abs(u - u_old)) / dt
+    
+end while
+\end{lstlisting}
+
+\section{Optimizations}
+
+The code in Listing \ref{lst:naive} yields correct results but it is called a \emph{naive} implementation for a good reason: it is painfully slow. The code is slow because it is doing far too much work. The code in Listing \ref{lst:naive} contains ten matrix-matrix multiplications of $O(N^3)$, four matrix-vector multiplications of $O(N^2)$, and one matrix solve of $O(N^3)$. The loop can be changed such that it only contains four matrix-vector multiplications of $O(N^2)$, one matrix solve of $O(N^2)$, and \emph{no} matrix-matrix multiplications at all. It should be no surpise here that such an optimized loop is \emph{much} faster in terms of execution speed. To be specific, the factor of speedup with respect to the naive implemenations for $N = 16$ and $\Delta t = 0.05$ is around 12. That is, a simulation of an hour reduces to merely five minutes and produces the exact same result.
+
+\begin{itemize}
+    \item Move \lstinline|A = tE21 * Ht11 * E10| out of the loop. The pressure matrix does not change between iterations, so computing it once before the loop is sufficient.
+    \item The matrix-matrix multiplication \lstinline|Ht02 * E21| on line 3 can be taken out of the loop and replaced by a constant called \lstinline|C0|. This saves one matrix-matrix multiplication per iteration.
+    \item In a similar vein, \lstinline|tE21 * Ht11| on line 9 can be taken out of the loop and replaced by a constant called \lstinline|C1|. This again saves one matrix-matrix multiplication per iteration.
+    \item The product \lstinline|H1t1 * tE10 * Ht02 * E21| occurs on lines 9 and 16 and can be replaced by a constant called \lstinline|C2|. This saves six matrix-matrix multiplication per iteration.
+    \item The computation of \lstinline|u_pres / Re| occurs on lines 10 and 17 and can be replaced by a constant called \lstinline|C3|.
+    \item The resulting \lstinline|C2 * (u/Re) + C3 + convective| will still be computed twice. Instead, it can be stored in a variable called \lstinline|C4| that is updated once per iteration.
+\end{itemize}
+
+\begin{lstlisting}[caption=Optimized implementation, label=lst:naive]
+C0 = Ht02 * E21
+C1 = tE21 * Ht11
+C2 = H1t1 * tE10 * C0
+C3 = u_pres / Re
+
+A = C1 * E10
+
+while diff > tol:
+    xi = C0 * u
+    convective = generate_convective(xi)
+    
+    C4 = C2 * (u/Re) + C3 + convective
+    f = C1 * (u/dt - C4)
+    P = solve(A, f)
+    
+    u_old = u
+    u = u - dt * (E10 * P + C4)
+    
+    diff = max(abs(u - u_old)) / dt
+\end{lstlisting}
+
+\chapter{Results}
+
+\input{conclusion.tex}
 
 \end{document}
