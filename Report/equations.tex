@@ -1,4 +1,6 @@
-The Navier-Stokes equations govern the motion of viscous fluids. These equations arise from applying conservation of mass, conservation of momentum, and conservation of energy to the motion of fluids and build upon the notion that fluids are a continuous medium rather than a set of discrete particles. The so-called convective form of the Navier-Stokes equations for an incompressible Newtonian fluid without the presence of body forces is:
+\section{The Navier-Stokes Equations}
+
+The Navier-Stokes equations govern the motion of viscous fluids. These equations arise from applying conservation of mass, conservation of momentum, and conservation of energy to the motion of fluids and build upon the notion that fluids are a continuous medium rather than a set of discrete particles. The so-called convective form of the Navier-Stokes equations for an incompressible Newtonian fluid without the presence of body forces is \parencite[][]{anderson2011fundamentals}:
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -6,7 +8,7 @@ The Navier-Stokes equations govern the motion of viscous fluids. These equations
     \tag{{\theequation}b}
     &\text{Momentum equation:}& \frac{\partial \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= - \frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} &&
 \end{flalign}
-where $\mathbf{u}$ is the velocity field, $t$ is the time, $\rho$ is the density, $p$ is the pressure field, and $\nu$ is the kinematic viscosity. A more tangible notation of these formidable equations is obtained by writing out the vector components and utilizing Einstein's summation convention:
+where $\mathbf{u}$ is the velocity field, $t$ is the time, $\rho$ is the density, $p$ is the pressure field, and $\nu$ is the kinematic viscosity. A more tangible notation of these equations is obtained by writing out the vector components and utilizing Einstein's summation convention:
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -90,18 +92,20 @@ Recall that in a velocity field, the curl of the velocity is equal to the vortic
     \mathbf{\xi} = \nabla \times \mathbf{u}
 \end{equation}
 Substituting Equation \eqref{eq:vorticity} into Equation \eqref{eq:momentumIdentity}, we have
-\begin{equation*}
-    \frac{\partial \mathbf{u}}{\partial t} + \nabla \left( \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) - \mathbf{u} \times \xi = - \nabla p + \frac{1}{\text{Re}} \left( \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \xi \right)
-\end{equation*}
 \begin{equation}
-    \label{eq:momentumRearranged}
+    \label{eq:momentumRearranged1}
+    \frac{\partial \mathbf{u}}{\partial t} + \nabla \left( \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) - \mathbf{u} \times \xi = - \nabla p + \frac{1}{\text{Re}} \left( \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \xi \right)
+\end{equation}
+Some algebraic rearrangement of Equation \eqref{eq:momentumRearranged1} yields
+\begin{equation}
+    \label{eq:momentumRearranged2}
     \frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla \left( p + \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) = \frac{1}{\text{Re}} \left( \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \xi \right)
 \end{equation}
-In Equation \eqref{eq:momentumRearranged}, denote
+In Equation \eqref{eq:momentumRearranged2}, denote
 \begin{equation}
     P \equiv p + \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2
 \end{equation}
-and recognize that the continuity equation, $\nabla \cdot \mathbf{u} = 0$, appears in the right-hand side. Hence, Equation \eqref{eq:momentumRearranged} is written as
+and recognize that the continuity equation, $\nabla \cdot \mathbf{u} = 0$, appears in the right-hand side. Hence, Equation \eqref{eq:momentumRearranged2} is written as
 \begin{equation}
     \frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla P + \frac{1}{\text{Re}} \nabla \times \xi = 0
 \end{equation}

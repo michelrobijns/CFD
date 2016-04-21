@@ -1,0 +1,27 @@
+\BOOKMARK [0][-]{chapter.1}{Objective}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Physics}{}% 2
+\BOOKMARK [1][-]{section.2.1}{The Navier-Stokes Equations}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{The Lid-Driven Cavity Flow Problem}{chapter.2}% 4
+\BOOKMARK [0][-]{chapter.3}{Mathematics}{}% 5
+\BOOKMARK [1][-]{section.3.1}{Cells}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.2}{Chains and Cochains}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.3}{Orientation}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.4}{The Exterior Derivative}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.5}{The Hodge- Operator}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.6}{Discretization of the Unit Square}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.7}{Physical Representation}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.8}{Structure of the Navier-Stokes Equations}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.9}{The Incidence Matrices and Hodge Matrices}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.10}{Time Marching}{chapter.3}% 15
+\BOOKMARK [0][-]{chapter.4}{Code}{}% 16
+\BOOKMARK [1][-]{section.4.1}{The Simulation Loop}{chapter.4}% 17
+\BOOKMARK [1][-]{section.4.2}{A Naive Implementation}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.3}{An Optimized Implementation}{chapter.4}% 19
+\BOOKMARK [0][-]{chapter.5}{Results}{}% 20
+\BOOKMARK [1][-]{section.5.1}{Stream Function}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.2}{Vorticity}{chapter.5}% 22
+\BOOKMARK [1][-]{section.5.3}{Pressure}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.4}{Rate of Mass Production}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.5}{Convergence, Timestep, and Tolerance}{chapter.5}% 25
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 26
+\BOOKMARK [0][-]{chapter*.22}{References}{}% 27

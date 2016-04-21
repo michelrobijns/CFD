@@ -1,29 +1,99 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Objective}{3}
-\contentsline {chapter}{\numberline {2}Physics}{4}
-\contentsline {chapter}{\numberline {3}Mathematics}{6}
-\contentsline {section}{\numberline {3.1}Cells}{6}
-\contentsline {section}{\numberline {3.2}Chains and Cochains}{6}
-\contentsline {section}{\numberline {3.3}Orientation}{7}
-\contentsline {section}{\numberline {3.4}The Exterior Derivative}{8}
-\contentsline {subsection}{\numberline {3.4.1}Inner-Oriented Quantities}{8}
-\contentsline {subsection}{\numberline {3.4.2}Outer-Oriented Quantities}{9}
-\contentsline {subsection}{\numberline {3.4.3}DeRham Complex}{11}
-\contentsline {section}{\numberline {3.5}The Hodge-$\star $ Operator}{11}
-\contentsline {section}{\numberline {3.6}Discretization of the Unit Square}{12}
-\contentsline {section}{\numberline {3.7}Physical Representation}{12}
-\contentsline {section}{\numberline {3.8}Structure of the Navier-Stokes Equations}{14}
-\contentsline {subsection}{\numberline {3.8.1}Continuity Equation}{14}
-\contentsline {subsection}{\numberline {3.8.2}Velocity-Vorticity relation}{15}
-\contentsline {subsection}{\numberline {3.8.3}Momentum Equation}{15}
-\contentsline {subsection}{\numberline {3.8.4}Summary}{16}
-\contentsline {section}{\numberline {3.9}The Incidence Matrices and Hodge Matrices}{16}
-\contentsline {subsection}{\numberline {3.9.1}$\mathaccentV {tilde}07E{\mathbb {E}}^{(2,1)}$}{16}
-\contentsline {subsection}{\numberline {3.9.2}$\mathbb {E}^{(1,0)}$}{17}
-\contentsline {subsection}{\numberline {3.9.3}$\mathbb {E}^{(2,1)}$}{18}
-\contentsline {subsection}{\numberline {3.9.4}$\mathaccentV {tilde}07E{\mathbb {E}}^{(1,0)}$}{19}
-\contentsline {subsection}{\numberline {3.9.5}$\mathbb {H}^{(\mathaccentV {tilde}07E{1},1)}$ and $\mathbb {H}^{(1,\mathaccentV {tilde}07E{1})}$}{20}
-\contentsline {subsection}{\numberline {3.9.6}$\mathbb {H}^{(\mathaccentV {tilde}07E{0},2)}$ and $\mathbb {H}^{(2,\mathaccentV {tilde}07E{0})}$}{20}
-\contentsline {subsection}{\numberline {3.9.7}The Convective Term}{20}
-\contentsline {chapter}{\numberline {4}Code}{22}
-\contentsline {chapter}{\numberline {5}Conclusion}{23}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Objective}{3}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Physics}{4}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}The Navier-Stokes Equations}{4}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}The Lid-Driven Cavity Flow Problem}{6}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Mathematics}{7}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Cells}{7}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Chains and Cochains}{8}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Orientation}{8}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}The Exterior Derivative}{9}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.1}Inner-Oriented Quantities}{9}{subsection.3.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.2}Outer-Oriented Quantities}{11}{subsection.3.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.3}DeRham Complex}{12}{subsection.3.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}The Hodge-$\star $ Operator}{13}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Discretization of the Unit Square}{14}{section.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}Physical Representation}{14}{section.3.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}Structure of the Navier-Stokes Equations}{16}{section.3.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.8.1}Continuity Equation}{16}{subsection.3.8.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.8.2}Velocity-Vorticity relation}{17}{subsection.3.8.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.8.3}Momentum Equation}{17}{subsection.3.8.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.8.4}Summary}{19}{subsection.3.8.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.9}The Incidence Matrices and Hodge Matrices}{19}{section.3.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.1}$\mathaccentV {tilde}003{\mathbb {E}}^{(2,1)}$}{19}{subsection.3.9.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.2}$\mathbb {E}^{(1,0)}$}{20}{subsection.3.9.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.3}$\mathbb {E}^{(2,1)}$}{21}{subsection.3.9.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.4}$\mathaccentV {tilde}003{\mathbb {E}}^{(1,0)}$}{22}{subsection.3.9.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.5}$\mathbb {H}^{(\mathaccentV {tilde}003{1},1)}$ and $\mathbb {H}^{(1,\mathaccentV {tilde}003{1})}$}{23}{subsection.3.9.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.6}$\mathbb {H}^{(\mathaccentV {tilde}003{0},2)}$ and $\mathbb {H}^{(2,\mathaccentV {tilde}003{0})}$}{24}{subsection.3.9.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.7}The Convective Term}{24}{subsection.3.9.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.10}Time Marching}{26}{section.3.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Code}{28}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}The Simulation Loop}{28}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}A Naive Implementation}{29}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}An Optimized Implementation}{29}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}Common Sense Optimizations}{29}{subsection.4.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}Advanced Optimizations}{31}{subsection.4.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Using \texttt {ATLAS} as a Replacement for \texttt {BLAS}}{32}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline A Native \texttt {C} Implementation}{32}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Computing in Single-Precision Instead of Double-Precision}{32}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Sparse Matrix-Vector Multiplication}{33}{section*.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Higher-Order Time-Stepping Methods}{33}{section*.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Results}{34}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Stream Function}{34}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Vorticity}{34}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Pressure}{34}{section.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}Rate of Mass Production}{34}{section.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}Convergence, Timestep, and Tolerance}{34}{section.5.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Conclusion}{38}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline References}{39}{chapter*.22}

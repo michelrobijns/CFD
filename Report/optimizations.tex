@@ -1,0 +1,115 @@
+\section{An Optimized Implementation}
+
+The code in Listing \ref{lst:naive} can be optimized to run faster and consume less memory. We will explore some of these optimizations in this section. Let us begin by assuming that all matrices are \emph{dense} matrices. That is, all zero elements are stored in memory. The use of sparse matrix storage schemes is one of the optimizations that we will discuss.
+
+\subsection{Common Sense Optimizations}
+
+It may sound a bit strange, but one of the most elementary optimization techniques is to simply do \emph{less work}. The code in Listing \ref{lst:naive} contains ten matrix-matrix multiplications of $O(N^3)$, five matrix-vector multiplications of $O(N^2)$, and one matrix solve of $O(N^3)$. The code can be rearranged in such a way that the loop only contains four matrix-vector multiplications of $O(N^2)$ and one matrix solve of $O(N^3)$. That is, \emph{all} matrix-matrix multiplications, which are by far the most expensive operations, can be avoided in their entirety. 
+
+It should not come as a surprise that such an optimized loop is \emph{much} faster than the naive implementation above. To be specific, the factor of speedup with respect to the naive implementation for $N = 16$ and $\Delta t = 0.05$ is around 12. That means, in practical terms, that a simulation of an hour reduces to merely five minutes. Let us look at where the code can be rearranged to yield better performance:
+\begin{enumerate}
+    \item The pressure matrix \lstinline|A| does not change between loop iterations. The code on line 5, \lstinline|A = tE21 * Ht11 * E10|, can therefore be moved out of the loop, saving two matrix-matrix multiplications per loop iteration.
+    \item In a similar vein, the matrix-matrix multiplication \lstinline|Ht02 * E21| on line 2 can be taken out of the loop and its result can be stored in a constant \lstinline|C0|. This saves one matrix-matrix multiplication per loop iteration.
+    \item The matrix-matrix multiplication \lstinline|tE21 * Ht11| on line 6 can be taken out of the loop and its result can be stored in a constant \lstinline|C1|. This again saves one matrix-matrix multiplication per loop iteration.
+    \item The product \lstinline|H1t1 * tE10 * Ht02 * E21| occurs on line 6 and line 10 and can be moved out of the loop and can be stored in a constant \lstinline|C2|. This saves six matrix-matrix multiplication per loop iteration.
+    \item The devision \lstinline|u_pres/Re| occurs on line 6 and line 10 and can be moved out of the loop and its result can be stored in a constant \lstinline|C3|. The savings of this step are negligible, but it is good practice to do it anyway.
+    \item The preceding five rearrangements result in the code \lstinline|C2 * u/Re + C3 + convective| occurring on line 6 and line 10. Instead of having this code occur twice, it can be stored in a variable \lstinline|C4| that is updated once per loop iteration. This saves one matrix-vector multiplication per loop iteration.
+\end{enumerate}
+
+The six rearrangement suggested in the above list result in the simulation loop shown in Listing \ref{lst:optimized1}.
+
+\begin{lstlisting}[caption=Code excerpt rearranged for improved performance., label=lst:optimized1]
+C0 = Ht02 * E21
+C1 = tE21 * Ht11
+C2 = H1t1 * tE10 * C0
+C3 = u_pres/Re
+
+A = C1 * E10
+
+while diff > tol:
+    xi = C0 * u
+    convective = generate_convective(xi)
+    
+    C4 = C2 * (u/Re) + C3 + convective
+    f = C1 * (u/dt - C4)
+    P = solve(A, f)
+    
+    u_old = u
+    u = u - dt * (E10 * P + C4)
+    
+    diff = max(abs(u - u_old)) / dt
+\end{lstlisting}
+
+\subsection{Advanced Optimizations}
+
+The code in listing \ref{lst:optimized1} is still of $O(N^3)$ because it contains a matrix solve of $O(N^3)$. That is, assuming the underlying implementation of the \lstinline|solve(A, f)| function uses a direct solution method like LU factorization. Without going into too much detail, let us take a quick look at LU factorization. The first step of LU factorization is factorizing the matrix of coefficients $A$ into the product of a lower triangular matrix $L$ and an upper triangular matrix $U$, hence the name LU factorization. The system $A \mathbf{P} = \mathbf{f}$ then becomes
+\begin{equation}
+    \label{eq:LU1}
+    LU \mathbf{P} = \mathbf{b}
+\end{equation}
+The system in Equation \eqref{eq:LU1} can then be solved in two stages; first  solving
+\begin{equation}
+    \label{eq:LU2}
+    L \mathbf{x} = \mathbf{f}
+\end{equation}
+and then solving
+\begin{equation}
+    \label{eq:LU3}
+    U \mathbf{P} = \mathbf{x}
+\end{equation}
+Solving the systems in Equations \eqref{eq:LU2} and \eqref{eq:LU3} is trivial because $L$ and $U$ are triangular matrices. Factorizing the system $A \mathbf{P} = \mathbf{f}$ into  Equation \eqref{eq:LU1} is called the factorization stage and is an operation of order $O(N^3)$. Solving the systems in Equations \eqref{eq:LU2} and \eqref{eq:LU3} is called the solve stage and is an operation of order $O(N^2)$.
+
+Just like it does not make sense to recompute the pressure matrix $A$ in every iteration of the simulation loop, it does also not make much sense to redo the factorization stage in every iteration of the loop. After all, if the matrix $A$ does not change, then the matrices $L$ and $U$ cannot change either. It would be more efficient to move the factorization state out of the loop and to keep the solve stage inside the loop. Doing so reduces the order of the loop from $O(N^3)$ to $O(N^2)$ because all there is left inside the loop are matrix-vector multiplications and the solve stage, both of which are of $O(N^2)$. Listing \ref{lst:optimized2} shows the simulation loop incorporating this improvement.
+
+\begin{lstlisting}[caption=Code excerpt after moving the factorization stage., label=lst:optimized2]
+C0 = Ht02 * E21
+C1 = tE21 * Ht11
+C2 = H1t1 * tE10 * C0
+C3 = u_pres / Re
+
+A = C1 * E10
+LU = lu_factor(A)
+
+while diff > tol:
+    xi = C0 * u
+    convective = generate_convective(xi)
+    
+    C4 = C2 * (u/Re) + C3 + convective
+    f = C1 * (u/dt - C4)
+    P = lu_solve(LU, f)
+    
+    u_old = u
+    u = u - dt * (E10 * P + C4)
+    
+    diff = max(abs(u - u_old)) / dt
+\end{lstlisting}
+
+Further optimizing the code starts to get substantially harder from here. There are several things that I have tried, with varying degrees of success.
+
+\subsubsection{Using \texttt{ATLAS} as a Replacement for \texttt{BLAS}}
+
+The \texttt{numpy} library is essentially a wrapper around the \texttt{BLAS} (Basic Linear Algebra Subprograms) and \texttt{LAPACK} libraries. Most implementations of \texttt{BLAS} are open source. Therefore, \texttt{BLAS} comes in many flavors and some are more performant than others. I replaced my particular \texttt{BLAS} library with \texttt{ATLAS} (Automatically Tuned Linear Algebra Software), which is fully multithreaded and must be compiled from source so that it can automatically tune itself for the system that it is being compiled on. Using \texttt{ATLAS} over the default \texttt{BLAS} library resulted in a large performance increase.
+
+\subsubsection{A Native \texttt{C} Implementation}
+
+Using \texttt{numpy} is fast, most of the time just as fast as calling \texttt{BLAS} routines natively from \texttt{C}, because most of its functions call compiled routines. However, certain functions like \lstinline|generate_convective()| are still inherently slow because they are implemented in the \texttt{Python} scripting language. 
+ 
+Calling \texttt{ATLAS} subroutines natively from \texttt{C} allows you to combine mathematical operations that you could otherwise not combine when using \texttt{numpy}. For instance, the level 2 \texttt{BLAS} function \texttt{SGEMV()} computes
+\begin{equation}
+    \mathbf{y} \coloneqq \alpha A \mathbf{x} + \beta \mathbf{y}
+\end{equation}
+with one function call. This allows you to replace line 13 in Listing \ref{lst:optimized2} with one call of \texttt{SGEMV()}, where $\alpha = \frac{1}{\text{Re}}$, $A = \text{\lstinline|C2|}$, $\mathbf{x} = \mathbf{u}$, $\mathbf{y} = \text{\lstinline|C3|} + \text{convective}$, and $\beta = 1$.
+        
+I decided to write a second implementation of the simulation in \texttt{C} for two reasons: first, to have compiled and therefore inherently fast versions of all functions, including the function \lstinline|generate_convective()|, and second, because it allows you to call \texttt{ATLAS} routines directly and use it to combine certain mathematical operations like matrix-vector multiplications and vector-vector additions.
+
+\subsubsection{Computing in Single-Precision Instead of Double-Precision}
+
+Using single-precision floating-point numbers instead of double-precision floating-point numbers allows the CPU to store more numbers in its caches simultaneously, thereby improving the cache hit ratio and reuse ratio which in turn improves overal performance. Most of the errors are introduced by using first-order time-stepping and a low fidelity approximation of the convective term. I therefore deemed it safe to use single-precision floating-point numbers instead of double-precision floating-point numbers.
+
+\subsubsection{Sparse Matrix-Vector Multiplication}
+
+One of the advantages of this method based on DEC is that the incidence and hodge matrices are highly sparse. Sparse matrix-vector multiplication is \emph{very} fast, unlike sparse matrix-matrix multiplication which is heavily memory bound. I converted the incidence and hodge matrices in the \texttt{Python} implementation to a sparse format to see what improvements it would bring. The improvements were marginal because it turned out that sparse-matrix vector multiplication only used a single CPU core. There does not seem to be a trivial way to use multithreaded sparse matrix operations, neither in \texttt{Python} nor in \texttt{C}. I discarded the idea of using sparse matrix operations because it is not worth the time to include an exotic library, let alone implement such a library myself, to speedup an already reasonably fast code. However, I am convinced that sparse matrix operations are absolutely necessary when writing a 3D or high fidelity solver using DEC.
+
+\subsubsection{Higher-Order Time-Stepping Methods}
+
+In addition to making the code run faster, it is also not a bad idea to use mathematics to make the problem converge faster. One obvious way to increase the rate of convergence is to replace the first-order time-stepping method by a higher-order time-stepping method. I replaced the forward Euler method of $O(\Delta t)$ by the modified Euler method, which is a Runge-Kutta method of $O(\Delta t^2)$. This method resulted in much faster convergence during the initial 100 iterations, but ended up producing literally the same results in subsequent iterations. So the net effect of using the modified Euler method was nil. This implies that there must be some other source of error producing an error larger than $O(\Delta t)$, most likely the convective term.

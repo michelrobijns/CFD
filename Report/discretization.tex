@@ -1,7 +1,9 @@
 \section{Discretization of the Unit Square}
 \label{sec:discretization}
 
-\begin{figure}[ht]
+It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer-oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical axis. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid, see Figure \ref{fig:innerGrid}. The inner-oriented grid \emph{must} be constructed in this manner for reasons that can be found in rigorous texts on DEC.
+
+\begin{figure}[p]
     \centering
     \begin{tikzpicture}
         % Draw scale
@@ -86,7 +88,7 @@
     \label{fig:outerGrid}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[p]
     \centering
     \begin{tikzpicture}
         % Draw scale
@@ -192,8 +194,6 @@
     \caption{The inner-oriented grid.}
     \label{fig:innerGrid}
 \end{figure}
-
-It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer-oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical axis. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid, see Figure \ref{fig:innerGrid}. The inner-oriented grid \emph{must} be constructed in this manner for reasons that can be found in rigorous texts on DEC.
 
 \section{Physical Representation}
 

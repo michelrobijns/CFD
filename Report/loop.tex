@@ -1,0 +1,25 @@
+\section{The Simulation Loop}
+
+After generating the mesh and all incidence and hodge matrices, an implementation of the procedure described in the preceding chapter is in essence a matter of looping the following five steps:
+\begin{enumerate}
+    \item Generate the convective term.
+    \item Construct the system $A \mathbf{P}^{n+1} = f$ where
+\begin{equation}
+    \label{eq:time9}
+    A = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)}
+\end{equation}
+    and
+\begin{multline}
+    %\label{eq:time10}
+    f = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \biggl( \frac{\mathbf{u}^{n}}{\Delta t} - \text{convective}^{n} - \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{u}^{}_{\text{norm}}}{\Delta t}
+\end{multline}
+    \item Solve the system for $\mathbf{P}^{n+1}$.
+    \item Advance the solution in time using
+\begin{multline}
+    %\label{eq:time11}
+    \mathbf{u}^{n+1} = \mathbf{u}^{n} - \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr)
+\end{multline}
+    \item Check whether or not the solution has converged to within a satisfactory tolerance and if not, then go back to the first step. Continue this loop until the solution has converged.
+\end{enumerate}

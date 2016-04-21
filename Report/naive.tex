@@ -1,0 +1,20 @@
+\section{A Naive Implementation}
+
+Listing \ref{lst:naive} shows a naive implementation of the above five steps. It is essentially a one-to-one translation of the mathematical equations without any sort of consideration for performance. Note that this excerpt of the program is neither a working program nor written in a real programming language. It is simply a description of the simulation loop using some elements of \texttt{Python} and \texttt{Matlab} for easy comprehension. The vast majority of the remainder of the code (that is, all 500 lines that are not shown here) consists of helper functions to generate the incidence and hodge matrices.
+
+\begin{lstlisting}[caption=Code excerpt of a naive implementation., label=lst:naive]
+while diff > tol:
+    xi = Ht02 * E21 * u
+    convective = generate_convective(xi)
+    
+    A = tE21 * Ht11 * E10
+    f = tE21 * Ht11 * (u/dt - H1t1 * tE10 * Ht02 * E21 * u/Re - u_pres/Re - convective)    
+    P = solve(A, f)
+    
+    u_old = u
+    u = u - dt * (E10 * P + H1t1 * tE10 * Ht02 * E21 * u/Re + u_pres/Re + convective)
+    
+    diff = max(abs(u - u_old)) / dt    
+\end{lstlisting}
+
+The code in Listing \ref{lst:naive} produces correct results but it is called a \emph{naive} implementation for a good reason: it is painfully slow.

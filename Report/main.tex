@@ -1,5 +1,6 @@
-\documentclass[a4paper,10pt,parskip=half]{scrreprt}
+\documentclass[a4paper, 11pt, toc=bibliography, parskip=half]{scrreprt}
 
+\usepackage[automark, headsepline]{scrpage2}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -18,24 +19,38 @@
 \usetikzlibrary{arrows.meta}
 \usepackage{listings}
 
-%\usepackage[scaled]{DejaVuSansMono}
-\usepackage{lmodern}
+\usepackage[defernumbers=true, backend=biber, hyperref=true, sorting=none]{biblatex}
+\addbibresource{bibliography.bib}
+\setlength{\headheight}{1.1\baselineskip}
+\setlength{\bibitemsep}{\baselineskip}
+
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\ihead{\rightmark}
+\ohead{\pagemark}
+\cfoot[\pagemark]{}
+
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage{inconsolata}
+
+\newlength{\MaxSizeOfLineNumbers}%
+\settowidth{\MaxSizeOfLineNumbers}{9}% Adjust to maximum number of lines
+\addtolength{\MaxSizeOfLineNumbers}{2.8ex}%
 
 \lstset{basicstyle=\ttfamily,
-    captionpos=b,
-    showspaces=false,
-    showtabs=false,
+    aboveskip=\bigskipamount,
+    belowskip=\bigskipamount,
+    belowcaptionskip=\bigskipamount,
     breaklines=true,
-    showstringspaces=false,
     breakatwhitespace=true,
-    escapeinside={(*@}{@*)},
-    columns=fullflexible,
     numbers=left,
-    numberstyle=\small
+    numberstyle=\small,
+    xleftmargin=\MaxSizeOfLineNumbers
 }
 
 \setcounter{tocdepth}{1}
-\setkomafont{disposition}{\bfseries}
+%\setkomafont{disposition}{\bfseries}
 \renewcommand{\labelstyle}{\textstyle}
 \setcounter{MaxMatrixCols}{40}
 \newlength{\myl}
@@ -45,8 +60,12 @@
 
 \begin{document}
 
+\titlehead{Delft University of Technology}
+\subject{AE4134 - CFD I}
 \title{Computational Fluid Dynamics}
-\author{Michel Robijns}
+\subtitle{\vspace{2cm}\centering\includegraphics[width=0.8\linewidth]{Images/streamFunction.pdf}\vspace{1.5cm}}
+\author{Michel Robijns (Student ID: 4088018)}
+\date{\today}
 
 \maketitle
 
@@ -59,7 +78,10 @@
 \chapter{Physics}
 \label{cha:physics}
 
+In this chapter, we will derive the governing equations and introduce the domain on which they are imposed, as well as the associated boundary conditions and initial values. The governing equations must be expressed in terms of certain operators for reasons that will be the subject of Chapter \ref{cha:mathematics}. I chose to re-derive the governing equations to understand their origin and to verify their correctness.
+
 \input{equations.tex}
+\input{problem.tex}
 
 \chapter{Mathematics}
 \label{cha:mathematics}
@@ -67,104 +89,30 @@
 In Chapter \ref{cha:physics} we derived a system of dimensionless partial differential equations that govern the motion of viscous fluids. In this chapter, we cover some mathematical machinery to formulate the problem into a format understandable by a computer. Instead of using classical discretization methods like the finite difference method, we take a geometric approach using tools from discrete exterior calculus (DEC). A key ingredient in this geometric approach is the placement of physical quantities on the appropriate geometric structures. DEC is a vast mathematical field and a rigorous treatment is far beyond the scope of this assignment. The scope of this chapter is therefore limited to those particular concepts that are required to solve the lid-driven cavity flow problem.
 
 \input{theory.tex}
-
 \input{discretization.tex}
-
 \input{structure.tex}
-
 \input{matrices.tex}
-
 \input{time.tex}
 
 \chapter{Code}
+\label{cha:code}
 
-\section{A Naive Implementation}
+In Chapter \ref{cha:physics} we derived a system of dimensionless partial differential equations that govern the motion of viscous fluids and in Chapter \ref{cha:mathematics} we presented a framework that enables a computer to solve these equations. In this chapter, we will look at the implementation of this framework in \texttt{Python} and \texttt{C}. As is the case with most numerical simulations, the program can take a long time to run if reasonable accuracy is desired. Thankfully, there is vast potential for speedup if common sense and simple optimization techniques are applied. For instance, simply rearranging parts of the code results in a speedup factor of more than 10 without a loss of accuracy.
 
-An implementation of the procedure described in the preceeding chapter boils down to looping the following five steps:
-\begin{enumerate}
-    \item Generate the convective term
-    \item Construct the system $A \mathbf{P} = f$ where
-\begin{equation}
-    \label{eq:time9}
-    A = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)}
-\end{equation}
-    and
-\begin{multline}
-    \label{eq:time10}
-    f = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \biggl( \frac{\mathbf{u}^{n}}{\Delta t} - \text{convective}^{n} - \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
-    - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{\tilde{u}}^{}_{\text{norm}}}{\Delta t}
-\end{multline}
-    \item Solve the system for $\mathbf{P}$
-    \item Advance the solution in time using
-\begin{multline}
-    \label{eq:time11}
-    \mathbf{u}^{n+1} = \mathbf{u}^{n} - \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
-    + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr)
-\end{multline}
-    \item Check for convergence
-\end{enumerate}
-
-Listing \ref{lst:naive} shows a naive implementation of the above five steps.
-
-\begin{lstlisting}[caption=Naive implementation, label=lst:naive]
-while diff > tol
-    
-    xi = Ht02 * E21 * u
-    
-    convective = generate_convective(xi)
-    
-    A = tE21 * Ht11 * E10
-    
-    f = tE21 * Ht11 * (u/dt - H1t1 * tE10 * Ht02 * E21 * u/Re - u_pres/Re - convective)
-    
-    P = solve(A, f)
-    
-    u_old = u
-    
-    u = u - dt * (E10 * P + H1t1 * tE10 * Ht02 * E21 * u/Re + u_pres/Re + convective)
-    
-    diff = max(abs(u - u_old)) / dt
-    
-end while
-\end{lstlisting}
-
-\section{Optimizations}
-
-The code in Listing \ref{lst:naive} yields correct results but it is called a \emph{naive} implementation for a good reason: it is painfully slow. The code is slow because it is doing far too much work. The code in Listing \ref{lst:naive} contains ten matrix-matrix multiplications of $O(N^3)$, four matrix-vector multiplications of $O(N^2)$, and one matrix solve of $O(N^3)$. The loop can be changed such that it only contains four matrix-vector multiplications of $O(N^2)$, one matrix solve of $O(N^2)$, and \emph{no} matrix-matrix multiplications at all. It should be no surpise here that such an optimized loop is \emph{much} faster in terms of execution speed. To be specific, the factor of speedup with respect to the naive implemenations for $N = 16$ and $\Delta t = 0.05$ is around 12. That is, a simulation of an hour reduces to merely five minutes and produces the exact same result.
-
-\begin{itemize}
-    \item Move \lstinline|A = tE21 * Ht11 * E10| out of the loop. The pressure matrix does not change between iterations, so computing it once before the loop is sufficient.
-    \item The matrix-matrix multiplication \lstinline|Ht02 * E21| on line 3 can be taken out of the loop and replaced by a constant called \lstinline|C0|. This saves one matrix-matrix multiplication per iteration.
-    \item In a similar vein, \lstinline|tE21 * Ht11| on line 9 can be taken out of the loop and replaced by a constant called \lstinline|C1|. This again saves one matrix-matrix multiplication per iteration.
-    \item The product \lstinline|H1t1 * tE10 * Ht02 * E21| occurs on lines 9 and 16 and can be replaced by a constant called \lstinline|C2|. This saves six matrix-matrix multiplication per iteration.
-    \item The computation of \lstinline|u_pres / Re| occurs on lines 10 and 17 and can be replaced by a constant called \lstinline|C3|.
-    \item The resulting \lstinline|C2 * (u/Re) + C3 + convective| will still be computed twice. Instead, it can be stored in a variable called \lstinline|C4| that is updated once per iteration.
-\end{itemize}
-
-\begin{lstlisting}[caption=Optimized implementation, label=lst:naive]
-C0 = Ht02 * E21
-C1 = tE21 * Ht11
-C2 = H1t1 * tE10 * C0
-C3 = u_pres / Re
-
-A = C1 * E10
-
-while diff > tol:
-    xi = C0 * u
-    convective = generate_convective(xi)
-    
-    C4 = C2 * (u/Re) + C3 + convective
-    f = C1 * (u/dt - C4)
-    P = solve(A, f)
-    
-    u_old = u
-    u = u - dt * (E10 * P + C4)
-    
-    diff = max(abs(u - u_old)) / dt
-\end{lstlisting}
+\input{loop.tex}
+\input{naive.tex}
+\input{optimizations.tex}
 
 \chapter{Results}
+\label{cha:results}
+
+\input{results.tex}
+
+\chapter{Conclusion}
+\label{cha:conclusion}
 
 \input{conclusion.tex}
+
+\printbibliography[heading=bibintoc, title={References}]
 
 \end{document}

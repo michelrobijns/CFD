@@ -5,88 +5,88 @@ The Navier-Stokes equations were rewritten in terms of incidence matrices and Ho
     \stepcounter{equation}
     \tag{{\theequation}a}
     \label{eq:timeContinuity}
-    &\tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u} = 0 \vphantom{\frac{\partial^{(1)}}{\partial}} \\
+    &\tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}  + \mathbf{u}^{}_{\text{norm}} = 0 \vphantom{\frac{\partial^{(1)}}{\partial}} \\
     \tag{{\theequation}b}
     \label{eq:timeVorticity}
     &\xi = \mathbb{E}^{(2,1)} \mathbf{u} \vphantom{\frac{\partial^{(1)}}{\partial}} \\
     \tag{{\theequation}c}
     \label{eq:timeMomentum}
-    &\frac{\partial \mathbf{u}}{\partial t} + \text{convective} - \mathbb{E}^{(1,0)} P + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} = 0
+    &\frac{\partial \mathbf{u}}{\partial t} + \text{convective} + \mathbb{E}^{(1,0)} P + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} = 0
 \end{align}
 
-We will be using the forward Euler method, which is an explicit method, to advance the solution in time. Suppose we have some first order differential equation given by
+We will be using the forward Euler method, an explicit method, to advance the solution in time. Suppose we have a first order differential equation given by
 \begin{equation}
     \label{eq:Euler1}
     \frac{d \mathbf{u}}{dt} + f(\mathbf{u}) = 0
 \end{equation}
-The forward Euler scheme is given by
+Replacing the time derivative by the forward Euler scheme, we have
 \begin{equation}
     \label{eq:Euler2}
     \frac{\mathbf{u}^{n+1} - \mathbf{u}^{n}}{\Delta t} + f(\mathbf{u}^{n}) = 0
 \end{equation}
-where $n$ denotes a certain discrete point in time and $\Delta t$ denotes the separation between all discrete points in time. Equation \eqref{eq:Euler2} can be rearranged to express the solution at time $n+1$ as a function of the solution at time $n$:
+where $n$ denotes a certain point in time and $\Delta t$ denotes the timestep. Equation \eqref{eq:Euler2} can be rearranged such that the solution at time $n+1$ is expressed as a function of the solution at time $n$:
 \begin{equation}
     \label{eq:time1}
     \mathbf{u}^{n+1} = \mathbf{u}^{n} - \Delta t \; f(\mathbf{u}^{n})
 \end{equation}
-This method is a first-order method because it produces an error of order $\Delta t$. Time-stepping using the forward Euler method is as simple as it gets, but its drawback is that it requires extremely small values of $\Delta t$ to be numerially stable. In spite of this major disadvantage, let us go ahead and discretize the time derivative in Equation \eqref{eq:timeMomentum} using a forward Euler scheme because it will be trivial to replace our time-stepping method by a higher-order method at a later stage. Replacing the time derivative in Equation \eqref{eq:timeMomentum} by a forward Euler scheme yields
+This method is a first-order method because it produces an error of $O(\Delta t)$. Time-stepping using the forward Euler method is as simple as it gets, but its drawback is that it requires extremely small values of $\Delta t$ to be numerially stable. In spite of this major disadvantage, let us go ahead and discretize the time derivative in Equation \eqref{eq:timeMomentum} using a forward Euler scheme. It will be trivial to replace the time-stepping method by a higher-order method at a later stage. Replacing the time derivative in Equation \eqref{eq:timeMomentum} by a forward Euler scheme yields
 \begin{multline}
     \label{eq:time2}
-    \frac{\mathbf{u}^{n+1} - \mathbf{u}^{n}}{\Delta t} + \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    \frac{\mathbf{u}^{n+1} - \mathbf{u}^{n}}{\Delta t} + \text{convective}^{n} + \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
     + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} = 0
 \end{multline}
-Multiplication of Equation \eqref{eq:time2} by $\Delta t$ gives
+Why does $P$ have $n + 1$ in its superscript and not just $n$? The pressure at $t = 0$ is not required because $P^0$ does not appear in the equations. This means that $P$ must be associated with the next timestep. Multiplication of Equation \eqref{eq:time2} by $\Delta t$ gives
 \begin{multline}
     \label{eq:time3}
-    \mathbf{u}^{n+1} - \mathbf{u}^{n} + \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    \mathbf{u}^{n+1} - \mathbf{u}^{n} + \Delta t \biggl( \text{convective}^{n} + \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
     + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) = 0
 \end{multline}
-Multiplying all terms by $\tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)}$, we have
+Multiplying all terms in Equation \eqref{eq:time3} by $\tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)}$, we have
 \begin{multline}
     \label{eq:time4}
-    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1} - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n} + \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} \\
+    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1} - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n} + \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \Delta t \biggl( \text{convective}^{n} + \mathbb{E}^{(1,0)} P^{n+1} \\
     + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) = 0
 \end{multline}
-Equating Equation \eqref{eq:time4} to the continuity equation, we have
+Equating Equation \eqref{eq:time4} to the continuity equation yields
 \begin{multline}
     \label{eq:time5}
-    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1} - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n} +  \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} \\
-    + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1} + \mathbf{\tilde{u}}^{}_{\text{norm}}
+    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1} - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n} +  \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \Delta t \biggl( \text{convective}^{n} + \mathbb{E}^{(1,0)} P^{n+1} \\
+    + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1} + \mathbf{u}^{}_{\text{norm}}
 \end{multline}
 (\textit{Note:} It is perfectly acceptable to write the continuity equation as $\tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1}$. The superscript of $\mathbf{u}$ in the continuity equation can be chosen freely because the continuity equation holds true at \emph{any} given time.) The $\tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n+1}$ term can now be removed from both sides of Equation \eqref{eq:time5}. Doing so gives
 \begin{multline}
     \label{eq:time6}
     - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{n} +
-    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} \\
-    + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) = \mathbf{\tilde{u}}^{}_{\text{norm}}
+    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \Delta t \biggl( \text{convective}^{n} + \mathbb{E}^{(1,0)} P^{n+1} \\
+    + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) = \mathbf{u}^{}_{\text{norm}}
 \end{multline}
 After some simple algebraic rearragenement of Equation \eqref{eq:time6}, we obtain
 \begin{multline}
     \label{eq:time7}
-    - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)} P^{n+1} = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \biggl( \frac{\mathbf{u}^{n}}{\Delta t} - \text{convective}^{n} \\
-    - \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{\tilde{u}}^{}_{\text{norm}}}{\Delta t}
+    \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)} P^{n+1} = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \biggl( \frac{\mathbf{u}^{n}}{\Delta t} - \text{convective}^{n} \\
+    - \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{u}^{}_{\text{norm}}}{\Delta t}
 \end{multline}
 which is equivalant to
 \begin{equation}
     \label{eq:time8}
-    A \mathbf{P} = f
+    A \mathbf{P}^{n+1} = f
 \end{equation}
 where
 \begin{equation}
     \label{eq:time9}
-    A = - \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)}
+    A = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbb{E}^{(1,0)}
 \end{equation}
 and
 \begin{multline}
     \label{eq:time10}
     f = \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \biggl( \frac{\mathbf{u}^{n}}{\Delta t} - \text{convective}^{n} - \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
-    - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{\tilde{u}}^{}_{\text{norm}}}{\Delta t}
+    - \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr) + \frac{\mathbf{u}^{}_{\text{norm}}}{\Delta t}
 \end{multline}
 
-Once the system $A \mathbf{P} = f$ has been solved, $\mathbf{P}$ can be substituted into
+(\textit{Note:} $\mathbf{P}^{n+1}$ in Equation \eqref{eq:time8} is written in boldface  because the numerical values of $P$ are stored in an array (i.e., a vector). However, the physical quantity $P$ remains a scalar quantity and is \emph{not} a vector quantity.) Once the system $A \mathbf{P}^{n+1} = f$ has been solved, $P^{n+1}$ can be substituted into
 \begin{multline}
     \label{eq:time11}
-    \mathbf{u}^{n+1} = \mathbf{u}^{n} - \Delta t \biggl( \text{convective}^{n} - \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
+    \mathbf{u}^{n+1} = \mathbf{u}^{n} - \Delta t \biggl( \text{convective}^{n} + \mathbb{E}^{(1,0)} P^{n+1} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{n} \\
     + \frac{1}{\text{Re}} \mathbf{u}_{\text{pres}} \biggr)
 \end{multline}
 to compute the solution at time $n + 1$. Note that Equation \eqref{eq:time11} is the result of a simple algebraic rearrangement of Equation \eqref{eq:time3}.
