@@ -16,6 +16,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{tikz}
+\usepackage{booktabs}
 \usetikzlibrary{arrows.meta}
 \usepackage{listings}
 
@@ -61,9 +62,9 @@
 \begin{document}
 
 \titlehead{Delft University of Technology}
-\subject{AE4134 - CFD I}
-\title{Computational Fluid Dynamics}
-\subtitle{\vspace{2cm}\centering\includegraphics[width=0.8\linewidth]{Images/streamFunction.pdf}\vspace{1.5cm}}
+\subject{AE4134 - Computational Fluid Dynamics I}
+\title{Implementation of a Navier-Stokes Solver using Discrete Exterior Calculus}
+\subtitle{\vspace{2cm}\centering\includegraphics[width=0.8\linewidth]{Images/vorticity.pdf}\vspace{1.5cm}}
 \author{Michel Robijns (Student ID: 4088018)}
 \date{\today}
 
@@ -78,7 +79,7 @@
 \chapter{Physics}
 \label{cha:physics}
 
-In this chapter, we will derive the governing equations and introduce the domain on which they are imposed, as well as the associated boundary conditions and initial values. The governing equations must be expressed in terms of certain operators for reasons that will be the subject of Chapter \ref{cha:mathematics}. I chose to re-derive the governing equations to understand their origin and to verify their correctness.
+In this chapter, we will derive the governing equations and introduce the domain on which they are imposed, as well as the associated boundary conditions and initial values.
 
 \input{equations.tex}
 \input{problem.tex}
@@ -100,11 +101,13 @@ In Chapter \ref{cha:physics} we derived a system of dimensionless partial differ
 In Chapter \ref{cha:physics} we derived a system of dimensionless partial differential equations that govern the motion of viscous fluids and in Chapter \ref{cha:mathematics} we presented a framework that enables a computer to solve these equations. In this chapter, we will look at the implementation of this framework in \texttt{Python} and \texttt{C}. As is the case with most numerical simulations, the program can take a long time to run if reasonable accuracy is desired. Thankfully, there is vast potential for speedup if common sense and simple optimization techniques are applied. For instance, simply rearranging parts of the code results in a speedup factor of more than 10 without a loss of accuracy.
 
 \input{loop.tex}
-\input{naive.tex}
+\input{baseline.tex}
 \input{optimizations.tex}
 
 \chapter{Results}
 \label{cha:results}
+
+The aim of this chapter is to present a comparison of the present method with the benchmark results from \parencite{botella1998benchmark}. We will present contour plots of the stream function, vorticity, and static pressure and discuss any differences with the benchmark results. Additionally, the factors of speedup resulting from the optimizations suggested in Chapter \ref{cha:code} will be presented and discussed.
 
 \input{results.tex}
 

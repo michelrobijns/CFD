@@ -64,9 +64,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}The Simulation Loop}{28}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}A Naive Implementation}{29}{section.4.2}
+\contentsline {section}{\numberline {4.2}Baseline Implementation}{29}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}An Optimized Implementation}{29}{section.4.3}
+\contentsline {section}{\numberline {4.3}Optimized Implementation}{29}{section.4.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.1}Common Sense Optimizations}{29}{subsection.4.3.1}
 \defcounter {refsection}{0}\relax 
@@ -84,16 +84,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Results}{34}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Stream Function}{34}{section.5.1}
+\contentsline {section}{\numberline {5.1}Convergence, Timestep, and Tolerance}{34}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Vorticity}{34}{section.5.2}
+\contentsline {section}{\numberline {5.2}Stream Function}{35}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Pressure}{34}{section.5.3}
+\contentsline {section}{\numberline {5.3}Vorticity}{35}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Rate of Mass Production}{34}{section.5.4}
+\contentsline {section}{\numberline {5.4}Pressure}{36}{section.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}Convergence, Timestep, and Tolerance}{34}{section.5.5}
+\contentsline {section}{\numberline {5.5}Code Optimizations}{36}{section.5.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{38}{chapter.6}
+\contentsline {section}{\numberline {5.6}Rate of Mass Production}{36}{section.5.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline References}{39}{chapter*.22}
+\contentsline {chapter}{\numberline {6}Conclusion}{40}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline References}{41}{chapter*.24}
