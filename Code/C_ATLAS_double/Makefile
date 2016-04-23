@@ -15,4 +15,4 @@ $(target): $(objects)
 	$(cc) $(cFlags) $(ATLASFlags) -o $@ $^
 
 clean:
-	rm -f $(target) *.o *.dat *.pdf
+	rm -f $(target) *.o *.dat

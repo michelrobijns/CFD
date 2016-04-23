@@ -31,8 +31,6 @@ def main():
     H1t1 = generateH1t1(N, h)
     Ht11 = np.linalg.inv(H1t1)
     Ht02 = generateHt02(N, th)
-    A = tE21.dot(Ht11).dot(E10)
-    LU = scipy.linalg.lu_factor(A)
     
     # Vectors
     u = np.zeros(2 * N * (N - 1))
@@ -44,6 +42,9 @@ def main():
     C1 = tE21.dot(Ht11)
     C2 = H1t1.dot(tE10).dot(C0)
     C3 = uPres / Re
+    
+    A = C1.dot(E10)
+    LU = scipy.linalg.lu_factor(A)
     
     diff = 1
     iteration = 0
@@ -78,7 +79,7 @@ def main():
     #plotStreamFunctionContour(N, x, Ht11.dot(u))
     #plotPressureContour(N, tx, th, u, uK, P)
     #plotPressureContour2(N, tx, th, u, uK, P)
-    #plotVorticityContour(N, x, xi)
+    plotVorticityContour(N, x, xi)
 
 def generateMesh(N):
     x = np.zeros(N+1)

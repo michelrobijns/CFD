@@ -66,33 +66,10 @@ def main():
         
         u = u - dt * (E10.dot(P) + H1t1.dot(tE10).dot(Ht02).dot(E21).dot(u / Re) + uPres / Re + convective)
 
-        if (iteration % 100 == 0):
+        if (iteration % 1 == 0):
             diff = max(np.abs(u - uOld)) / dt
             #print('Iteration', iteration, '\tdiff =', diff)
             print('Iteration', iteration, '\tdiff =', "{0:0=6.5f}".format(diff))
-    
-    ## Loop
-    #while (diff > tol):
-        #iteration += 1
-
-        #xi = C0.dot(u)
-
-        #convective = generateConvective(N, xi, u, uK, th)
-        
-        #C4 = C2.dot(u / Re) + C3 + convective
-
-        #rhs = C1.dot(u / dt - C4)
-
-        #P = scipy.linalg.lu_solve(LU, rhs)
-
-        #uOld = np.copy(u)
-
-        #u -= dt * (E10.dot(P) + C4)
-
-        #if (iteration % 100 == 0):
-            #diff = max(np.abs(u - uOld)) / dt
-            ##print('Iteration', iteration, '\tdiff =', diff)
-            #print('Iteration', iteration, '\tdiff =', "{0:0=6.5f}".format(diff))
 
     print('Converged after', iteration, 'iterations.')
     
