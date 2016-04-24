@@ -18,15 +18,16 @@ def plotStreamFunctionContour():
     X = np.loadtxt('streamFunctionX.dat')
     Y = np.loadtxt('streamFunctionY.dat')
     
-    streamFunction = scipy.ndimage.zoom(streamFunction, 1)
-    X = scipy.ndimage.zoom(X, 1)
-    Y = scipy.ndimage.zoom(Y, 1)
+    streamFunction = scipy.ndimage.zoom(streamFunction, 3)
+    X = scipy.ndimage.zoom(X, 3)
+    Y = scipy.ndimage.zoom(Y, 3)
     
     levels = [-1.5e-3, -1e-3, -5e-4, -2.5e-4, -1e-4, -5e-5, -1e-5, -1e-6, 0,
               1e-10, 1e-5, 1e-4, 1e-2, 3e-2, 5e-2, 7e-2, 9e-2, 0.1, 0.11,
               0.115, 0.1175]
     
     plt.figure(num='Stream function', figsize=(10, 10))
+    plt.gca().set_aspect('equal', adjustable='box')
     plt.contour(X, Y, streamFunction, levels=levels, colors='k')
     frame = plt.gca()
     frame.axes.xaxis.set_ticklabels([])
@@ -41,13 +42,14 @@ def plotVorticityContour():
     X = np.loadtxt('vorticityX.dat')
     Y = np.loadtxt('vorticityY.dat')
     
-    vorticity = scipy.ndimage.zoom(vorticity, 1)
-    X = scipy.ndimage.zoom(X, 1)
-    Y = scipy.ndimage.zoom(Y, 1)
+    vorticity = scipy.ndimage.zoom(vorticity, 3)
+    X = scipy.ndimage.zoom(X, 3)
+    Y = scipy.ndimage.zoom(Y, 3)
     
     levels = [-3.0, -2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0]
     
     plt.figure(num='Vorticity', figsize=(10, 10))
+    plt.gca().set_aspect('equal', adjustable='box')
     plt.contour(X, Y, vorticity, levels=levels, colors='k')
     frame = plt.gca()
     frame.axes.xaxis.set_ticklabels([])
@@ -62,13 +64,14 @@ def plotPressureContour():
     X = np.loadtxt('pressureX.dat')
     Y = np.loadtxt('pressureY.dat')
     
-    pressure = scipy.ndimage.zoom(pressure, 1)
-    X = scipy.ndimage.zoom(X, 1)
-    Y = scipy.ndimage.zoom(Y, 1)
+    pressure = scipy.ndimage.zoom(pressure, 3)
+    X = scipy.ndimage.zoom(X, 3)
+    Y = scipy.ndimage.zoom(Y, 3)
     
     levels = [-0.002, 0, 0.02, 0.05, 0.07, 0.09, 0.11, 0.12, 0.17, 0.3]
     
     plt.figure(num='Pressure', figsize=(10, 10))
+    plt.gca().set_aspect('equal', adjustable='box')
     plt.contour(X, Y, pressure, levels=levels, colors='k')
     frame = plt.gca()
     frame.axes.xaxis.set_ticklabels([])
