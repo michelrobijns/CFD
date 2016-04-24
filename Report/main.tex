@@ -64,7 +64,7 @@
 \titlehead{Delft University of Technology}
 \subject{AE4134 - Computational Fluid Dynamics I}
 \title{Implementation of a Navier-Stokes Solver using Discrete Exterior Calculus}
-\subtitle{\vspace{2cm}\centering\includegraphics[width=0.8\linewidth]{Images/vorticity.pdf}\vspace{1.5cm}}
+\subtitle{\vspace{1.5cm}\centering\includegraphics[width=0.9\linewidth]{Images/vorticity.pdf}\vspace{1cm}}
 \author{Michel Robijns (Student ID: 4088018)}
 \date{\today}
 
@@ -72,14 +72,14 @@
 
 \tableofcontents
 
-\chapter{Objective}
+\chapter{Introduction}
 
-\input{objective.tex}
+\input{introduction.tex}
 
 \chapter{Physics}
 \label{cha:physics}
 
-In this chapter, we will derive the governing equations and introduce the domain on which they are imposed, as well as the associated boundary conditions and initial values.
+In this chapter, we will present the equations that govern the motion of viscous fluids and introduce the problem on which these governing equations are imposed.
 
 \input{equations.tex}
 \input{problem.tex}
@@ -87,7 +87,7 @@ In this chapter, we will derive the governing equations and introduce the domain
 \chapter{Mathematics}
 \label{cha:mathematics}
 
-In Chapter \ref{cha:physics} we derived a system of dimensionless partial differential equations that govern the motion of viscous fluids. In this chapter, we cover some mathematical machinery to formulate the problem into a format understandable by a computer. Instead of using classical discretization methods like the finite difference method, we take a geometric approach using tools from discrete exterior calculus (DEC). A key ingredient in this geometric approach is the placement of physical quantities on the appropriate geometric structures. DEC is a vast mathematical field and a rigorous treatment is far beyond the scope of this assignment. The scope of this chapter is therefore limited to those particular concepts that are required to solve the lid-driven cavity flow problem.
+In Chapter \ref{cha:physics} we derived a system of dimensionless partial differential equations that govern the motion of viscous fluids. In this chapter, we cover the mathematical machinery necessary to express the problem into a format understandable by a computer. Instead of using classical discretization methods like the finite difference method, we take a geometric approach using tools from discrete exterior calculus (DEC), see \parencite{frankel2012geometry} and \parencite{hirani2003discrete}. A key ingredient in this geometric approach is the placement of physical quantities on the appropriate geometric structures. DEC is a vast mathematical field and a rigorous treatment is far beyond the scope of this assignment. The scope of this chapter is therefore limited to those particular concepts that are required to solve the lid-driven cavity flow problem.
 
 \input{theory.tex}
 \input{discretization.tex}

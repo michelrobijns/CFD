@@ -2214,13 +2214,13 @@
   <bcf:section number="0">
     <bcf:citekey order="1">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="2">anderson2011fundamentals</bcf:citekey>
-    <bcf:citekey order="3">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="4">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="5">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="6">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="7">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="8">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="9">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="3">frankel2012geometry</bcf:citekey>
+    <bcf:citekey order="4">hirani2003discrete</bcf:citekey>
+    <bcf:citekey order="5">gerritsma2014computational</bcf:citekey>
+    <bcf:citekey order="6">hirani2003discrete</bcf:citekey>
+    <bcf:citekey order="7">gerritsma2014computational</bcf:citekey>
+    <bcf:citekey order="8">elcott2005discrete</bcf:citekey>
+    <bcf:citekey order="9">hirani2003discrete</bcf:citekey>
     <bcf:citekey order="10">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="11">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="12">botella1998benchmark</bcf:citekey>
@@ -2228,6 +2228,15 @@
     <bcf:citekey order="14">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="15">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="16">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="17">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="18">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="19">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="20">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="21">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="22">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="23">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="24">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="25">elcott2005discrete</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
   <bcf:sorting>

@@ -1,7 +1,7 @@
 \section{Discretization of the Unit Square}
 \label{sec:discretization}
 
-It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer-oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical axis. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid, see Figure \ref{fig:innerGrid}. The inner-oriented grid \emph{must} be constructed in this manner for reasons that can be found in rigorous texts on DEC.
+It is impossible to derive the incidence and Hodge matrices without any a priori knowledge about the geometry of the grid or cell-complex. Let us therefore first discretize the unit square $\Omega$ into a grid composed of points, lines, and planes. The outer-oriented grid shown in Figure \ref{fig:outerGrid} was constructed for $n = 3$, where $n$ denotes the number of planes in the horizontal and vertical directions. The grid has an orthogonal structure, but is not uniform. The points are distributed via cosine spacing at equal angular increments because the smallest flow features are expected to emerge in the vicinity of the walls, which justifies this particular refinement of the grid. The inner-oriented grid associated with the outer-oriented grid is constructed such that the inner-oriented points are located precisely in the center of the planes of the outer-oriented grid, see Figure \ref{fig:innerGrid}. The inner-oriented grid \emph{must} be constructed in this manner for reasons that can be found in literature \parencite{hirani2003discrete}.
 
 \begin{figure}[p]
     \centering
@@ -126,37 +126,37 @@ It is impossible to derive the incidence and Hodge matrices without any a priori
             }
         }
         % Four corner points
-        \fill (0,0) circle (0.03) node [below left=1ex] {$p_{0,0}$};
-        \fill (8,0) circle (0.03) node [below right=1ex] {$p_{4,0}$};
-        \fill (8,8) circle (0.03) node [above right=1ex] {$p_{4,4}$};
-        \fill (0,8) circle (0.03) node [above left=1ex] {$p_{0,4}$};
+        \fill (0,0) circle (0.03) node [below left=1ex] {$P_{0,0}$};
+        \fill (8,0) circle (0.03) node [below right=1ex] {$P_{4,0}$};
+        \fill (8,8) circle (0.03) node [above right=1ex] {$P_{4,4}$};
+        \fill (0,8) circle (0.03) node [above left=1ex] {$P_{0,4}$};
         % Bottom boundary
-        \fill (1,0) circle (0.03) node [below right=1ex] {$p_{1,0}$};
-        \fill (4,0) circle (0.03) node [below=1ex] {$p_{2,0}$};
-        \fill (7,0) circle (0.03) node [below left=1ex] {$p_{3,0}$};
+        \fill (1,0) circle (0.03) node [below right=1ex] {$P_{1,0}$};
+        \fill (4,0) circle (0.03) node [below=1ex] {$P_{2,0}$};
+        \fill (7,0) circle (0.03) node [below left=1ex] {$P_{3,0}$};
         % Right boundary
-        \fill (8,1) circle (0.03) node [above right=1ex] {$p_{4,1}$};
-        \fill (8,4) circle (0.03) node [right=1ex] {$p_{4,2}$};
-        \fill (8,7) circle (0.03) node [below right=1ex] {$p_{4,3}$};
+        \fill (8,1) circle (0.03) node [above right=1ex] {$P_{4,1}$};
+        \fill (8,4) circle (0.03) node [right=1ex] {$P_{4,2}$};
+        \fill (8,7) circle (0.03) node [below right=1ex] {$P_{4,3}$};
         % Top boundary
-        \fill (7,8) circle (0.03) node [above left=1ex] {$p_{3,4}$};
-        \fill (4,8) circle (0.03) node [above=1ex] {$p_{2,4}$};
-        \fill (1,8) circle (0.03) node [above right=1ex] {$p_{1,4}$};
+        \fill (7,8) circle (0.03) node [above left=1ex] {$P_{3,4}$};
+        \fill (4,8) circle (0.03) node [above=1ex] {$P_{2,4}$};
+        \fill (1,8) circle (0.03) node [above right=1ex] {$P_{1,4}$};
         % Left boundary
-        \fill (0,7) circle (0.03) node [below left=1ex] {$p_{0,3}$};
-        \fill (0,4) circle (0.03) node [left=1ex] {$p_{0,2}$};
-        \fill (0,1) circle (0.03) node [above left=1ex] {$p_{0,1}$};
+        \fill (0,7) circle (0.03) node [below left=1ex] {$P_{0,3}$};
+        \fill (0,4) circle (0.03) node [left=1ex] {$P_{0,2}$};
+        \fill (0,1) circle (0.03) node [above left=1ex] {$P_{0,1}$};
         % Four interior corners
-        \fill (1,1) circle (0.03) node [above right=1ex] {$p_{1,1}$};
-        \fill (7,1) circle (0.03) node [above left=1ex] {$p_{3,1}$};
-        \fill (7,7) circle (0.03) node [below left=1ex] {$p_{3,3}$};
-        \fill (1,7) circle (0.03) node [below right=1ex] {$p_{1,3}$};
+        \fill (1,1) circle (0.03) node [above right=1ex] {$P_{1,1}$};
+        \fill (7,1) circle (0.03) node [above left=1ex] {$P_{3,1}$};
+        \fill (7,7) circle (0.03) node [below left=1ex] {$P_{3,3}$};
+        \fill (1,7) circle (0.03) node [below right=1ex] {$P_{1,3}$};
         % Five remaining interior points
-        \fill (4,1) circle (0.03) node [above right=1ex] {$p_{2,1}$};
-        \fill (7,4) circle (0.03) node [above left=1ex] {$p_{3,2}$};
-        \fill (4,7) circle (0.03) node [below right=1ex] {$p_{2,3}$};
-        \fill (1,4) circle (0.03) node [above right=1ex] {$p_{1,2}$};
-        \fill (4,4) circle (0.03) node [above right=1ex] {$p_{2,2}$};
+        \fill (4,1) circle (0.03) node [above right=1ex] {$P_{2,1}$};
+        \fill (7,4) circle (0.03) node [above left=1ex] {$P_{3,2}$};
+        \fill (4,7) circle (0.03) node [below right=1ex] {$P_{2,3}$};
+        \fill (1,4) circle (0.03) node [above right=1ex] {$P_{1,2}$};
+        \fill (4,4) circle (0.03) node [above right=1ex] {$P_{2,2}$};
         % Draw v
         \foreach \x/\i in {0/0, 4/2, 7/3} {
             \foreach \y/\j in {0.5/0, 2.5/1, 5.5/2, 7.5/3} {
@@ -197,7 +197,7 @@ It is impossible to derive the incidence and Hodge matrices without any a priori
 
 \section{Physical Representation}
 
-We briefly digress here to summarize the physical interpretation of the $k$-cells that compose the inner and outer oriented grids. The orientation of the outer-oriented planes $\tilde{s}_{i,j}$ is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The outer-oriented line segments $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ represent flux in the form:
+We briefly digress here to summarize the physical interpretation of the $k$-cells that compose the inner and outer oriented grids. The orientation of the outer-oriented planes $\tilde{S}_{i,j}$ is source-like, as indicated by the outward pointing arrows. That is, an outflow is considered positive and an inflow is considered negative. The outer-oriented line segments $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ represent flux in the form:
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -216,10 +216,11 @@ The inner-oriented line segments $u_{i,j}$ and $v_{i,j}$ represent circulation:
     &\text{and}& v_{i,j} = \int_{y_{i,j}}^{y_{i+1,j}} \mathbf{u} \cdot \mathbf{\hat{t}} \, dy &&
 \end{flalign}
 where $\mathbf{\hat{t}}$ denotes the tangent vector along the line segment.
-As discussed in the preceding section, application of the integrated curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented 2-cochains $\xi_{(i,j)}$ do therefore represent vorticity and the inner-oriented 0-cochains $p_{i,j}$ represent total pressure. Notice that the orientation of the inner-oriented 0-cochains $p_{i,j}$ is sink-like, as indicated by the inward pointing arrows.
+As discussed in the preceding section, application of the integrated curl operator on a velocity field yields vorticity, assuming that the surfaces are infinitesimal. The inner-oriented 2-cochains $\xi_{(i,j)}$ do therefore represent vorticity and the inner-oriented 0-cochains $P_{i,j}$ represent total pressure. Notice that the orientation of the inner-oriented 0-cochains $P_{i,j}$ is sink-like, as indicated by the inward pointing arrows.
 
 We have constructed the inner and outer oriented grid and we have established what the $k$-cells physically represent. The double DeRham complex can be updated incorporating the physical quantities:
 \begin{equation}
+    \label{eq:rham1}
     \begin{gathered}
         \xymatrix@=20ex{
             \mathbf{P}^{(0)} \ar[r]^{\mathbb{E}^{(1,0)}}_{\text{grad}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{2},0)}} & \mathbf{u}^{(1)} \ar[r]^{\mathbb{E}^{(2,1)}}_{\text{curl}} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{1},1)}} & \mathbf{\xi}^{(2)} \ar@<1ex>[d]^{\mathbb{H}^{(\tilde{0},2)}} \\
@@ -227,3 +228,5 @@ We have constructed the inner and outer oriented grid and we have established wh
         }
     \end{gathered}
 \end{equation}
+
+(\textit{Note:} The variables in Equation \eqref{eq:rham1} are written in boldface because their numerical values are typically stored in an array (i.e., a vector) on a computer. However, the physical quantities $P$ and $\mathbf{\tilde{\psi}}$ remain scalar quantities and should \emph{not} be seen as vector quantities.)

@@ -2,7 +2,7 @@
 \defcounter {refsection}{0}\relax 
 \select@language {english}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Objective}{3}{chapter.1}
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Physics}{4}{chapter.2}
 \defcounter {refsection}{0}\relax 
@@ -34,13 +34,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.8}Structure of the Navier-Stokes Equations}{16}{section.3.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.8.1}Continuity Equation}{16}{subsection.3.8.1}
+\contentsline {subsection}{\numberline {3.8.1}Continuity Equation}{17}{subsection.3.8.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.8.2}Velocity-Vorticity relation}{17}{subsection.3.8.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.8.3}Momentum Equation}{17}{subsection.3.8.3}
+\contentsline {subsection}{\numberline {3.8.3}Momentum Equation}{18}{subsection.3.8.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.8.4}Summary}{19}{subsection.3.8.4}
+\contentsline {subsection}{\numberline {3.8.4}The Navier-Stokes Equations in Terms of Incidence and Hodge Matrices}{19}{subsection.3.8.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.9}The Incidence Matrices and Hodge Matrices}{19}{section.3.9}
 \defcounter {refsection}{0}\relax 
@@ -94,8 +94,10 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.5}Code Optimizations}{36}{section.5.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.6}Rate of Mass Production}{36}{section.5.6}
+\contentsline {section}{\numberline {5.6}Integrated Vorticity}{37}{section.5.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{40}{chapter.6}
+\contentsline {section}{\numberline {5.7}Turbulence}{37}{section.5.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline References}{41}{chapter*.24}
+\contentsline {chapter}{\numberline {6}Conclusion}{44}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline References}{45}{chapter*.27}

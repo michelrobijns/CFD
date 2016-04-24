@@ -21,6 +21,7 @@ Equation \eqref{eq:tsijEquations} expressed in matrix notation becomes
 \end{equation}
 The mass flow rates $\tilde{u}_{i,j}$ and $\tilde{v}_{i,j}$ adjacent to the boundary of the unit square are known because the boundary conditions of the problem are known. The matrices in the right-hand side of Equation \eqref{eq:tE21} can be split into a matrix of unknowns and into a matrix of knows. Splitting the matrix into two parts yields
 \begin{equation}
+    \label{eq:structure1}
     \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)} + \tilde{\mathbb{E}}^{(2,1)}_{\text{known}} \mathbf{\tilde{u}}^{(1)}_{\text{known}}
 \end{equation}
 where
@@ -41,9 +42,8 @@ where
     \end{array}
     \right]
 \end{equation}
-
-\begin{flalign}
-    & \text{and} &
+and
+\begin{equation}
     \setlength{\arraycolsep}{0pt}
     \tilde{\mathbb{E}}^{(2,1)}_{\text{known}} =
     \left[
@@ -58,19 +58,18 @@ where
         \d & \d & \d & \d & \d & \d & \d & \d & \d & \d & \w{1} & \d \\
         \d & \d & \d & \d & \d & \w{1} & \d & \d & \d & \d & \d & \w{1} \\
     \end{array}
-    \right] &&
-\end{flalign}
-(\textit{Note:} The zero elements are replaced by dots to make the non-zero elements stand out. This turns out to be useful because it makes it far easier to see the structure of the matrices in the blink of an eye.)
+    \right]
+\end{equation}
+(\textit{Note:} The zero elements are replaced by dots to make the non-zero elements stand out. This turns out to be useful because it makes it far easier to identify the structure of the matrices.) It should be no surprise here that the extreme sparsity of these incidence matrices is a property worth exploiting.
 
-Notice that every column of $\tilde{\mathbb{E}}^{(2,1)}$ contains two non-zero elements. The number of non-zero elements (NNZ) in $\tilde{\mathbb{E}}^{(2,1)}$ therefore equals
+Since the product $\tilde{\mathbb{E}}^{(2,1)}_{\text{known}} \mathbf{\tilde{u}}^{(1)}_{\text{known}}$ is known, Equation \eqref{eq:structure1} can be written as
 \begin{equation}
-    \mbox{NNZ}(\tilde{\mathbb{E}}^{(2,1)}) = 2 \cdot 4 n = 8 n
+    \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)} + \mathbf{\tilde{u}}^{(1)}_{\text{norm}}
 \end{equation}
-Also notice that every column of $\tilde{\mathbb{E}}^{(2,1)}_{\text{known}}$ contains one non-zero element. Thus,
+Because we are going to solve the lid-driven cavity problem, there is no flux into or out of the domain. The vector $\mathbf{\tilde{u}}^{(1)}_{\text{norm}}$ is therefore equal to zero and we have
 \begin{equation}
-    \mbox{NNZ}(\tilde{\mathbb{E}}^{(2,1)}_{\text{known}}) = 4 n
+    \mathbf{\tilde{s}}^{(2)} = \tilde{\mathbb{E}}^{(2,1)} \mathbf{\tilde{u}}^{(1)}
 \end{equation}
-It should be no surprise here that the extreme sparsity of these indicence matrices is a property worth exploiting.
 
 \subsection{$\mathbb{E}^{(1,0)}$}
 
@@ -88,7 +87,7 @@ The incidence matrix $\mathbb{E}^{(1,0)}$ maps an inner-oriented 0-cochain to an
     \end{split}
     \label{eq:E10list}
 \end{equation}
-Equation \eqref{eq:E10list} can be written in matrix notation as
+Writing Equation \eqref{eq:E10list} in matrix notation, we have
 \begin{equation}
     \mathbf{u}^{(1)} = \mathbb{E}^{(1,0)} \mathbf{p}^{(0)}
 \end{equation}
@@ -118,7 +117,7 @@ It is important to recognize that
 \begin{equation}
     \mathbb{E}^{(1,0)} = -\left(\tilde{\mathbb{E}}^{(2,1)}\right)^T
 \end{equation}
-because this little shortcut will save us some computational effort.
+because this is a shortcut can save computational effort.
 
 \subsection{$\mathbb{E}^{(2,1)}$}
 
@@ -132,7 +131,7 @@ The incidence matrix $\mathbb{E}^{(2,1)}$ maps an inner-oriented 1-cochain to an
     \end{split}
     \label{eq:xiijEquations}
 \end{equation}
-which is in accordance to the formula
+which is in accordance with the formula
 \begin{equation}
     \xi_{i,j} = u_{i,j} - u_{i,j+1} - v_{i,j} + v_{i+1,j}
 \end{equation}
@@ -217,11 +216,6 @@ The product $\mathbb{E}^{(2,1)}_{\text{known}} \mathbf{u}^{(1)}_{\text{known}}$ 
 \begin{equation}
     \mathbf{\xi}^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} + \mathbf{u}^{(1)}_{\text{prescribed}}
 \end{equation}
-Note that each column of the matrix $\mathbb{E}^{(2,1)}$ contains two non-zero elements. Therefore, the total number of non-zero elements in $\mathbb{E}^{(2,1)}$ amounts to
-\begin{equation}
-    \mbox{NNZ}(\mathbb{E}^{(2,1)}) = 2 \cdot 4 \cdot n = 8n
-\end{equation}
-
 
 \subsection{$\tilde{\mathbb{E}}^{(1,0)}$}
 
@@ -268,11 +262,11 @@ Also take note that
 \begin{equation}
     \mathbb{\tilde{E}}^{(1,0)} = \left(\mathbb{E}^{(2,1)}\right)^T
 \end{equation}
-which will again save us some computational effort.
+which can again save computational effort.
 
 \subsection{$\mathbb{H}^{(\tilde{1},1)}$ and $\mathbb{H}^{(1,\tilde{1})}$}
 
-The Hodge matrix $\mathbb{H}^{(\tilde{1},1)}$ represents a linear map between between the flux through a line segment and the circulation along a line segment. Its inverse, $\mathbb{H}^{(1,\tilde{1})}$, represents a linear map between the circulation along a line segment and the flux through a line segment. The cirulation along a line segment is equal to the velocity along that line segment times the lenght of the line segment. Or, expressed as a function of flux:
+The Hodge matrix $\mathbb{H}^{(\tilde{1},1)}$ represents a linear map between between the flux through a line segment and the circulation along a line segment. Its inverse, $\mathbb{H}^{(1,\tilde{1})}$, represents a linear map between the circulation along a line segment and the flux through a line segment. The cirulation along a line segment is equal to the velocity along that line segment times the lenght of the line segment. Or, expressed as a function of flux, we have
 \begin{equation}
     \text{ciculation along $L_a$} = \underbrace{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}_{\text{velocity}} \cdot \underbrace{\vphantom{\frac{\text{mass flow through $L_b$}}{\text{length of $L_b$}}}\text{length of $L_a$}}_{\text{length}}
 \end{equation}
@@ -281,7 +275,7 @@ Let us look at a specific example. The circulation along the line segment $u_{1,
     u_{2,1} = \frac{\tilde{u}_{2,0}}{\tilde{h}_0} h_2 = \frac{h_2}{\tilde{h}_0} \tilde{u}_{2,0}
     \label{eq:H1t1Example}
 \end{equation}
-In general, the circulation along the line segments $u_{i,j}$ and $v_{i,j}$ can be found in accordance to the formulas
+In general, the circulation along the line segments $u_{i,j}$ and $v_{i,j}$ can be found in accordance with the formulas
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}

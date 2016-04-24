@@ -98,13 +98,13 @@ Calling \texttt{ATLAS} subroutines natively from \texttt{C} allows you to combin
 \begin{equation}
     \mathbf{y} \coloneqq \alpha A \mathbf{x} + \beta \mathbf{y}
 \end{equation}
-with one function call. This allows you to replace line 13 in Listing \ref{lst:optimized2} with one call of \texttt{SGEMV()}, where $\alpha = \frac{1}{\text{Re}}$, $A = \text{\lstinline|C2|}$, $\mathbf{x} = \mathbf{u}$, $\mathbf{y} = \text{\lstinline|C3|} + \text{convective}$, and $\beta = 1$.
+with one function call. This allows you to replace line 13 in Listing \ref{lst:optimized2} with one call of \texttt{SGEMV()}, where $\alpha = 1 / \text{Re}$, $A = \text{\lstinline|C2|}$, $\mathbf{x} = \mathbf{u}$, $\mathbf{y} = \text{\lstinline|C3|} + \text{convective}$, and $\beta = 1$.
         
 I decided to write a second implementation of the simulation in \texttt{C} for two reasons: first, to have compiled and therefore inherently fast versions of all functions, including the function \lstinline|generate_convective()|, and second, because it allows you to call \texttt{ATLAS} routines directly and use it to combine certain mathematical operations like matrix-vector multiplications and vector-vector additions.
 
 \subsubsection{Computing in Single-Precision Instead of Double-Precision}
 
-Using single-precision floating-point numbers instead of double-precision floating-point numbers allows the CPU to store more numbers in its caches simultaneously, thereby improving the cache hit ratio and reuse ratio which in turn improves overal performance. Most of the errors are introduced by using first-order time-stepping and a low fidelity approximation of the convective term. I therefore deemed it safe to use single-precision floating-point numbers instead of double-precision floating-point numbers.
+Using single-precision floating-point numbers instead of double-precision floating-point numbers allows the CPU to store more numbers in its cache, thereby improving the cache hit ratio and reuse ratio which in turn improves overal performance. Most of the errors are introduced by using first-order time-stepping and a low fidelity approximation of the convective term. I therefore deemed it safe to use single-precision floating-point numbers instead of double-precision floating-point numbers.
 
 \subsubsection{Sparse Matrix-Vector Multiplication}
 

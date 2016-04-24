@@ -1,6 +1,6 @@
 \section{The Navier-Stokes Equations}
 
-The Navier-Stokes equations govern the motion of viscous fluids. These equations arise from applying conservation of mass, conservation of momentum, and conservation of energy to the motion of fluids and build upon the notion that fluids are a continuous medium rather than a set of discrete particles. The so-called convective form of the Navier-Stokes equations for an incompressible Newtonian fluid without the presence of body forces is \parencite[][]{anderson2011fundamentals}:
+The Navier-Stokes equations govern the motion of viscous fluids. These equations arise from the application of conservation of mass, conservation of momentum, and conservation of energy to the motion of fluids and build upon the notion that fluids are a continuous medium rather than a set of discrete particles. The so-called convective form of the Navier-Stokes equations for an incompressible Newtonian fluid without the presence of body forces is \parencite[][]{anderson2011fundamentals}:
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -8,7 +8,7 @@ The Navier-Stokes equations govern the motion of viscous fluids. These equations
     \tag{{\theequation}b}
     &\text{Momentum equation:}& \frac{\partial \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= - \frac{1}{\rho} \nabla p + \nu \nabla^2 \mathbf{u} &&
 \end{flalign}
-where $\mathbf{u}$ is the velocity field, $t$ is the time, $\rho$ is the density, $p$ is the pressure field, and $\nu$ is the kinematic viscosity. A more tangible notation of these equations is obtained by writing out the vector components and utilizing Einstein's summation convention:
+where $\mathbf{u}$ is the velocity field, $t$ is the time, $\rho$ is the density, $p$ is the pressure field, and $\nu$ is the kinematic viscosity. A more tangible notation of these equations is obtained by writing them in their vector component forms and by utilizing Einstein's summation convention:
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -18,7 +18,7 @@ where $\mathbf{u}$ is the velocity field, $t$ is the time, $\rho$ is the density
     \label{eq:momentumEinstein}
     \frac{\partial u_i}{\partial t} + u_j \frac{\partial u_i}{\partial x_j} &= - \frac{1}{\rho} \frac{\partial p}{\partial x_i} + \nu \frac{\partial^2 u_i}{\partial x_j^2}
 \end{align}
-Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} are dimensional. That is, each parameter such as $u_i$, $p$, and $\nu$ is expressed in terms of a physical quantity. Non-dimensionalization can reduce the number of free parameters and can help to gain a greater insight into the relative size of the various terms present in the equations. The dimensionless parameters are defined as follows:
+Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} are dimensional. That is, each parameter like $u_i$, $p$, and $\nu$ is expressed in terms of a physical quantity. Non-dimensionalization can reduce the number of free parameters and can help to gain a greater insight into the relative size of the terms present in the equations. The dimensionless parameters are defined as follows:
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -37,23 +37,29 @@ Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} are dime
     \label{eq:Re}
     \text{Re} &\equiv \frac{\nu}{UL}
 \end{align}
-where $U$ is the velocity scale and $L$ is the length scale of the flow. Multiplication of Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} by $\frac{L}{U}$ and $\frac{L}{U^2}$, respectively, gives
+where $U$ is the velocity scale and $L$ is the length scale of the flow. 
+
+Multiplication of Equations \eqref{eq:continuityEinstein} and \eqref{eq:momentumEinstein} by $L / U$ and $L / U^2$, respectively, gives
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
+    \label{eq:NS1}
     \frac{L}{U} \frac{\partial u_i}{\partial x_i} &= 0 \\
     \tag{{\theequation}b}
+    \label{eq:NS2}
     \frac{L}{U^2} \frac{\partial u_i}{\partial t} + \frac{L}{U^2} u_j \frac{\partial u_i}{\partial x_j} &= - \frac{L}{U^2} \frac{1}{\rho} \frac{\partial p}{\partial x_i} + \frac{L}{U^2} \nu \frac{\partial^2 u_i}{\partial x_j^2}
 \end{align}
-Rearrangement yields
+Rearrangement of Equations \eqref{eq:NS1} and \eqref{eq:NS2} yields
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
+    \label{eq:NS3}
     \frac{\partial \frac{u_i}{U}}{\partial \frac{x_i}{L}} &= 0 \\
     \tag{{\theequation}b}
+    \label{eq:NS4}
     \frac{\partial \frac{u_i}{U}}{\partial t \frac{U}{L}} + \frac{u_j}{U} \frac{\partial \frac{u_i}{U}}{\partial \frac{x_j}{L}} &= - \frac{1}{\rho} \frac{\partial \frac{p}{U^2}}{\partial \frac{x_i}{L}} + \frac{\nu}{UL} \frac{\partial^2 \frac{u_i}{U}}{\partial \frac{x_j}{L} \partial \frac{x_j}{L}}
 \end{align}
-Substituting Equations \eqref{eq:nondimu}--\eqref{eq:Re}, we obtain
+Substituting Equations \eqref{eq:nondimu}--\eqref{eq:Re} into Equations \eqref{eq:NS3} and \eqref{eq:NS4}, we obtain
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -61,14 +67,15 @@ Substituting Equations \eqref{eq:nondimu}--\eqref{eq:Re}, we obtain
     \tag{{\theequation}b}
     \frac{\partial u_i^*}{\partial t^*} + u_j^* \frac{\partial u_i^*}{\partial x_j^*} &= - \frac{\partial p^*}{\partial x_i^*} + \frac{1}{\text{Re}} \frac{\partial^2 u_i^*}{\partial x_j^* \partial x_j^*}
 \end{align}
+or
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
-    &\text{or}& \nabla \cdot \mathbf{u}^* &= 0 && \\
+    & & \nabla \cdot \mathbf{u}^* &= 0 && \\
     \tag{{\theequation}b}
     & & \frac{\partial \mathbf{u}^*}{\partial t^*} + \left( \mathbf{u}^* \cdot \nabla \right) \mathbf{u}^* &= - \nabla p^* + \frac{1}{\text{Re}} \nabla^2 \mathbf{u}^* &&
 \end{flalign}
-Because it is now understood that the governing equations are dimensionless, the asterisk will be omitted in the remainder of this report.
+Because it is now understood that the governing equations are dimensionless, the asterisk will be omitted in the remainder of this report. Thus,
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -76,7 +83,7 @@ Because it is now understood that the governing equations are dimensionless, the
     \tag{{\theequation}b}
     \frac{\partial \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= - \nabla p + \frac{1}{\text{Re}} \nabla^2 \mathbf{u} \label{eq:momentum}
 \end{align}
-For reasons that will be the subject of Chapter \ref{cha:mathematics}, it is convenient to rewrite the Navier-Stokes equations in terms of the divergence, curl, and gradient operator. Consider the following vector identities: if $\mathbf{u}$ is a three-dimensional vector field, then
+For reasons that will be the subject of Chapter \ref{cha:mathematics}, it is convenient to rewrite the Navier-Stokes equations in terms of the divergence, curl, and gradient operators. Consider the following vector identities: if $\mathbf{u}$ is a three-dimensional vector field, then
 \begin{flalign}
     & & \nabla^2 \mathbf{u} &= \nabla \left( \nabla \cdot \mathbf{u} \right) - \nabla \times \left( \nabla \times \mathbf{u} \right) && \\
     &\text{and}& \left( \mathbf{u} \cdot \nabla \right) \mathbf{u} &= \nabla \left( \frac{1}{2} \left\Vert \mathbf{u} \right\Vert^2 \right) - \mathbf{u} \times \left( \nabla \times \mathbf{u} \right) &&
@@ -119,3 +126,5 @@ Thus, the final system of equations is given by:
     \tag{{\theequation}c}
     &\text{Momentum equation:}& &\frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla P + \frac{1}{\text{Re}} \nabla \times \xi = 0 &&
 \end{flalign}
+
+% Checked 4/24/16 8:12 PM

@@ -1,6 +1,6 @@
 \section{Structure of the Navier-Stokes Equations}
 
-Recall the system of equations derived in Chapter \ref{cha:physics}:
+Recall the dimensionless incompressible Navier-Stokes equations that we derived in Chapter \ref{cha:physics}:
 \begin{flalign}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -10,7 +10,7 @@ Recall the system of equations derived in Chapter \ref{cha:physics}:
     \tag{{\theequation}c}
     &\text{Momentum equation:}& &\frac{\partial \mathbf{u}}{\partial t} - \mathbf{u} \times \xi + \nabla P + \frac{1}{\text{Re}} \nabla \times \xi = 0 &&
 \end{flalign}
-Let us first add superscripts to denote the dimensions of the $k$-cochains:
+These equations contain the variables that we defined on the elements of the mesh. Let us add superscripts to the variables to indicate that they are $k$-cochains and to indicate their dimension:
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
@@ -20,11 +20,13 @@ Let us first add superscripts to denote the dimensions of the $k$-cochains:
     \tag{{\theequation}c}
     &\frac{\partial \mathbf{u}^{(1)}}{\partial t} - \mathbf{u}^{(1)} \times \xi^{(2)} + \nabla P^{(0)} + \frac{1}{\text{Re}} \nabla \times \xi^{(2)} = 0 \label{eq:momentumCochains}
 \end{align}
-To make these equations consistent, all terms within an equation must be reduced to $k$-cells of the same dimension \emph{and} orientation. For example, it is not allowed to equate 2-cochains and 1-cochains, let alone of different orientations.
+To make these equations consistent, all terms within an equation \emph{must} be reduced to $k$-cells of the same dimension \emph{and} orientation. For example, equating 2-cochains and 1-cochains, especially of different orientations, is an invalid operation.
+
+\newpage
 
 \subsection{Continuity Equation}
 
-The continuity equation, Equation \eqref{eq:continuityCochains}, involves the divergence operator. The divergence operator is equivalent to a $\xymatrix{*+[o][F-]{1}}$ mapping of velocity to mass flow and a $\xymatrix{*+[o][F-]{2}}$ subsequent application of the curl operator. These two operations are annotated in the double DeRham complex: 
+The continuity equation, Equation \eqref{eq:continuityCochains}, involves the divergence operator. The divergence operator is equivalent to $\xymatrix{*+[o][F-]{1}}$ a mapping of velocity to mass flow and $\xymatrix{*+[o][F-]{2}}$ a subsequent application of the curl operator. These two operations are annotated in the double DeRham complex below: 
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{
@@ -38,11 +40,11 @@ Thus, Equation (3.13a) is equivalent to
 \begin{equation}
     \tilde{\mathbb{E}}^{(2,1)} \mathbb{H}^{(\tilde{1},1)} \mathbf{u}^{(1)} = 0
 \end{equation}
-which is in turn equivalent to writing $\mathbf{\tilde{S}}^{(2)} = 0$. Recall that the physical interpretation of $\mathbf{\tilde{S}}$ is the rate of mass production within the planes that compose the mesh. Thus, $\mathbf{\tilde{S}}^{(2)} = 0$ implies that the net production of mass equals zero, which is precisely what the continuity equation tells us.
+which is in turn equivalent to writing $\mathbf{\tilde{S}}^{(2)} = 0$. Recall that the physical interpretation of $\mathbf{\tilde{S}}$ is the rate of mass production within the planes that compose the mesh. Thus, $\mathbf{\tilde{S}}^{(2)} = 0$ implies that the net production of mass equals zero, which is precisely what the continuity equation represents.
 
 \subsection{Velocity-Vorticity relation}
 
-The velocity-vorticity relation states that vorticity, $\mathbf{\xi}$, is equal to the curl of velocity, $\mathbf{u}$. This represents a mapping from an inner-oriented 1-cochain to an inner-oriented 2-cochain. This operation is represented by a single jump in the double DeRham complex, denoted $\xymatrix{*+[o][F-]{1}}$ in the double DeRham complex:
+The velocity-vorticity relation states that vorticity, $\mathbf{\xi}$, is equal to the curl of velocity, $\mathbf{u}$. This represents a mapping from an inner-oriented 1-cochain to an inner-oriented 2-cochain. This operation is represented by a single jump in the double DeRham complex, denoted $\xymatrix{*+[o][F-]{1}}$ in the double DeRham complex below:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{
@@ -57,6 +59,8 @@ Equation \ref{eq:velocityVorticityCochains} can therefore be written as
     \xi^{(2)} = \mathbb{E}^{(2,1)} \mathbf{u}^{(1)}
 \end{equation}
 
+\newpage
+
 \subsection{Momentum Equation}
 
 The momentum equation involves three terms that must be expressed in terms of incidence and Hodge matrices:
@@ -66,10 +70,9 @@ The momentum equation involves three terms that must be expressed in terms of in
     \item $\nabla \times \mathbf{\xi}^{(2)}$
 \end{enumerate}
 
+The cross product $\mathbf{u}^{(1)} \times \mathbf{\xi}^{(2)}$ represents the nonlinear convective term of the Navier-Stokes equations and is a special case. We will therefore replace the nonlinear term by a generic vector named ``convective'' that will be derived at a later stage.
 
-The cross product $\mathbf{u}^{(1)} \times \mathbf{\xi}^{(2)}$ represents the nonlinear convective term of the Navier-Stokes equations and is a bit of a special case. We will therefore replace the nonlinear term by a generic vector named ``convective'', to be derived at a later stage.
-
-The pressure gradient, $\nabla P^{(0)}$, represents a mapping from an inner-oriented 0-cochain to an inner-oriented 1-cochain. This mapping is denoted $\xymatrix{*+[o][F-]{1}}$  in the double DeRham complex:
+The pressure gradient $\nabla P^{(0)}$ represents a map from an inner-oriented 0-cochain to an inner-oriented 1-cochain. This mapping is denoted $\xymatrix{*+[o][F-]{1}}$  in the double DeRham complex below:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{
@@ -80,7 +83,9 @@ The pressure gradient, $\nabla P^{(0)}$, represents a mapping from an inner-orie
     \label{eq:DeRhamPressure}
 \end{equation}
 
-The third term, the curl of vorticity or the curl of the curl of velocity, is less straighforward. Both velocity and vorticity are vector fields. Within the realms of ordinary calculus, there would be no difference between the two. However, within the realms of discrete exterior calculus, there is an important distinction: velocity is an integral value associated with lines whereas vorticity is an integral value associated with surfaces. So the only way to apply the curl operator to velocity a second time is to take a slight detour accross the double DeRham complex. First, apply the curl operator to velocity as usual, denoted $\xymatrix{*+[o][F-]{1}}$. Second, map vorticity to its outer oriented counterpart, the stream function, denoted $\xymatrix{*+[o][F-]{2}}$. Third, apply the gradient operator (which is the transpose of the curl operator, $\mathbb{E}^{(2,1)}$, as we shall soon see) to obtain mass flow, denoted $\xymatrix{*+[o][F-]{3}}$. Last but not least, map the mass flow to velocity, denoted $\xymatrix{*+[o][F-]{4}}$, because we eventually want all quantities in the momentum equation to be expressed in terms of velocity. This chain of mappings is graphically depicted in the double DeRham complex:
+The third term is not as straightforward. Both velocity and vorticity are vector fields and there would be no difference between the two in conventional vector calculus. However, within the realms of DEC, there is an important distinction between the two: velocity is an integral value associated with lines whereas vorticity is an integral value associated with surfaces.
+
+First, apply the curl operator to velocity as usual, denoted $\xymatrix{*+[o][F-]{1}}$. Second, map vorticity to its outer oriented counterpart, the stream function, denoted $\xymatrix{*+[o][F-]{2}}$. Third, apply the gradient operator (which is the transpose of the curl operator $\mathbb{E}^{(2,1)}$ as we shall soon see) to obtain mass flow, denoted $\xymatrix{*+[o][F-]{3}}$. Last, map the mass flow to velocity, denoted $\xymatrix{*+[o][F-]{4}}$. This chain is graphically depicted in the double DeRham complex below:
 \begin{equation}
     \begin{gathered}
         \xymatrix@=20ex{
@@ -95,9 +100,9 @@ Hence, Equation \ref{eq:momentumCochains} can be written as
     \frac{\partial \mathbf{u}^{(1)}}{\partial t} + \text{convective}^{(1)} + \mathbb{E}^{(1,0)} P^{(0)} + \frac{1}{\text{Re}} \mathbb{H}^{(1,\tilde{1})} \tilde{\mathbb{E}}^{(1,0)} \mathbb{H}^{(\tilde{0},2)} \mathbb{E}^{(2,1)} \mathbf{u}^{(1)} = 0
 \end{equation}
 
-\subsection{Summary}
+\subsection{The Navier-Stokes Equations in Terms of Incidence and Hodge Matrices}
 
-The Navier-Stokes equations are rewritten in terms of incidence matrices and Hodge matrices, as follows:
+Thus, the Navier-Stokes equations can be rewritten in terms of incidence matrices and Hodge matrices as follows:
 \begin{align}
     \stepcounter{equation}
     \tag{{\theequation}a}
