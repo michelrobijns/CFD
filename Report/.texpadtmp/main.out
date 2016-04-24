@@ -12,7 +12,7 @@
 \BOOKMARK [1][-]{section.3.7}{Physical Representation}{chapter.3}% 12
 \BOOKMARK [1][-]{section.3.8}{Structure of the Navier-Stokes Equations}{chapter.3}% 13
 \BOOKMARK [1][-]{section.3.9}{The Incidence Matrices and Hodge Matrices}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.10}{Time Marching}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.10}{Time-Marching}{chapter.3}% 15
 \BOOKMARK [0][-]{chapter.4}{Code}{}% 16
 \BOOKMARK [1][-]{section.4.1}{The Simulation Loop}{chapter.4}% 17
 \BOOKMARK [1][-]{section.4.2}{Baseline Implementation}{chapter.4}% 18

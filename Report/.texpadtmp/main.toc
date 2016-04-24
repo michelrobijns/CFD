@@ -58,7 +58,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.9.7}The Convective Term}{24}{subsection.3.9.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.10}Time Marching}{26}{section.3.10}
+\contentsline {section}{\numberline {3.10}Time-Marching}{26}{section.3.10}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Code}{28}{chapter.4}
 \defcounter {refsection}{0}\relax 
