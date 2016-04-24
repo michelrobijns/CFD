@@ -1,4 +1,4 @@
-\section{Convergence, Timestep, and Tolerance}
+\section{Convergence}
 
 The program requires four arguments:
 \begin{enumerate}
@@ -13,7 +13,7 @@ The simulation will halt when
 \begin{equation}
     \frac{ \text{max} \left( \left| \mathbf{u}^n - \mathbf{u}^{n-1} \right| \right) }{\Delta t} < \text{tol}
 \end{equation}
-where tol is an abbreviation for tolerance. A tolerance of $1 \cdot 10^{-5}$ turned out to be a reasonable compromise between accuracy and execution time. The Reynolds number was fixed at 1000 to match the benchmark results. The number of planes in the horizontal and vertical direction $N$ was increased from 16 to 64 with three intermediate steps. The timestep $\Delta t$ is highly dependent on $N$; in certain numerical methods, it is crucial to choose the timestep such that the flow does not cover a distance larger than the smallest mesh spacing within $\Delta t$. This is known as the Courant–Friedrichs–Lewy (CFL) condition:
+where tol is an abbreviation of tolerance. A tolerance of $1 \cdot 10^{-5}$ turned out to be a reasonable compromise between accuracy and execution time. The Reynolds number was fixed at 1000 to match the benchmark results. The number of planes in the horizontal and vertical direction $N$ was increased from 16 to 64 with three intermediate steps. The timestep $\Delta t$ is highly dependent on $N$; in certain numerical methods, it is crucial to choose the timestep such that the flow does not cover a distance larger than the smallest mesh spacing within $\Delta t$. This condition is known as the Courant–Friedrichs–Lewy (CFL) condition:
 \begin{equation}
     C = \frac{u \Delta t}{\Delta x} \leq C_{\text{max}}
 \end{equation}

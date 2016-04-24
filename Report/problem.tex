@@ -1,34 +1,35 @@
 \section{The Lid-Driven Cavity Flow Problem}
 
-The incompressible dimensionless Navier-Stokes equations will be solved on the two-dimensional square domain $\Omega \equiv \left[ 0, 1 \right] \times \left[ 0, 1 \right]$, shown in Figure \ref{fig:problem}. The boundary of $\Omega$ is defined as $\partial \Omega \equiv \Gamma_1 \cup \Gamma_2 \cup \Gamma_3 \cup \Gamma_4$. 
+The incompressible dimensionless Navier-Stokes equations will be solved on the two-dimensional square domain $\Omega \equiv \left[ 0, 1 \right] \times \left[ 0, 1 \right]$, shown in Figure \ref{fig:problem}. The boundary of $\Omega$ is defined as 
+\begin{equation}
+    \partial \Omega \equiv \Gamma_1 \cup \Gamma_2 \cup \Gamma_3 \cup \Gamma_4 
+\end{equation}
 
-The top boundary or "lid" of $\Omega$, $\Gamma_3$, imposes a shear stress on the fluid by moving leftward with a velocity of unity, hence the name lid-driven cavity flow problem. Thus, the boundary conditions are $\left. \mathbf{u} \right|_{\Gamma_3} = (-1, 0)$ and $\left. \mathbf{u} \right|_{\Gamma_1} = \left. \mathbf{u} \right|_{\Gamma_2} = \left. \mathbf{u} \right|_{\Gamma_4} = (0, 0)$. At $t = 0$, the fluid is at rest. That is, $ \left. \mathbf{u} \right|_{t = 0} \equiv 0$.
+The top boundary or "lid" of $\Omega$, $\Gamma_3$, imposes a shear stress on the fluid by moving leftward with a velocity of unity, hence the name lid-driven cavity flow problem. Thus, the boundary conditions are $\left. \mathbf{u} \right|_{\Gamma_3} = (-1, 0)$ and $\left. \mathbf{u} \right|_{\Gamma_1} = \left. \mathbf{u} \right|_{\Gamma_2} = \left. \mathbf{u} \right|_{\Gamma_4} = (0, 0)$. At $t = 0$, the fluid is at rest. That is, $ \left. \mathbf{u} \right|_{t = 0} = 0$.
 
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
         % Draw lines
-        \foreach \i in {0,6} {
-            \draw (\i,0) -- (\i,6);
-            \draw (0,\i) -- (6,\i);
+        \foreach \i in {0,5} {
+            \draw (\i,0) -- (\i,5);
+            \draw (0,\i) -- (5,\i);
         }
         % Draw x-axis and y-axis
-        \draw [dashed, ->] (6,0) -- (7,0) node [right] {x};
-        \draw [dashed, ->] (0,6) -- (0,7) node [above] {y};
+        \draw [dashed, ->] (5,0) -- (6,0) node [right] {x};
+        \draw [dashed, ->] (0,5) -- (0,6) node [above] {y};
         % Label corner points
         \node[below left=1ex] at (0,0) {$0$};
-        \node[below=1ex] at (6,0) {$1$};
-        \node[left=1ex] at (0,6) {$1$};
+        \node[below=1ex] at (5,0) {$1$};
+        \node[left=1ex] at (0,5) {$1$};
         % Label domain
-        \node at (3,3) {$\Omega$};
+        \node at (2.5,2.5) {$\Omega$};
         % Label boundaries
-        \node[above=1ex] at (3,6) {$\Gamma_3$};
-        \node[below=1ex] at (3,0) {$\Gamma_1$};
-        \node[left=1ex] at (0,3) {$\Gamma_4$};
-        \node[right=1ex] at (6,3) {$\Gamma_2$};
+        \node[above=1ex] at (2.5,5) {$\Gamma_3$};
+        \node[below=1ex] at (2.5,0) {$\Gamma_1$};
+        \node[left=1ex] at (0,2.5) {$\Gamma_4$};
+        \node[right=1ex] at (5,2.5) {$\Gamma_2$};
     \end{tikzpicture}
     \caption{The lid-driven cavity flow problem.}
     \label{fig:problem}
 \end{figure}
-
-% Checked 4/24/16 8:12 PM

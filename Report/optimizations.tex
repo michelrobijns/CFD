@@ -4,7 +4,7 @@ The code in Listing \ref{lst:naive} can be optimized to run faster and consume l
 
 \subsection{Common Sense Optimizations}
 
-It may sound a bit strange, but one of the most elementary optimization techniques is to simply do \emph{less work}. The code in Listing \ref{lst:naive} contains ten matrix-matrix multiplications of $O(N^3)$, five matrix-vector multiplications of $O(N^2)$, and one matrix solve of $O(N^3)$. The code can be rearranged in such a way that the loop only contains four matrix-vector multiplications of $O(N^2)$ and one matrix solve of $O(N^3)$. That is, \emph{all} matrix-matrix multiplications, which are by far the most expensive operations, can be avoided in their entirety. 
+It may sound a bit strange, but one of the most elementary optimization techniques is to simply do \emph{less work}. The code in Listing \ref{lst:naive} contains ten matrix-matrix multiplications of $O(N^3)$, five matrix-vector multiplications of $O(N^2)$, and one matrix solve of $O(N^3)$. The code can be rearranged in such a way that the loop only contains four matrix-vector multiplications of $O(N^2)$ and one matrix solve of $O(N^3)$ \parencite{hager2010introduction}. That is, \emph{all} matrix-matrix multiplications, which are by far the most expensive operations, can be avoided in their entirety. 
 
 It should not come as a surprise that such an optimized loop is \emph{much} faster than the naive implementation above. To be specific, the factor of speedup with respect to the naive implementation for $N = 16$ and $\Delta t = 0.05$ is around 12. That means, in practical terms, that a simulation of an hour reduces to merely five minutes. Let us look at where the code can be rearranged to yield better performance:
 \begin{enumerate}
@@ -42,7 +42,7 @@ while diff > tol:
 
 \subsection{Advanced Optimizations}
 
-The code in listing \ref{lst:optimized1} is still of $O(N^3)$ because it contains a matrix solve of $O(N^3)$. That is, assuming the underlying implementation of the \lstinline|solve(A, f)| function uses a direct solution method like LU factorization. Without going into too much detail, let us take a quick look at LU factorization. The first step of LU factorization is factorizing the matrix of coefficients $A$ into the product of a lower triangular matrix $L$ and an upper triangular matrix $U$, hence the name LU factorization. The system $A \mathbf{P} = \mathbf{f}$ then becomes
+The code in listing \ref{lst:optimized1} is still of $O(N^3)$ because it contains a matrix solve of $O(N^3)$. That is, assuming the underlying implementation of the \lstinline|solve(A, f)| function uses a direct solution method like LU factorization. Without going into too much detail, let us take a quick look at LU factorization. The first step of LU factorization is factorizing the matrix $A$ into the product of a lower triangular matrix $L$ and an upper triangular matrix $U$. The system $A \mathbf{P} = \mathbf{f}$ then becomes
 \begin{equation}
     \label{eq:LU1}
     LU \mathbf{P} = \mathbf{b}
@@ -57,9 +57,9 @@ and then solving
     \label{eq:LU3}
     U \mathbf{P} = \mathbf{x}
 \end{equation}
-Solving the systems in Equations \eqref{eq:LU2} and \eqref{eq:LU3} is trivial because $L$ and $U$ are triangular matrices. Factorizing the system $A \mathbf{P} = \mathbf{f}$ into  Equation \eqref{eq:LU1} is called the factorization stage and is an operation of order $O(N^3)$. Solving the systems in Equations \eqref{eq:LU2} and \eqref{eq:LU3} is called the solve stage and is an operation of order $O(N^2)$.
+Solving Equations \eqref{eq:LU2} and \eqref{eq:LU3} is trivial because $L$ and $U$ are triangular matrices. Factorizing the system $A \mathbf{P} = \mathbf{f}$ into  Equation \eqref{eq:LU1} is called the factorization stage and is an operation of order $O(N^3)$. Solving the systems in Equations \eqref{eq:LU2} and \eqref{eq:LU3} is called the solve stage and is an operation of order $O(N^2)$ \parencite{golub2012matrix}.
 
-Just like it does not make sense to recompute the pressure matrix $A$ in every iteration of the simulation loop, it does also not make much sense to redo the factorization stage in every iteration of the loop. After all, if the matrix $A$ does not change, then the matrices $L$ and $U$ cannot change either. It would be more efficient to move the factorization state out of the loop and to keep the solve stage inside the loop. Doing so reduces the order of the loop from $O(N^3)$ to $O(N^2)$ because all there is left inside the loop are matrix-vector multiplications and the solve stage, both of which are of $O(N^2)$. Listing \ref{lst:optimized2} shows the simulation loop incorporating this improvement.
+It does not make sense to factorize the matrix $A$ in every iteration of the loop. If $A$ does not change, then the matrices $L$ and $U$ do not change either. It would be wise to move the factorization state out of the loop and to keep the solve stage inside the loop. Doing so reduces the order of the loop from $O(N^3)$ to $O(N^2)$ because all there is left inside the loop are matrix-vector multiplications and the solve stage, both of which are of $O(N^2)$. Listing \ref{lst:optimized2} shows the simulation loop incorporating this improvement.
 
 \begin{lstlisting}[caption=Code excerpt after moving the factorization stage., label=lst:optimized2]
 C0 = Ht02 * E21
@@ -88,7 +88,7 @@ Further optimizing the code starts to get substantially harder from here. There 
 
 \subsubsection{Using \texttt{ATLAS} as a Replacement for \texttt{BLAS}}
 
-The \texttt{numpy} library is essentially a wrapper around the \texttt{BLAS} (Basic Linear Algebra Subprograms) and \texttt{LAPACK} libraries. Most implementations of \texttt{BLAS} are open source. Therefore, \texttt{BLAS} comes in many flavors and some are more performant than others. I replaced my particular \texttt{BLAS} library with \texttt{ATLAS} (Automatically Tuned Linear Algebra Software), which is fully multithreaded and must be compiled from source so that it can automatically tune itself for the system that it is being compiled on. Using \texttt{ATLAS} over the default \texttt{BLAS} library resulted in a large performance increase.
+The \texttt{numpy} library is essentially a wrapper around the \texttt{BLAS} (Basic Linear Algebra Subprograms) and \texttt{LAPACK} libraries. Most implementations of \texttt{BLAS} are open source. Therefore, \texttt{BLAS} comes in many flavors and some are more performant than others. I replaced my particular \texttt{BLAS} library with \texttt{ATLAS} (Automatically Tuned Linear Algebra Software), which is fully multithreaded and must be compiled from source so that it can automatically tune itself for the system that it is being compiled on \parencite{whaley1997automatically}. Using \texttt{ATLAS} over the default \texttt{BLAS} library resulted in a large performance increase.
 
 \subsubsection{A Native \texttt{C} Implementation}
 
@@ -98,7 +98,7 @@ Calling \texttt{ATLAS} subroutines natively from \texttt{C} allows you to combin
 \begin{equation}
     \mathbf{y} \coloneqq \alpha A \mathbf{x} + \beta \mathbf{y}
 \end{equation}
-with one function call. This allows you to replace line 13 in Listing \ref{lst:optimized2} with one call of \texttt{SGEMV()}, where $\alpha = 1 / \text{Re}$, $A = \text{\lstinline|C2|}$, $\mathbf{x} = \mathbf{u}$, $\mathbf{y} = \text{\lstinline|C3|} + \text{convective}$, and $\beta = 1$.
+with one function call \parencite{anderson1999lapack}. This allows you to replace line 13 in Listing \ref{lst:optimized2} with one call of \texttt{SGEMV()}, where $\alpha = 1 / \text{Re}$, $A = \text{\lstinline|C2|}$, $\mathbf{x} = \mathbf{u}$, $\mathbf{y} = \text{\lstinline|C3|} + \text{convective}$, and $\beta = 1$.
         
 I decided to write a second implementation of the simulation in \texttt{C} for two reasons: first, to have compiled and therefore inherently fast versions of all functions, including the function \lstinline|generate_convective()|, and second, because it allows you to call \texttt{ATLAS} routines directly and use it to combine certain mathematical operations like matrix-vector multiplications and vector-vector additions.
 

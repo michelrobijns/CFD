@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 APR 2016 00:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 APR 2016 01:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1699,12 +1699,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [34
 
-] [35] [36] <Images/streamFunction.pdf, id=677, 562.1pt x 580.1675pt>
+] [35] [36] <Images/streamFunction.pdf, id=686, 562.1pt x 580.1675pt>
 File: Images/streamFunction.pdf Graphic file (type pdf)
  <use Images/streamFunction.pdf>
 Package pdftex.def Info: Images/streamFunction.pdf used on input line 115.
 (pdftex.def)             Requested size: 311.30879pt x 321.31511pt.
- <Images/streamFunction.png, id=678, 293.77756pt x 293.95822pt>
+ <Images/streamFunction.png, id=687, 293.77756pt x 293.95822pt>
 File: Images/streamFunction.png Graphic file (type png)
  <use Images/streamFunction.png>
 Package pdftex.def Info: Images/streamFunction.png used on input line 122.
@@ -1713,17 +1713,17 @@ File: Images/vorticity.pdf Graphic file (type pdf)
  <use Images/vorticity.pdf>
 Package pdftex.def Info: Images/vorticity.pdf used on input line 129.
 (pdftex.def)             Requested size: 311.30879pt x 321.31511pt.
- <Images/vorticity.png, id=682, 293.4162pt x 295.76497pt>
+ <Images/vorticity.png, id=691, 293.4162pt x 295.76497pt>
 File: Images/vorticity.png Graphic file (type png)
  <use Images/vorticity.png>
 Package pdftex.def Info: Images/vorticity.png used on input line 136.
 (pdftex.def)             Requested size: 311.30879pt x 313.80722pt.
- <Images/pressure.pdf, id=685, 562.1pt x 580.1675pt>
+ <Images/pressure.pdf, id=694, 562.1pt x 580.1675pt>
 File: Images/pressure.pdf Graphic file (type pdf)
  <use Images/pressure.pdf>
 Package pdftex.def Info: Images/pressure.pdf used on input line 143.
 (pdftex.def)             Requested size: 311.30879pt x 321.31511pt.
- <Images/pressure.png, id=686, 296.12633pt x 294.8616pt>
+ <Images/pressure.png, id=695, 296.12633pt x 294.8616pt>
 File: Images/pressure.png Graphic file (type png)
  <use Images/pressure.png>
 Package pdftex.def Info: Images/pressure.png used on input line 150.
@@ -1842,19 +1842,19 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
  ) 
 Here is how much of TeX's memory you used:
- 34106 strings out of 493089
- 596213 string characters out of 6134842
- 1145939 words of memory out of 5000000
- 36550 multiletter control sequences out of 15000+600000
+ 34119 strings out of 493089
+ 596599 string characters out of 6134842
+ 1146087 words of memory out of 5000000
+ 36558 multiletter control sequences out of 15000+600000
  302825 words of font info for 348 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,20n,80p,3236b,1618s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_z254vq.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineTZ.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/fxlri-5letters.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/rtxmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/txex-bar.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txexa.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xycmat10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xycmbt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on /Users/michel/Desktop/cfd/Report/.texpadtmp/main.pdf (45 pages, 2042104 bytes).
+Output written on /Users/michel/Desktop/cfd/Report/.texpadtmp/main.pdf (45 pages, 2054194 bytes).
 PDF statistics:
- 893 PDF objects out of 1000 (max. 8388607)
- 800 compressed objects within 8 object streams
- 284 named destinations out of 1000 (max. 500000)
+ 905 PDF objects out of 1000 (max. 8388607)
+ 811 compressed objects within 9 object streams
+ 289 named destinations out of 1000 (max. 500000)
  275 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -20,11 +20,12 @@
 \refsection{0}
   \sortlist{none}{none}
     \entry{botella1998benchmark}{article}{}
-      \name{author}{1}{}{%
-        {{hash=23fa4911e2cfdd09fd6ce4bcedb3396a}{O.\bibnamedelimi Botella}{O\bibinitperiod\bibinitdelim B\bibinitperiod}{R.\bibnamedelimi Peyret}{R\bibinitperiod\bibinitdelim P\bibinitperiod}{}{}{}{}}%
+      \name{author}{2}{}{%
+        {{hash=84b7294d772ad46ac298c6942d0411b4}{Botella}{B\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=d3cc300f95855f0a0ab56414280c1da0}{Peyret}{P\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
       }
-      \strng{namehash}{23fa4911e2cfdd09fd6ce4bcedb3396a}
-      \strng{fullhash}{23fa4911e2cfdd09fd6ce4bcedb3396a}
+      \strng{namehash}{1dee282ce123ff1e7e439cf09299c84b}
+      \strng{fullhash}{1dee282ce123ff1e7e439cf09299c84b}
       \field{sortinit}{0}
       \field{sortinithash}{990108227b3316c02842d895999a0165}
       \field{labelnamesource}{author}
@@ -125,6 +126,95 @@
       \field{title}{Discrete, Circulation-Preserving, and Stable Simplicial Fluids}
       \field{type}{mathesis}
       \field{year}{2005}
+    \endentry
+    \entry{hager2010introduction}{book}{}
+      \name{author}{2}{}{%
+        {{hash=9e49d522461c2d5d9e44584ac6102f43}{Hager}{H\bibinitperiod}{Georg}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0623d76ccb0e0ac76b02be5a26c96d44}{Wellein}{W\bibinitperiod}{Gerhard}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{e44c0571bb2b75487dea9ffb739a0344}
+      \strng{fullhash}{e44c0571bb2b75487dea9ffb739a0344}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1}
+      \field{isbn}{978-1-4398-1192-4}
+      \field{series}{Computational Science Series}
+      \field{title}{Introduction to High Performance Computing for Scientists and Engineers}
+      \field{year}{2010}
+    \endentry
+    \entry{golub2012matrix}{book}{}
+      \name{author}{2}{}{%
+        {{hash=3c65680c281c2bfde8e64cabbf12e1fc}{Golub}{G\bibinitperiod}{Gene\bibnamedelima H.}{G\bibinitperiod\bibinitdelim H\bibinitperiod}{}{}{}{}}%
+        {{hash=6a6f899cb1ee48fbd4bf00b718008f29}{Loan}{L\bibinitperiod}{Charles\bibnamedelimb F.\bibnamedelimi Van}{C\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim V\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {John Hopkins University Press}%
+      }
+      \strng{namehash}{39f5222c98962e46f4f62190f1d1484b}
+      \strng{fullhash}{39f5222c98962e46f4f62190f1d1484b}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4}
+      \field{isbn}{978-1-4214-0794-4}
+      \field{series}{John Hopkins Studies in Mathematical Sciences}
+      \field{title}{Matrix Computations}
+      \field{year}{2012}
+    \endentry
+    \entry{whaley1997automatically}{report}{}
+      \name{author}{2}{}{%
+        {{hash=7658f9aa85949b7de3dded8e180bcab4}{Whaley}{W\bibinitperiod}{Clint}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=b57e9502ada0493415564206d6641312}{Dongarra}{D\bibinitperiod}{Jack}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {University of Tennessee}%
+      }
+      \strng{namehash}{40eafb432e64a76aa38f935ae5b143b7}
+      \strng{fullhash}{40eafb432e64a76aa38f935ae5b143b7}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{12}
+      \field{number}{UT-CS-97-366}
+      \field{title}{Automatically Tuned Linear Algebra Software}
+      \field{type}{techreport}
+      \field{year}{1997}
+    \endentry
+    \entry{anderson1999lapack}{book}{}
+      \name{author}{11}{}{%
+        {{hash=a6b054b44970ea267214ae1873e349cb}{Anderson}{A\bibinitperiod}{E.}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=cc480785253301a136af4473ee43a374}{Bai}{B\bibinitperiod}{Z.}{Z\bibinitperiod}{}{}{}{}}%
+        {{hash=74b91212518eb2347d71b46c280c483f}{Bischof}{B\bibinitperiod}{C.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=ffc03fdd8c14576496055c5fc6d254b8}{Blackford}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=6edd947599df9077226e157129f2fbf9}{Demmel}{D\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=5d4f6ca77b2aa1f2b750f47b2c2fa826}{Dongarra}{D\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=8e3e0b2f8c69ddad5af59da0872c3e7c}{Du\bibnamedelima Croz}{D\bibinitperiod\bibinitdelim C\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=1115f2e33b7df36bd1a6ff404691c8d8}{Greenbaum}{G\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=76b4f5b28dd4aaeb0413bd115adbbc0d}{Hammarling}{H\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=8a1b563e861ed94e6d0196fd01d69733}{McKenney}{M\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=78de383bf12ac0b5f6101283c0e4d890}{Sorensen}{S\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{2}{%
+        {Society for Industrial}%
+        {Applied Mathematics}%
+      }
+      \strng{namehash}{1fe296ca587b42d50622702fd6992704}
+      \strng{fullhash}{3bc91b404731ab422636c8f692868ee6}
+      \field{sortinit}{0}
+      \field{sortinithash}{990108227b3316c02842d895999a0165}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{isbn}{0-89871-447-8 (paperback)}
+      \field{title}{{LAPACK} Users' Guide}
+      \field{year}{1999}
     \endentry
   \endsortlist
 \endrefsection

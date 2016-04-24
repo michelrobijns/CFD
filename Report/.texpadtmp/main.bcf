@@ -2221,10 +2221,10 @@
     <bcf:citekey order="7">gerritsma2014computational</bcf:citekey>
     <bcf:citekey order="8">elcott2005discrete</bcf:citekey>
     <bcf:citekey order="9">hirani2003discrete</bcf:citekey>
-    <bcf:citekey order="10">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="11">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="12">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="13">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="10">hager2010introduction</bcf:citekey>
+    <bcf:citekey order="11">golub2012matrix</bcf:citekey>
+    <bcf:citekey order="12">whaley1997automatically</bcf:citekey>
+    <bcf:citekey order="13">anderson1999lapack</bcf:citekey>
     <bcf:citekey order="14">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="15">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="16">botella1998benchmark</bcf:citekey>
@@ -2236,7 +2236,11 @@
     <bcf:citekey order="22">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="23">botella1998benchmark</bcf:citekey>
     <bcf:citekey order="24">botella1998benchmark</bcf:citekey>
-    <bcf:citekey order="25">elcott2005discrete</bcf:citekey>
+    <bcf:citekey order="25">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="26">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="27">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="28">botella1998benchmark</bcf:citekey>
+    <bcf:citekey order="29">elcott2005discrete</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none" type="entry" sortscheme="none">
   <bcf:sorting>
