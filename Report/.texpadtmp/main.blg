@@ -1,15 +1,15 @@
 [0] Config.pm:324> INFO - This is Biber 2.1
 [0] Config.pm:327> INFO - Logfile is '/Users/michel/Desktop/cfd/Report/.texpadtmp/main.blg'
-[42] biber-darwin:276> INFO - === Mon Apr 25, 2016, 01:22:17
-[42] Biber.pm:333> INFO - Reading '/Users/michel/Desktop/cfd/Report/.texpadtmp/main.bcf'
-[136] Biber.pm:645> INFO - Found 10 citekeys in bib section 0
-[152] Biber.pm:2977> INFO - Processing section 0
-[169] Biber.pm:3115> INFO - Looking for bibtex format file '/Users/michel/Desktop/cfd/Report/bibliography.bib' for section 0
-[172] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
-[172] bibtex.pm:895> INFO - Found BibTeX data source '/Users/michel/Desktop/cfd/Report/bibliography.bib'
-[262] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[262] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[263] Biber.pm:2854> INFO - Sorting list 'none' of type 'entry' with scheme 'none' and locale 'en-US'
-[263] Biber.pm:2858> INFO - No sort tailoring available for locale 'en-US'
-[272] bbl.pm:505> INFO - Writing '/Users/michel/Desktop/cfd/Report/.texpadtmp/main.bbl' with encoding 'UTF-8'
+[45] biber-darwin:276> INFO - === Mon Apr 25, 2016, 01:28:33
+[45] Biber.pm:333> INFO - Reading '/Users/michel/Desktop/cfd/Report/.texpadtmp/main.bcf'
+[134] Biber.pm:645> INFO - Found 10 citekeys in bib section 0
+[153] Biber.pm:2977> INFO - Processing section 0
+[168] Biber.pm:3115> INFO - Looking for bibtex format file '/Users/michel/Desktop/cfd/Report/bibliography.bib' for section 0
+[170] bibtex.pm:1021> INFO - Decoding LaTeX character macros into UTF-8
+[171] bibtex.pm:895> INFO - Found BibTeX data source '/Users/michel/Desktop/cfd/Report/bibliography.bib'
+[260] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[260] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[260] Biber.pm:2854> INFO - Sorting list 'none' of type 'entry' with scheme 'none' and locale 'en-US'
+[260] Biber.pm:2858> INFO - No sort tailoring available for locale 'en-US'
+[271] bbl.pm:505> INFO - Writing '/Users/michel/Desktop/cfd/Report/.texpadtmp/main.bbl' with encoding 'UTF-8'
 [273] bbl.pm:596> INFO - Output to /Users/michel/Desktop/cfd/Report/.texpadtmp/main.bbl

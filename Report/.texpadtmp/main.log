@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 APR 2016 01:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  25 APR 2016 01:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1550,11 +1550,11 @@ LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/bx/n' in size <12> not ava
 (Font)              Font shape `T1/LinuxBiolinumT-TLF/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 72.
- <Images/vorticity.pdf, id=123, 562.1pt x 580.1675pt>
+ <Images/vorticity.pdf, id=123, 562.1pt x 562.1pt>
 File: Images/vorticity.pdf Graphic file (type pdf)
  <use Images/vorticity.pdf>
 Package pdftex.def Info: Images/vorticity.pdf used on input line 72.
-(pdftex.def)             Requested size: 329.61647pt x 340.20662pt.
+(pdftex.def)             Requested size: 329.61647pt x 329.61197pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 14.4pt on input line 72.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
@@ -1699,11 +1699,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [34
 
-] [35] [36] <Images/streamFunction.pdf, id=686, 562.1pt x 580.1675pt>
+] [35] [36] <Images/streamFunction.pdf, id=686, 562.1pt x 562.1pt>
 File: Images/streamFunction.pdf Graphic file (type pdf)
  <use Images/streamFunction.pdf>
 Package pdftex.def Info: Images/streamFunction.pdf used on input line 115.
-(pdftex.def)             Requested size: 311.30879pt x 321.31511pt.
+(pdftex.def)             Requested size: 311.30879pt x 311.30876pt.
  <Images/streamFunction.png, id=687, 293.77756pt x 293.95822pt>
 File: Images/streamFunction.png Graphic file (type png)
  <use Images/streamFunction.png>
@@ -1712,17 +1712,17 @@ Package pdftex.def Info: Images/streamFunction.png used on input line 122.
 File: Images/vorticity.pdf Graphic file (type pdf)
  <use Images/vorticity.pdf>
 Package pdftex.def Info: Images/vorticity.pdf used on input line 129.
-(pdftex.def)             Requested size: 311.30879pt x 321.31511pt.
+(pdftex.def)             Requested size: 311.30879pt x 311.30876pt.
  <Images/vorticity.png, id=691, 293.4162pt x 295.76497pt>
 File: Images/vorticity.png Graphic file (type png)
  <use Images/vorticity.png>
 Package pdftex.def Info: Images/vorticity.png used on input line 136.
 (pdftex.def)             Requested size: 311.30879pt x 313.80722pt.
- <Images/pressure.pdf, id=694, 562.1pt x 580.1675pt>
+ <Images/pressure.pdf, id=694, 562.1pt x 562.1pt>
 File: Images/pressure.pdf Graphic file (type pdf)
  <use Images/pressure.pdf>
 Package pdftex.def Info: Images/pressure.pdf used on input line 143.
-(pdftex.def)             Requested size: 311.30879pt x 321.31511pt.
+(pdftex.def)             Requested size: 311.30879pt x 311.30876pt.
  <Images/pressure.png, id=695, 296.12633pt x 294.8616pt>
 File: Images/pressure.png Graphic file (type png)
  <use Images/pressure.png>
@@ -1732,81 +1732,132 @@ File: Images/streamFunction.png Graphic file (type png)
  <use Images/streamFunction.png>
 Package pdftex.def Info: Images/streamFunction.png used on input line 158.
 (pdftex.def)             Requested size: 170.48747pt x 170.59456pt.
-File: Images/streamFunction.pdf Graphic file (type pdf)
- <use Images/streamFunction.pdf>
-Package pdftex.def Info: Images/streamFunction.pdf used on input line 164.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
+ <Images/streamFunction64.pdf, id=698, 562.1pt x 562.1pt>
+File: Images/streamFunction64.pdf Graphic file (type pdf)
+ <use Images/streamFunction64.pdf>
+Package pdftex.def Info: Images/streamFunction64.pdf used on input line 164.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 7.3pt on input line 165.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/sb/n' will be
 (Font)              scaled to size 10.0pt on input line 165.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/sb/n' will be
 (Font)              scaled to size 7.3pt on input line 165.
-File: Images/streamFunction.pdf Graphic file (type pdf)
- <use Images/streamFunction.pdf>
-Package pdftex.def Info: Images/streamFunction.pdf used on input line 172.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/streamFunction.pdf Graphic file (type pdf)
- <use Images/streamFunction.pdf>
-Package pdftex.def Info: Images/streamFunction.pdf used on input line 178.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/streamFunction.pdf Graphic file (type pdf)
- <use Images/streamFunction.pdf>
-Package pdftex.def Info: Images/streamFunction.pdf used on input line 186.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/streamFunction.pdf Graphic file (type pdf)
- <use Images/streamFunction.pdf>
-Package pdftex.def Info: Images/streamFunction.pdf used on input line 192.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
+ <Images/streamFunction56.pdf, id=699, 562.1pt x 562.1pt>
+File: Images/streamFunction56.pdf Graphic file (type pdf)
+ <use Images/streamFunction56.pdf>
+Package pdftex.def Info: Images/streamFunction56.pdf used on input line 172.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/streamFunction48.pdf, id=700, 562.1pt x 562.1pt>
+File: Images/streamFunction48.pdf Graphic file (type pdf)
+ <use Images/streamFunction48.pdf>
+Package pdftex.def Info: Images/streamFunction48.pdf used on input line 178.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/streamFunction32.pdf, id=701, 562.1pt x 562.1pt>
+File: Images/streamFunction32.pdf Graphic file (type pdf)
+ <use Images/streamFunction32.pdf>
+Package pdftex.def Info: Images/streamFunction32.pdf used on input line 186.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/streamFunction16.pdf, id=702, 562.1pt x 562.1pt>
+File: Images/streamFunction16.pdf Graphic file (type pdf)
+ <use Images/streamFunction16.pdf>
+Package pdftex.def Info: Images/streamFunction16.pdf used on input line 192.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
 File: Images/vorticity.png Graphic file (type png)
  <use Images/vorticity.png>
 Package pdftex.def Info: Images/vorticity.png used on input line 203.
 (pdftex.def)             Requested size: 170.48747pt x 171.8552pt.
-File: Images/vorticity.pdf Graphic file (type pdf)
- <use Images/vorticity.pdf>
-Package pdftex.def Info: Images/vorticity.pdf used on input line 209.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/vorticity.pdf Graphic file (type pdf)
- <use Images/vorticity.pdf>
-Package pdftex.def Info: Images/vorticity.pdf used on input line 217.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/vorticity.pdf Graphic file (type pdf)
- <use Images/vorticity.pdf>
-Package pdftex.def Info: Images/vorticity.pdf used on input line 223.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/vorticity.pdf Graphic file (type pdf)
- <use Images/vorticity.pdf>
-Package pdftex.def Info: Images/vorticity.pdf used on input line 231.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/vorticity.pdf Graphic file (type pdf)
- <use Images/vorticity.pdf>
-Package pdftex.def Info: Images/vorticity.pdf used on input line 237.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
+ <Images/vorticity64.pdf, id=703, 562.1pt x 562.1pt>
+File: Images/vorticity64.pdf Graphic file (type pdf)
+ <use Images/vorticity64.pdf>
+Package pdftex.def Info: Images/vorticity64.pdf used on input line 209.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/vorticity56.pdf, id=704, 562.1pt x 562.1pt>
+File: Images/vorticity56.pdf Graphic file (type pdf)
+ <use Images/vorticity56.pdf>
+Package pdftex.def Info: Images/vorticity56.pdf used on input line 217.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/vorticity48.pdf, id=705, 562.1pt x 562.1pt>
+File: Images/vorticity48.pdf Graphic file (type pdf)
+ <use Images/vorticity48.pdf>
+Package pdftex.def Info: Images/vorticity48.pdf used on input line 223.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/vorticity32.pdf, id=706, 562.1pt x 562.1pt>
+File: Images/vorticity32.pdf Graphic file (type pdf)
+ <use Images/vorticity32.pdf>
+Package pdftex.def Info: Images/vorticity32.pdf used on input line 231.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/vorticity16.pdf, id=707, 562.1pt x 562.1pt>
+File: Images/vorticity16.pdf Graphic file (type pdf)
+ <use Images/vorticity16.pdf>
+Package pdftex.def Info: Images/vorticity16.pdf used on input line 237.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
 File: Images/pressure.png Graphic file (type png)
  <use Images/pressure.png>
 Package pdftex.def Info: Images/pressure.png used on input line 248.
 (pdftex.def)             Requested size: 170.48747pt x 169.75555pt.
-File: Images/pressure.pdf Graphic file (type pdf)
- <use Images/pressure.pdf>
-Package pdftex.def Info: Images/pressure.pdf used on input line 254.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/pressure.pdf Graphic file (type pdf)
- <use Images/pressure.pdf>
-Package pdftex.def Info: Images/pressure.pdf used on input line 262.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/pressure.pdf Graphic file (type pdf)
- <use Images/pressure.pdf>
-Package pdftex.def Info: Images/pressure.pdf used on input line 268.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/pressure.pdf Graphic file (type pdf)
- <use Images/pressure.pdf>
-Package pdftex.def Info: Images/pressure.pdf used on input line 276.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-File: Images/pressure.pdf Graphic file (type pdf)
- <use Images/pressure.pdf>
-Package pdftex.def Info: Images/pressure.pdf used on input line 282.
-(pdftex.def)             Requested size: 170.48747pt x 175.96375pt.
-) [37] [38 <./Images/streamFunction.pdf> <./Images/streamFunction.png>] [39 <./Images/vorticity.png>] [40 <./Images/pressure.pdf> <./Images/pressure.png>] [41] [42] [43]
+ <Images/pressure64.pdf, id=708, 562.1pt x 562.1pt>
+File: Images/pressure64.pdf Graphic file (type pdf)
+ <use Images/pressure64.pdf>
+Package pdftex.def Info: Images/pressure64.pdf used on input line 254.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/pressure56.pdf, id=709, 562.1pt x 562.1pt>
+File: Images/pressure56.pdf Graphic file (type pdf)
+ <use Images/pressure56.pdf>
+Package pdftex.def Info: Images/pressure56.pdf used on input line 262.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/pressure48.pdf, id=710, 562.1pt x 562.1pt>
+File: Images/pressure48.pdf Graphic file (type pdf)
+ <use Images/pressure48.pdf>
+Package pdftex.def Info: Images/pressure48.pdf used on input line 268.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/pressure32.pdf, id=711, 562.1pt x 562.1pt>
+File: Images/pressure32.pdf Graphic file (type pdf)
+ <use Images/pressure32.pdf>
+Package pdftex.def Info: Images/pressure32.pdf used on input line 276.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+ <Images/pressure16.pdf, id=712, 562.1pt x 562.1pt>
+File: Images/pressure16.pdf Graphic file (type pdf)
+ <use Images/pressure16.pdf>
+Package pdftex.def Info: Images/pressure16.pdf used on input line 282.
+(pdftex.def)             Requested size: 170.48747pt x 170.48392pt.
+) [37] [38 <./Images/streamFunction.pdf> <./Images/streamFunction.png>] [39 <./Images/vorticity.png>] [40 <./Images/pressure.pdf> <./Images/pressure.png>] [41 <./Images/streamFunction64.pdf> <./Images/streamFunction56.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/streamFunction56.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/streamFunction48.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/streamFunction48.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/streamFunction32.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/streamFunction32.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/streamFunction16.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/streamFunction16.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] [42 <./Images/vorticity64.pdf> <./Images/vorticity56.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/vorticity56.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/vorticity48.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/vorticity48.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/vorticity32.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/vorticity32.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/vorticity16.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/vorticity16.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>] [43 <./Images/pressure64.pdf> <./Images/pressure56.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/pressure56.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/pressure48.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/pressure48.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/pressure32.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/pressure32.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+> <./Images/pressure16.pdf
+
+pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./Images/pressure16.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+>]
 Chapter 6.
 (./conclusion.tex
 Overfull \hbox (2.00137pt too wide) in paragraph at lines 1--2
@@ -1842,19 +1893,19 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
  ) 
 Here is how much of TeX's memory you used:
- 34119 strings out of 493089
- 596599 string characters out of 6134842
+ 34194 strings out of 493089
+ 598529 string characters out of 6134842
  1146087 words of memory out of 5000000
- 36558 multiletter control sequences out of 15000+600000
+ 36618 multiletter control sequences out of 15000+600000
  302825 words of font info for 348 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,20n,80p,3236b,1618s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_z254vq.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/libertine/LinLibertineTZ.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/fxlri-5letters.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/rtxmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/rtxmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/txex-bar.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txex.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txexa.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr/local/texlive/2015/texm
 f-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/txfonts/txsyc.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xycmat10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xycmbt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/zxlr.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on /Users/michel/Desktop/cfd/Report/.texpadtmp/main.pdf (45 pages, 2054194 bytes).
+Output written on /Users/michel/Desktop/cfd/Report/.texpadtmp/main.pdf (45 pages, 2186389 bytes).
 PDF statistics:
- 905 PDF objects out of 1000 (max. 8388607)
- 811 compressed objects within 9 object streams
+ 1053 PDF objects out of 1200 (max. 8388607)
+ 907 compressed objects within 10 object streams
  289 named destinations out of 1000 (max. 500000)
- 275 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 350 words of extra memory for PDF output out of 10000 (max. 10000000)
 
