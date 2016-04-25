@@ -98,9 +98,9 @@ int main(int argc, char **argv)
         cblas_scopy(u[0], &u[1], 1, &uOld[1], 1);
         updateU(u, tE21, P, C4, dt);
                 
-        if (iteration % 1 == 0) {
+        if (iteration % 100 == 0) {
             updateDiff(&diff, u, uOld, dt);
-            fprintf(stdout, "Iteration %d\tdiff = %6.5f\n", iteration, diff);
+            fprintf(stdout, "Iteration %6d\tdiff = %6.5f\n", iteration, diff);
         }
     }
     
